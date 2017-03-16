@@ -22,7 +22,8 @@ public class Lobby extends CorePlugin {
         ProfileManager<LobbyProfile> profileManager = new ProfileManager<>();
         CosmeticManager cosmeticManager = new CosmeticManager(true);
 
-        PlayerComponent playerComponent = new PlayerComponent(this, cosmeticManager, profileManager);
+        //Components
+        PlayerComponent playerComponent = new PlayerComponent(this, super.database, cosmeticManager, profileManager);
         CreatureComponent creatureComponent = new CreatureComponent();
         ChatComponent chatComponent = new ChatComponent(profileManager);
 

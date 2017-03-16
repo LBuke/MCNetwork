@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * Created by LukeBingham on 26/02/2017.
  */
-public class GadgetDAO implements DAO<Boolean> {
+public class GadgetDAO extends DAO<Boolean> {
 
     private LobbyProfile profile;
 

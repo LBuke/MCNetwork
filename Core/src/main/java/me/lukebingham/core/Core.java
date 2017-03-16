@@ -1,5 +1,6 @@
 package me.lukebingham.core;
 
+import me.lukebingham.core.redis.JedisModule;
 import me.lukebingham.core.util.Component;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -11,4 +12,5 @@ import java.util.HashSet;
 public interface Core {
     String getPluginName();
     HashSet<Component> getComponents();
+    JedisModule getJedis();
 }

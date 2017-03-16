@@ -1,13 +1,17 @@
 package me.lukebingham.core;
 
 import com.google.common.collect.Sets;
+import me.lukebingham.core.command.TestCommand;
 import me.lukebingham.core.database.Database;
 import me.lukebingham.core.database.DatabaseModule;
 import me.lukebingham.core.inventory.MenuComponent;
 import me.lukebingham.core.module.ModuleState;
+import me.lukebingham.core.redis.JedisModule;
+import me.lukebingham.core.redis.message.CommandMessage;
 import me.lukebingham.core.util.C;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.ServerUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashSet;
@@ -19,6 +23,7 @@ public abstract class CorePlugin extends JavaPlugin implements Core {
 
     private HashSet<Component> components;
     protected Database database;
+    protected JedisModule jedisModule;
 
     @Override
     public final void onEnable() {
@@ -27,6 +32,9 @@ public abstract class CorePlugin extends JavaPlugin implements Core {
 
         this.components = Sets.newHashSet();
         this.database = new DatabaseModule("localhost", 27017);
+        this.jedisModule = new JedisModule(getPluginName());
+        new TestCommand(this.jedisModule);
+        this.jedisModule.registerListener(CommandMessage.class, new TestMessage());
 
         MenuComponent menuComponent = new MenuComponent();
         ServerUtil.registerComponent(menuComponent);
@@ -47,6 +55,7 @@ public abstract class CorePlugin extends JavaPlugin implements Core {
         super.onDisable();
 
         unload();
+        jedisModule.disable();
     }
 
     protected abstract void load();
@@ -57,7 +66,7 @@ public abstract class CorePlugin extends JavaPlugin implements Core {
     }
 
     private void logLoadedModule() {
-        String log = C.YELLOW + "Module loaded:    " + getPluginName() + C.GRAY;
+        String log = C.AQUA + "Module loaded:    " + getPluginName() + C.GRAY;
         int classLength = getPluginName().length(), max = 35, difference = max - classLength;
         for(int i = 0; i < difference; i++) log += ".";
         log += getModuleState() != null ? getModuleState().state().getName(true, false) : C.RED + "NULL";
@@ -67,5 +76,10 @@ public abstract class CorePlugin extends JavaPlugin implements Core {
     @Override
     public final HashSet<Component> getComponents() {
         return components;
+    }
+
+    @Override
+    public JedisModule getJedis() {
+        return jedisModule;
     }
 }

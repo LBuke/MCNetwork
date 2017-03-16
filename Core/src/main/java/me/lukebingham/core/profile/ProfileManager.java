@@ -33,7 +33,7 @@ public class ProfileManager<T extends CoreProfile> implements Component {
     }
 
     public void removeData(UUID uniqueId) {
-        playerCache.remove(uniqueId);
+        playerCache.remove(getData(uniqueId));
     }
 
     public void loadData(T data, Callback<T> callback) {

@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.regex.Pattern;
 
 /**
@@ -30,6 +31,18 @@ public class ServerUtil {
      */
     public static void log(String log) {
         Bukkit.getConsoleSender().sendMessage(log);
+    }
+
+    public static void logError(String log) {
+        log("[" + C.RED + "ERROR" + C.RESET + "] " + log);
+    }
+
+    public static void logWarn(String log) {
+        Bukkit.getConsoleSender().sendMessage("[" + C.YELLOW + "WARN" + C.RESET + "] " + log);
+    }
+
+    public static void logDebug(String log) {
+        Bukkit.getConsoleSender().sendMessage("[" + C.LIGHT_PURPLE + "DEBUG" + C.RESET + "] " + log);
     }
 
     public static JavaPlugin getJavaPlugin() {
