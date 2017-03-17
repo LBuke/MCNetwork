@@ -14,16 +14,21 @@ public final class DatabaseModule implements Database {
 
     private final MongoClient mongoClient;
 
-    public DatabaseModule(String host, int port) {
+    public DatabaseModule(String host, int port, boolean log) {
         //MongoCredential credential = MongoCredential.createCredential(userName, database, password);
         //mongoClient = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential));
         mongoClient = new MongoClient(new ServerAddress(host, port));
-        ServerUtil.log(C.DATABASE + "MongoDB Client connected! (" + host + " - " + port + ")");
+        if(log) ServerUtil.log(C.DATABASE + "MongoDB Client connected! (" + host + " - " + port + ")");
     }
 
     @Override
     public DBCollection getCollection(String database, String collection) {
         DB mongoDatabase = mongoClient.getDB(database);
         return mongoDatabase.getCollection(collection);
+    }
+
+    @Override
+    public void close() {
+        mongoClient.close();
     }
 }

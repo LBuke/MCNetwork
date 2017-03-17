@@ -7,4 +7,5 @@ import com.mongodb.DBCollection;
  */
 public interface Database {
     DBCollection getCollection(String database, String collection);
+    void close();
 }

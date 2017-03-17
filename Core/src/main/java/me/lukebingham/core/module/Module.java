@@ -1,5 +1,7 @@
 package me.lukebingham.core.module;
 
+import me.lukebingham.core.util.ServerType;
+
 import java.lang.annotation.*;
 
 /**
@@ -8,7 +10,7 @@ import java.lang.annotation.*;
 @Documented
 @Target({ ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ModuleState {
+public @interface Module {
 
     /**
      * This value will determine which state the current module is in.
@@ -16,4 +18,5 @@ public @interface ModuleState {
      * @return Plugin State
      */
     PluginState state();
+    ServerType type();
 }

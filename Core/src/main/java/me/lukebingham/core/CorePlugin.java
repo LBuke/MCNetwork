@@ -1,17 +1,18 @@
 package me.lukebingham.core;
 
 import com.google.common.collect.Sets;
+import me.lukebingham.core.command.ServerCommand;
+import me.lukebingham.core.command.StopCommand;
 import me.lukebingham.core.command.TestCommand;
 import me.lukebingham.core.database.Database;
 import me.lukebingham.core.database.DatabaseModule;
 import me.lukebingham.core.inventory.MenuComponent;
-import me.lukebingham.core.module.ModuleState;
+import me.lukebingham.core.module.Module;
 import me.lukebingham.core.redis.JedisModule;
 import me.lukebingham.core.redis.message.CommandMessage;
 import me.lukebingham.core.util.C;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.ServerUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashSet;
@@ -31,12 +32,17 @@ public abstract class CorePlugin extends JavaPlugin implements Core {
         super.onEnable();
 
         this.components = Sets.newHashSet();
-        this.database = new DatabaseModule("localhost", 27017);
+        this.database = new DatabaseModule("localhost", 27017, true);
         this.jedisModule = new JedisModule(getPluginName());
-        new TestCommand(this.jedisModule);
-        this.jedisModule.registerListener(CommandMessage.class, new TestMessage());
 
+        //Commands
+        TestCommand testCommand = new TestCommand(this.jedisModule);
+        new StopCommand(this);
+        new ServerCommand(this.jedisModule);
+
+        //Components & Listeners
         MenuComponent menuComponent = new MenuComponent();
+        this.jedisModule.registerListener(CommandMessage.class, testCommand);
         ServerUtil.registerComponent(menuComponent);
 
         load();
@@ -55,14 +61,15 @@ public abstract class CorePlugin extends JavaPlugin implements Core {
         super.onDisable();
 
         unload();
+        database.close();
         jedisModule.disable();
     }
 
     protected abstract void load();
     protected abstract void unload();
 
-    private ModuleState getModuleState() {
-        return getClass().isAnnotationPresent(ModuleState.class) ? getClass().getAnnotation(ModuleState.class) : null;
+    private Module getModuleState() {
+        return getClass().isAnnotationPresent(Module.class) ? getClass().getAnnotation(Module.class) : null;
     }
 
     private void logLoadedModule() {
@@ -81,5 +88,10 @@ public abstract class CorePlugin extends JavaPlugin implements Core {
     @Override
     public JedisModule getJedis() {
         return jedisModule;
+    }
+
+    @Override
+    public JavaPlugin getPlugin() {
+        return this;
     }
 }

@@ -5,6 +5,7 @@ import me.lukebingham.core.util.Callback;
 import me.lukebingham.core.util.Component;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -12,9 +13,12 @@ import java.util.UUID;
  */
 public class ProfileManager<T extends CoreProfile> implements Component {
 
+    private static ProfileManager instance;
+
     private final HashSet<T> playerCache;
 
     public ProfileManager() {
+        instance = this;
         playerCache = Sets.newHashSet();
     }
 
@@ -29,7 +33,8 @@ public class ProfileManager<T extends CoreProfile> implements Component {
     }
 
     public T getData(UUID uniqueId) {
-        return playerCache.stream().filter(t -> t.getUniqueId().equals(uniqueId)).findFirst().get();
+        Optional<T> optional = playerCache.stream().filter(t -> t.getUniqueId().equals(uniqueId)).findFirst();
+        return optional.isPresent() ? optional.get() : null;
     }
 
     public void removeData(UUID uniqueId) {
@@ -49,5 +54,9 @@ public class ProfileManager<T extends CoreProfile> implements Component {
 
     public HashSet<T> getPlayerCache() {
         return playerCache;
+    }
+
+    public static ProfileManager getInstance() {
+        return instance;
     }
 }

@@ -3,16 +3,16 @@ package me.lukebingham.lobby.components;
 import me.lukebingham.core.Core;
 import me.lukebingham.core.cosmetic.CosmeticManager;
 import me.lukebingham.core.database.Database;
-import me.lukebingham.lobby.dao.GadgetDAO;
-import me.lukebingham.core.module.ModuleState;
+import me.lukebingham.core.module.Module;
 import me.lukebingham.core.module.PluginState;
 import me.lukebingham.core.profile.ProfileManager;
 import me.lukebingham.core.util.C;
 import me.lukebingham.core.util.Component;
-import me.lukebingham.core.util.Role;
 import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.core.util.factory.ItemFactory;
+import me.lukebingham.core.util.rank.Role;
 import me.lukebingham.lobby.Lobby;
+import me.lukebingham.lobby.dao.GadgetDAO;
 import me.lukebingham.lobby.profile.LobbyProfile;
 import me.lukebingham.lobby.profile.ProfileInventory;
 import org.bukkit.GameMode;
@@ -24,7 +24,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.*;
-import org.bukkit.event.server.ServerListPingEvent;
 
 /**
  * Created by LukeBingham on 23/02/2017.
@@ -51,12 +50,17 @@ public final class PlayerComponent implements Component {
         return false;
     }
 
+    @Override
+    public void onDisable() {
+        profileManager.getPlayerCache().forEach(cache -> profileManager.saveData(cache.getUniqueId(), call -> {}));
+    }
+
     @EventHandler
     protected void onPlayerLogin(AsyncPlayerPreLoginEvent event) {
         //TODO pull from database
         profileManager.loadData(new LobbyProfile(event.getUniqueId(), event.getName()), call -> {
-            if (Lobby.class.isAnnotationPresent(ModuleState.class)) {
-                PluginState state = Lobby.class.getAnnotation(ModuleState.class).state();
+            if (Lobby.class.isAnnotationPresent(Module.class)) {
+                PluginState state = Lobby.class.getAnnotation(Module.class).state();
                 if (state == PluginState.PRE_ALPHA || state == PluginState.ALPHA) {
                     if (!call.getRole().hasRole(Role.MODERATOR)) {
                         event.setLoginResult(AsyncPlayerPreLoginEvent.Result.KICK_OTHER);
@@ -66,16 +70,25 @@ public final class PlayerComponent implements Component {
             }
         });
 
-        new GadgetDAO(profileManager.getData(event.getUniqueId())).fetch(database, call -> ServerUtil.log(C.AQUA + "Gadgets loaded for " + event.getName()));
+        new GadgetDAO(profileManager.getData(event.getUniqueId())).fetch(database, call -> ServerUtil.logDebug("Gadgets loaded for " + event.getName()));
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        if(event.getPlayer() == null) return;
+        profileManager.saveData(event.getPlayer().getUniqueId(), call -> ServerUtil.logDebug("Data saved for " + call.getName()));
     }
 
     @EventHandler
     protected void onPlayerJoin(PlayerJoinEvent event) {
+        if(event.getPlayer() == null) return;
+        event.getPlayer().getInventory().clear();
         event.getPlayer().getInventory().setItem(4, new ItemFactory(Material.SKULL_ITEM, (byte) 3).setName("Profile").setOwner(event.getPlayer().getName()).build());
     }
 
     @EventHandler
     protected void onPlayerInteract(PlayerInteractEvent event) {
+        if(event.getPlayer() == null) return;
         if(event.getItem() == null) return;
 
         //Profile
@@ -88,46 +101,42 @@ public final class PlayerComponent implements Component {
     }
 
     @EventHandler
-    protected void onListPing(ServerListPingEvent event) {
-        String s = "NULL";
-        if (Lobby.class.isAnnotationPresent(ModuleState.class)) {
-            s = Lobby.class.getAnnotation(ModuleState.class).state().name();
-        }
-
-        event.setMotd(ServerUtil.SERVER_NAME + " - " + core.getPluginName() + " - " + s);
-    }
-
-    @EventHandler
     protected void onItemDrop(PlayerDropItemEvent event) {
+        if(event.getPlayer() == null) return;
         event.setCancelled(!allowItemDrop);
         event.getPlayer().updateInventory();
     }
 
     @EventHandler
     protected void onConsume(PlayerItemConsumeEvent event) {
+        if(event.getPlayer() == null) return;
         event.setCancelled(!allowConsume);
         event.getPlayer().updateInventory();
     }
 
     @EventHandler (ignoreCancelled = true)
     protected void onBlockBreak(BlockBreakEvent event) {
+        if(event.getPlayer() == null) return;
         if(event.getPlayer().getGameMode() == GameMode.CREATIVE) return;
         event.setCancelled(!allowBlockBreak);
     }
 
     @EventHandler (ignoreCancelled = true)
     protected void onBlockPlace(BlockPlaceEvent event) {
+        if(event.getPlayer() == null) return;
         if(event.getPlayer().getGameMode() == GameMode.CREATIVE) return;
         event.setCancelled(!allowBlockPlace);
     }
 
     @EventHandler
     protected void onHungerDrain(FoodLevelChangeEvent event) {
+        if(event.getEntity() == null) return;
         event.setCancelled(!allowHungerDrain);
     }
 
     @EventHandler
     protected void onDamage(EntityDamageEvent event) {
+        if (event.getEntity() == null) return;
         if (event.getEntity() instanceof Player)
             event.setCancelled(!allowDamage);
     }

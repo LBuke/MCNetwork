@@ -3,7 +3,7 @@ package me.lukebingham.lobby.components;
 import me.lukebingham.core.profile.ProfileManager;
 import me.lukebingham.core.util.C;
 import me.lukebingham.core.util.Component;
-import me.lukebingham.core.util.Role;
+import me.lukebingham.core.util.rank.Role;
 import me.lukebingham.lobby.profile.LobbyProfile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerChatEvent;

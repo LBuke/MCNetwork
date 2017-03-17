@@ -1,4 +1,6 @@
-package me.lukebingham.core.util;
+package me.lukebingham.core.util.rank;
+
+import me.lukebingham.core.util.C;
 
 /**
  * Created by LukeBingham on 23/02/2017.
@@ -9,7 +11,7 @@ public enum Role {
     MODERATOR(C.GREEN, "Moderator"),
     APPRENTICE(C.BLUE, "Apprentice"),
 
-    NULL(null, null)
+    NULL(null, null),
     ;
 
     private String color, tag;

@@ -21,7 +21,11 @@ public class JedisModule {
     private MessageReader reader;
     private MessageWriter writer;
 
-    protected static HashMap<Class<? extends JMessage>, List<MessageListener>> listeners = Maps.newHashMap();
+    protected static HashMap<Class<? extends JMessage>, List<MessageListener>> listeners;
+
+    static {
+        listeners = new HashMap<>();
+    }
 
     public JedisModule() {}
 

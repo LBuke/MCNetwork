@@ -1,6 +1,7 @@
 package me.lukebingham.core.profile;
 
-import me.lukebingham.core.util.Role;
+import me.lukebingham.core.util.rank.Rank;
+import me.lukebingham.core.util.rank.Role;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -14,6 +15,7 @@ public class CoreProfile {
     private String name;
     private String displayName = "null";
     private Role role = Role.ADMINISTRATOR;
+    private Rank rank = Rank.MEMBER;
 
     public CoreProfile(UUID uniqueId, String name) {
         this.uniqueId = uniqueId;
@@ -42,5 +44,13 @@ public class CoreProfile {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
     }
 }

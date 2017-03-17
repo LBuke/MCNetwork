@@ -12,5 +12,6 @@ import java.util.HashSet;
 public interface Core {
     String getPluginName();
     HashSet<Component> getComponents();
+    JavaPlugin getPlugin();
     JedisModule getJedis();
 }
