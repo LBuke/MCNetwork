@@ -1,9 +1,6 @@
 package me.lukebingham.core.database;
 
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.MongoClient;
-import com.mongodb.ServerAddress;
+import com.mongodb.*;
 import me.lukebingham.core.util.C;
 import me.lukebingham.core.util.ServerUtil;
 
@@ -18,6 +15,7 @@ public final class DatabaseModule implements Database {
         //MongoCredential credential = MongoCredential.createCredential(userName, database, password);
         //mongoClient = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential));
         mongoClient = new MongoClient(new ServerAddress(host, port));
+        mongoClient.setWriteConcern(WriteConcern.SAFE);
         if(log) ServerUtil.log(C.DATABASE + "MongoDB Client connected! (" + host + " - " + port + ")");
     }
 

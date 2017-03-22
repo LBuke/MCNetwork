@@ -5,8 +5,6 @@ import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.core.util.rank.Role;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * Created by LukeBingham on 17/03/2017.
@@ -21,8 +19,6 @@ public class StopCommand extends CommandFactory<CommandSender> implements StaffC
     public StopCommand(Core core) {
         super("stop", "Stop the server.");
         this.core = core;
-
-        new CommandRemover("stop");
     }
 
     /**

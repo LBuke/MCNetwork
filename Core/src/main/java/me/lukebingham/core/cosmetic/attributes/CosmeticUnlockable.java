@@ -1,4 +1,4 @@
-package me.lukebingham.core.cosmetic.misc;
+package me.lukebingham.core.cosmetic.attributes;
 
 import me.lukebingham.core.cosmetic.RarityType;
 

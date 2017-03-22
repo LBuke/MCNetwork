@@ -1,5 +1,6 @@
 package me.lukebingham.core.cosmetic.gadget;
 
+import me.lukebingham.core.cosmetic.gadget.gadgets.CookieGadget;
 import me.lukebingham.core.cosmetic.gadget.gadgets.LolGadget;
 import me.lukebingham.core.cosmetic.gadget.gadgets.TestGadget;
 
@@ -9,6 +10,7 @@ import me.lukebingham.core.cosmetic.gadget.gadgets.TestGadget;
 public enum GadgetType {
     TEST(TestGadget.class),
     LOL(LolGadget.class),
+    COOKIE(CookieGadget.class),
     ;
 
     protected Class<? extends Gadget> gadgetClass;

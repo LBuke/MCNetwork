@@ -2,14 +2,17 @@ package me.lukebingham.core;
 
 import com.google.common.collect.Sets;
 import me.lukebingham.core.command.ServerCommand;
-import me.lukebingham.core.command.StopCommand;
 import me.lukebingham.core.command.TestCommand;
 import me.lukebingham.core.database.Database;
 import me.lukebingham.core.database.DatabaseModule;
+import me.lukebingham.core.i18n.I18n;
+import me.lukebingham.core.i18n.I18nComponent;
 import me.lukebingham.core.inventory.MenuComponent;
 import me.lukebingham.core.module.Module;
+import me.lukebingham.core.packet.PacketComponent;
+import me.lukebingham.core.profile.CoreProfile;
+import me.lukebingham.core.profile.ProfileManager;
 import me.lukebingham.core.redis.JedisModule;
-import me.lukebingham.core.redis.message.CommandMessage;
 import me.lukebingham.core.util.C;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.ServerUtil;
@@ -20,11 +23,12 @@ import java.util.HashSet;
 /**
  * Created by LukeBingham on 22/02/2017.
  */
-public abstract class CorePlugin extends JavaPlugin implements Core {
+public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin implements Core {
 
     private HashSet<Component> components;
     protected Database database;
     protected JedisModule jedisModule;
+    protected ProfileManager<Profile> profileManager;
 
     @Override
     public final void onEnable() {
@@ -34,16 +38,18 @@ public abstract class CorePlugin extends JavaPlugin implements Core {
         this.components = Sets.newHashSet();
         this.database = new DatabaseModule("localhost", 27017, true);
         this.jedisModule = new JedisModule(getPluginName());
+        this.profileManager = new ProfileManager<>();
+        new I18n();
 
         //Commands
-        TestCommand testCommand = new TestCommand(this.jedisModule);
-        new StopCommand(this);
         new ServerCommand(this.jedisModule);
+        new TestCommand();
 
         //Components & Listeners
         MenuComponent menuComponent = new MenuComponent();
-        this.jedisModule.registerListener(CommandMessage.class, testCommand);
-        ServerUtil.registerComponent(menuComponent);
+        I18nComponent i18nComponent = new I18nComponent(profileManager);
+        PacketComponent packetComponent = new PacketComponent();
+        ServerUtil.registerComponent(menuComponent, i18nComponent, packetComponent);
 
         load();
         logLoadedModule();
@@ -60,6 +66,7 @@ public abstract class CorePlugin extends JavaPlugin implements Core {
         //In case spigot ever add default 'onDisable' code.
         super.onDisable();
 
+        getComponents().forEach(ServerUtil::unregisterComponent);
         unload();
         database.close();
         jedisModule.disable();

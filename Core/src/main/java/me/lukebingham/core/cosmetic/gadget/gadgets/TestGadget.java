@@ -2,8 +2,8 @@ package me.lukebingham.core.cosmetic.gadget.gadgets;
 
 import me.lukebingham.core.cosmetic.gadget.Gadget;
 import me.lukebingham.core.cosmetic.gadget.GadgetTriggerType;
-import me.lukebingham.core.cosmetic.misc.CosmeticBuyable;
-import me.lukebingham.core.cosmetic.misc.CosmeticUnlockable;
+import me.lukebingham.core.cosmetic.attributes.CosmeticBuyable;
+import me.lukebingham.core.cosmetic.attributes.CosmeticUnlockable;
 import me.lukebingham.core.util.C;
 import me.lukebingham.core.util.factory.ItemFactory;
 import org.bukkit.Material;
@@ -21,7 +21,7 @@ public class TestGadget implements Gadget, CosmeticBuyable, CosmeticUnlockable {
 
     @Override
     public String getName() {
-        return "Test";
+        return "Dev";
     }
 
     @Override
@@ -55,12 +55,12 @@ public class TestGadget implements Gadget, CosmeticBuyable, CosmeticUnlockable {
     }
 
     @Override
-    public double getPrice() {
+    public double getCost() {
         return 1000;
     }
 
     @Override
     public double getRarity() {
-        return 20;
+        return 35;
     }
 }

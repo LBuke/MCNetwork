@@ -63,17 +63,17 @@
         <finalName>${project.name}-${project.version}</finalName>
         <plugins>
             <!--<plugin>-->
-                <!--Build executable jar-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-jar-plugin</artifactId>-->
-                <!--<version>3.0.2</version>-->
-                <!--<configuration>-->
-                    <!--<archive>-->
-                        <!--<addClasspath>true</addClasspath>-->
-                        <!--<classpathPrefix>lib/</classpathPrefix>-->
-                        <!--<mainClass>me.lukebingham.redishelper.Main</mainClass>-->
-                    <!--</archive>-->
-                <!--</configuration>-->
+            <!--Build executable jar-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-jar-plugin</artifactId>-->
+            <!--<version>3.0.2</version>-->
+            <!--<configuration>-->
+            <!--<archive>-->
+            <!--<addClasspath>true</addClasspath>-->
+            <!--<classpathPrefix>lib/</classpathPrefix>-->
+            <!--<mainClass>me.lukebingham.redishelper.Main</mainClass>-->
+            <!--</archive>-->
+            <!--</configuration>-->
             <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

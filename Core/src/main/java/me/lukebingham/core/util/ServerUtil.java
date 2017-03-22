@@ -81,7 +81,6 @@ public class ServerUtil {
                 HandlerList.unregisterAll(component);
                 component.onDisable();
                 component.log(false);
-                ((CorePlugin) PLUGIN).getComponents().remove(component);
             }
         });
     }

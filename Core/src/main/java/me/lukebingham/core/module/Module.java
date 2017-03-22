@@ -12,6 +12,8 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Module {
 
+    String version();
+
     /**
      * This value will determine which state the current module is in.
      *

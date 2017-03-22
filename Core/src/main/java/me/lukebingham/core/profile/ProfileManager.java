@@ -41,6 +41,10 @@ public class ProfileManager<T extends CoreProfile> implements Component {
         playerCache.remove(getData(uniqueId));
     }
 
+    public boolean isLoaded(UUID uniqueId) {
+        return playerCache.stream().anyMatch(profile -> profile.getUniqueId().equals(uniqueId));
+    }
+
     public void loadData(T data, Callback<T> callback) {
         //TODO grab from database
         playerCache.add(data);

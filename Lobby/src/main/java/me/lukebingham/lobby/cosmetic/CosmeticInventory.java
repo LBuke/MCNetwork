@@ -1,6 +1,8 @@
 package me.lukebingham.lobby.cosmetic;
 
 import me.lukebingham.core.cosmetic.CosmeticManager;
+import me.lukebingham.core.i18n.I18n;
+import me.lukebingham.core.i18n.I18nMessage;
 import me.lukebingham.core.inventory.MenuModule;
 import me.lukebingham.core.inventory.item.ClickableItem;
 import me.lukebingham.core.inventory.item.DummyItem;
@@ -18,16 +20,16 @@ import org.bukkit.event.inventory.ClickType;
 public class CosmeticInventory extends MenuModule {
 
     public CosmeticInventory(CosmeticManager cosmeticManager, LobbyProfile profile) {
-        super(4, "Cosmetics");
+        super(4, I18n.get(profile, I18nMessage.COSMETICS));
 
         int gadgetsOwned = profile.getGadgetDataList().size();
-        ItemFactory gadgets = new ItemFactory(Material.CHEST).setName("Gadgets");
-        ItemFactory hats = new ItemFactory(Material.SKULL_ITEM, (byte) 4).setName("Hats");
-        ItemFactory trails = new ItemFactory(Material.BLAZE_POWDER).setName("Trails");
-        ItemFactory pets = new ItemFactory(Material.MONSTER_EGG, (byte) 383).setName("Pets");
+        ItemFactory gadgets = new ItemFactory(Material.CHEST).setName(I18n.get(profile, I18nMessage.GADGETS));
+        ItemFactory hats = new ItemFactory(Material.SKULL_ITEM, (byte) 4).setName(I18n.get(profile, I18nMessage.HATS));
+        ItemFactory trails = new ItemFactory(Material.BLAZE_POWDER).setName(I18n.get(profile, I18nMessage.TRAILS));
+        ItemFactory pets = new ItemFactory(Material.MONSTER_EGG, (byte) 383).setName(I18n.get(profile, I18nMessage.PETS));
 
-        ItemFactory close = new ItemFactory(Material.ARROW).setName("Back");
-        ItemFactory profileHead = new ItemFactory(Material.SKULL_ITEM, (byte) 3).setName("Profile").setOwner(profile.getName());
+        ItemFactory close = new ItemFactory(Material.ARROW).setName(I18n.get(profile, I18nMessage.BACK));
+        ItemFactory profileHead = new ItemFactory(Material.SKULL_ITEM, (byte) 3).setName(I18n.get(profile, I18nMessage.PROFILE)).setOwner(profile.getName());
 
         addItem(new ClickableItem(10, gadgets.build(), true) {
             @Override public void click(Player player, ClickType clickType) {

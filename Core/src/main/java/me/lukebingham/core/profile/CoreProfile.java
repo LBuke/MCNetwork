@@ -1,9 +1,13 @@
 package me.lukebingham.core.profile;
 
+import me.lukebingham.core.currency.Currency;
+import me.lukebingham.core.i18n.Locale;
 import me.lukebingham.core.util.rank.Rank;
 import me.lukebingham.core.util.rank.Role;
 import org.bukkit.entity.Player;
 
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -16,6 +20,9 @@ public class CoreProfile {
     private String displayName = "null";
     private Role role = Role.ADMINISTRATOR;
     private Rank rank = Rank.MEMBER;
+    private Locale locale = Locale.en_US;
+
+    private Currency[] currencies;
 
     public CoreProfile(UUID uniqueId, String name) {
         this.uniqueId = uniqueId;
@@ -27,19 +34,23 @@ public class CoreProfile {
     }
 
     public UUID getUniqueId() {
-        return uniqueId;
+        return this.uniqueId;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getDisplayName() {
-        return displayName;
+        return this.displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public Role getRole() {
-        return role;
+        return this.role;
     }
 
     public void setRole(Role role) {
@@ -47,10 +58,31 @@ public class CoreProfile {
     }
 
     public Rank getRank() {
-        return rank;
+        return this.rank;
     }
 
     public void setRank(Rank rank) {
         this.rank = rank;
+    }
+
+    public Locale getLocale() {
+        return this.locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    public Currency[] getCurrencies() {
+        return this.currencies;
+    }
+
+    public Currency getCurrency(Class<? extends Currency> currency) {
+        Optional<Currency> optional = Arrays.stream(this.currencies).filter(c -> c.getClass().getSimpleName().equals(currency.getSimpleName())).findAny();
+        return optional.isPresent() ? optional.get() : null;
+    }
+
+    public void setCurrencies(Currency... currencies) {
+        this.currencies = currencies;
     }
 }
