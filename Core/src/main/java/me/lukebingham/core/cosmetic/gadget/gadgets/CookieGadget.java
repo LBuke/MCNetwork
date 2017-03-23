@@ -1,10 +1,11 @@
 package me.lukebingham.core.cosmetic.gadget.gadgets;
 
-import me.lukebingham.core.cosmetic.gadget.Gadget;
-import me.lukebingham.core.cosmetic.gadget.GadgetTriggerType;
 import me.lukebingham.core.cosmetic.attributes.CosmeticBuyable;
 import me.lukebingham.core.cosmetic.attributes.CosmeticRequireRank;
 import me.lukebingham.core.cosmetic.attributes.CosmeticUnlockable;
+import me.lukebingham.core.cosmetic.gadget.Gadget;
+import me.lukebingham.core.cosmetic.gadget.GadgetTriggerType;
+import me.lukebingham.core.cosmetic.gadget.GadgetType;
 import me.lukebingham.core.currency.CurrencyType;
 import me.lukebingham.core.util.C;
 import me.lukebingham.core.util.factory.ItemFactory;
@@ -54,7 +55,12 @@ public class CookieGadget implements Gadget, CosmeticBuyable, CosmeticUnlockable
 
     @Override
     public ItemFactory getItemFactory() {
-        return new ItemFactory(Material.BONE);
+        return new ItemFactory(Material.COOKIE);
+    }
+
+    @Override
+    public GadgetType getGadgetType() {
+        return GadgetType.COOKIE;
     }
 
     @Override

@@ -24,7 +24,7 @@ public class ChatComponent implements Component {
 
         String format = "";
 
-        LobbyProfile lobbyPlayer = profileManager.getData(event.getPlayer().getUniqueId());
+        LobbyProfile lobbyPlayer = profileManager.getCache(event.getPlayer().getUniqueId());
         Role role = lobbyPlayer.getRole();
         if(role != Role.NULL) {
             format += role.getColor() + role.getShortTag() + C.WHITE + " | ";

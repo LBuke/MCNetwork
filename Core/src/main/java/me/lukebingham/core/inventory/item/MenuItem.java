@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 public class MenuItem {
 
     private final ItemStack itemStack;
-    private final int index;
+    private int index;
     private final boolean cancelOnClick;
 
     public MenuItem(int index, ItemStack itemStack, boolean cancelOnClick) {
@@ -31,5 +31,9 @@ public class MenuItem {
 
     public boolean isCancelOnClick() {
         return cancelOnClick;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

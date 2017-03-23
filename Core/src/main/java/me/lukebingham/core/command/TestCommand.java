@@ -1,7 +1,11 @@
 package me.lukebingham.core.command;
 
+import me.lukebingham.core.cosmetic.gadget.gadgets.CookieGadget;
 import me.lukebingham.core.i18n.I18n;
 import me.lukebingham.core.i18n.I18nMessage;
+import me.lukebingham.core.util.particle.ColoredParticle;
+import me.lukebingham.core.util.particle.ParticleEffect;
+import net.minecraft.server.v1_11_R1.EnumParticle;
 import org.bukkit.entity.Player;
 
 /**
@@ -24,7 +28,6 @@ public class TestCommand extends CommandFactory<Player> {
      */
     @Override
     public void execute(Player sender, String[] args) {
-        //{0} this is a {0} {1} TEST
-        I18n.message(sender, I18nMessage.TEST, "ABC", sender.getPlayer().getName());
+        ColoredParticle.send(ParticleEffect.REDSTONE, sender.getLocation(), 16, 0, 255, 0);
     }
 }

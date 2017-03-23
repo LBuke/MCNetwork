@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * Created by LukeBingham on 16/03/2017.
@@ -54,7 +53,7 @@ public abstract class CommandFactory<T extends CommandSender> extends BukkitComm
         if(commandSender instanceof Player) {
             CoreProfile profile = null;
             if(this instanceof RankedCommand) {
-                profile = ProfileManager.getInstance().getData(((Player) commandSender).getUniqueId());
+                profile = ProfileManager.getInstance().getCache(((Player) commandSender).getUniqueId());
                 if(profile.getRank().hasRank(((RankedCommand) this).getRequiredRank())) {
                     execute((T) commandSender, strings);
                 } else {
@@ -64,7 +63,7 @@ public abstract class CommandFactory<T extends CommandSender> extends BukkitComm
             }
 
             if(this instanceof StaffCommand) {
-                profile = ProfileManager.getInstance().getData(((Player) commandSender).getUniqueId());
+                profile = ProfileManager.getInstance().getCache(((Player) commandSender).getUniqueId());
                 if(profile.getRole().hasRole(((StaffCommand) this).getRequiredRole())) {
                     execute((T) commandSender, strings);
                 } else {

@@ -2,6 +2,8 @@ package me.lukebingham.lobby.components;
 
 import me.lukebingham.core.Core;
 import me.lukebingham.core.cosmetic.CosmeticManager;
+import me.lukebingham.core.cosmetic.gadget.GadgetData;
+import me.lukebingham.core.cosmetic.gadget.gadgets.CookieGadget;
 import me.lukebingham.core.database.Database;
 import me.lukebingham.core.module.Module;
 import me.lukebingham.core.module.PluginState;
@@ -52,13 +54,13 @@ public final class PlayerComponent implements Component {
 
     @Override
     public void onDisable() {
-        profileManager.getPlayerCache().forEach(cache -> profileManager.saveData(cache.getUniqueId(), call -> {}));
+        profileManager.getPlayerCache().forEach(cache -> profileManager.saveCache(cache.getUniqueId(), call -> {}));
     }
 
     @EventHandler
     protected void onPlayerLogin(AsyncPlayerPreLoginEvent event) {
         //TODO pull from database
-        profileManager.loadData(new LobbyProfile(event.getUniqueId(), event.getName()), call -> {
+        profileManager.cacheProfile(new LobbyProfile(event.getUniqueId(), event.getName()), call -> {
             if (Lobby.class.isAnnotationPresent(Module.class)) {
                 PluginState state = Lobby.class.getAnnotation(Module.class).state();
                 if (state == PluginState.PRE_ALPHA || state == PluginState.ALPHA) {
@@ -68,15 +70,19 @@ public final class PlayerComponent implements Component {
                     }
                 }
             }
-        });
 
-        new GadgetDAO(profileManager.getData(event.getUniqueId())).fetch(database, call -> ServerUtil.logDebug("Gadgets loaded for " + event.getName()));
+            new GadgetDAO(call).fetch(database, object -> ServerUtil.logDebug("Gadgets loaded for " + call.getName()));
+            call.addGadgetData(new CookieGadget());
+        });
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         if(event.getPlayer() == null) return;
-        profileManager.saveData(event.getPlayer().getUniqueId(), call -> ServerUtil.logDebug("Data saved for " + call.getName()));
+        profileManager.saveCache(event.getPlayer().getUniqueId(), call -> {
+            new GadgetDAO(call).save(database, object -> ServerUtil.logDebug("Gadget DAO saved for " + call.getName()));
+            ServerUtil.logDebug("Profile saved for " + call.getName());
+        });
     }
 
     @EventHandler
@@ -93,7 +99,7 @@ public final class PlayerComponent implements Component {
 
         //Profile
         if(event.getItem().getType() == Material.SKULL_ITEM) {
-            new ProfileInventory(cosmeticManager, profileManager.getData(event.getPlayer().getUniqueId())).openInventory(event.getPlayer());
+            new ProfileInventory(cosmeticManager, profileManager.getCache(event.getPlayer().getUniqueId())).openInventory(event.getPlayer());
             return;
         }
 

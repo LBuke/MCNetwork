@@ -24,7 +24,7 @@ public class I18nComponent implements Component {
         if(event.getPacketType() != PacketEvent.PacketType.INWARDS) return;
         if(!(event.getPacket() instanceof PacketPlayInSettings)) return;
         PacketPlayInSettings packet = (PacketPlayInSettings) event.getPacket();
-        CoreProfile profile = profileManager.getData(event.getPlayer().getUniqueId());
+        CoreProfile profile = profileManager.getCache(event.getPlayer().getUniqueId());
         if(packet.a().equals(profile.getLocale().getTag())) return;
         ServerUtil.logDebug(event.getPlayer().getName() + " has changed his language to: " + packet.a());
         profile.setLocale(Locale.fromString(packet.a()));

@@ -52,7 +52,7 @@ public class I18n {
 
     public static void message(Player player, I18nMessage message, String... arguments) {
         if(player == null || !player.isOnline()) return;
-        CoreProfile profile = ProfileManager.getInstance().getData(player.getUniqueId());
+        CoreProfile profile = ProfileManager.getInstance().getCache(player.getUniqueId());
         if(profile == null) return;
         String prop = properties.get(profile.getLocale()).getProperty(message.getKey());
         for(int i = 0; i < arguments.length; i++) {
@@ -64,7 +64,7 @@ public class I18n {
 
     public static void message(Player player, String message, String... arguments) {
         if(player == null || !player.isOnline()) return;
-        CoreProfile profile = ProfileManager.getInstance().getData(player.getUniqueId());
+        CoreProfile profile = ProfileManager.getInstance().getCache(player.getUniqueId());
         if(profile == null) return;
         String prop = properties.get(profile.getLocale()).getProperty(message);
         for(int i = 0; i < arguments.length; i++) {

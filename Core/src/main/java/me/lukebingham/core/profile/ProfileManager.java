@@ -11,11 +11,11 @@ import java.util.UUID;
 /**
  * Created by LukeBingham on 23/02/2017.
  */
-public class ProfileManager<T extends CoreProfile> implements Component {
+public class ProfileManager<Profile extends CoreProfile> implements Component {
 
     private static ProfileManager instance;
 
-    private final HashSet<T> playerCache;
+    private final HashSet<Profile> playerCache;
 
     public ProfileManager() {
         instance = this;
@@ -29,34 +29,35 @@ public class ProfileManager<T extends CoreProfile> implements Component {
 
     @Override
     public void onDisable() {
-        playerCache.forEach(t -> saveData(t.getUniqueId(), (call) -> {}));
+        playerCache.forEach(t -> saveCache(t.getUniqueId(), (call) -> {}));
     }
 
-    public T getData(UUID uniqueId) {
-        Optional<T> optional = playerCache.stream().filter(t -> t.getUniqueId().equals(uniqueId)).findFirst();
+    public Profile getCache(UUID uniqueId) {
+        Optional<Profile> optional = playerCache.stream().filter(t -> t.getUniqueId().equals(uniqueId)).findFirst();
         return optional.isPresent() ? optional.get() : null;
     }
 
-    public void removeData(UUID uniqueId) {
-        playerCache.remove(getData(uniqueId));
+    public void removeCache(UUID uniqueId) {
+        playerCache.remove(getCache(uniqueId));
     }
 
-    public boolean isLoaded(UUID uniqueId) {
+    public boolean isCached(UUID uniqueId) {
         return playerCache.stream().anyMatch(profile -> profile.getUniqueId().equals(uniqueId));
     }
 
-    public void loadData(T data, Callback<T> callback) {
+    public void cacheProfile(Profile data, Callback<Profile> callback) {
         //TODO grab from database
         playerCache.add(data);
         callback.call(data);
     }
 
-    public void saveData(UUID uniqueId, Callback<T> callback) {
+    public void saveCache(UUID uniqueId, Callback<Profile> callback) {
         //TODO save to database
-        callback.call(getData(uniqueId));
+        Profile profile = getCache(uniqueId);
+        callback.call(profile);
     }
 
-    public HashSet<T> getPlayerCache() {
+    public HashSet<Profile> getPlayerCache() {
         return playerCache;
     }
 

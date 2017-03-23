@@ -1,6 +1,7 @@
 package me.lukebingham.lobby.cosmetic.gadget;
 
 import me.lukebingham.core.cosmetic.CosmeticManager;
+import me.lukebingham.core.cosmetic.attributes.CosmeticRequireRank;
 import me.lukebingham.core.cosmetic.gadget.Gadget;
 import me.lukebingham.core.cosmetic.gadget.GadgetManager;
 import me.lukebingham.core.cosmetic.attributes.CosmeticBuyable;
@@ -16,6 +17,7 @@ import me.lukebingham.core.util.C;
 import me.lukebingham.core.util.InventoryUtil;
 import me.lukebingham.core.util.StringUtil;
 import me.lukebingham.core.util.factory.ItemFactory;
+import me.lukebingham.core.util.rank.Rank;
 import me.lukebingham.lobby.cosmetic.CosmeticInventory;
 import me.lukebingham.lobby.profile.LobbyProfile;
 import org.bukkit.Material;
@@ -24,6 +26,7 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -43,12 +46,11 @@ public class GadgetInventory extends MenuModule {
 
         int[] slots = InventoryUtil.getSlots(3);
 
-//        List<ItemStack> items = GadgetManager.getGadgetsMap().values().stream().map(gadget -> gadget.getItemFactory().build()).collect(Collectors.toList());
-        List<ItemStack> items = new ArrayList<>();
+        List<ClickableGadgetItem> items = new ArrayList<>();
         for (Gadget gadget : GadgetManager.getGadgetsMap().values()) {
-            boolean has = profile.hasGadget(gadget);
+            boolean unlocked = profile.hasGadget(gadget), usable = true;
             String name = I18n.get(profile, "gadget." + gadget.getUniqueId() + ".name");
-            ItemFactory item = has ? gadget.getItemFactory().setName(C.GREEN + name) : new ItemFactory(Material.CLAY_BALL).setName(C.RED + name);
+            ItemFactory item = unlocked ? gadget.getItemFactory().setName(C.GREEN + name) : new ItemFactory(Material.CLAY_BALL).setName(C.RED + name);
 
             List<String> lore = new ArrayList<>();
 //            for(String str : gadget.getDescription()) {
@@ -62,14 +64,22 @@ public class GadgetInventory extends MenuModule {
                 lore.add(" ");
                 lore.add(C.GRAY + I18n.get(profile, I18nMessage.RARITY) + C.WHITE + ": " + g.getRarityType().getColor() + g.getRarityType().name());
             }
-            if(!has && gadget instanceof CosmeticBuyable) {
+            if(gadget instanceof CosmeticRequireRank) {
+                CosmeticRequireRank g = (CosmeticRequireRank) gadget;
+                if(!profile.getRank().hasRank(g.getRequiredRank())) {
+                    usable = false;
+                    lore.add(" ");
+                    lore.add(C.GRAY + "Requires rank" + C.WHITE + ": " + g.getRequiredRank().getColor() + g.getRequiredRank().getTag());
+                }
+            }
+            if(!unlocked && gadget instanceof CosmeticBuyable) {
                 lore.add(" ");
                 lore.add(C.GOLD + I18n.get(profile, I18nMessage.COST) + C.WHITE + ": " + C.GOLD + I18n.get(profile, I18nMessage.MONEY_SYMBOL) + C.YELLOW + String.format("%,.0f", ((CosmeticBuyable) gadget).getCost()));
             }
             item.setLore(lore);
             lore.clear();
 
-            items.add(item.build());
+            items.add(new ClickableGadgetItem(item.build(), profile, gadget, unlocked, usable));
         }
 
         int perPage = slots.length, pages = 1, x = items.size(), z = 0;
@@ -85,7 +95,10 @@ public class GadgetInventory extends MenuModule {
 //                }
                 break;
             }
-            addItem(new DummyItem(slots[z++], items.get(i), true));
+
+            ClickableGadgetItem gadgetItem = items.get(i);
+            gadgetItem.setIndex(slots[z++]);
+            addItem(gadgetItem);
         }
 
         if (page < pages) {
@@ -117,5 +130,45 @@ public class GadgetInventory extends MenuModule {
         }
 
         addItem(new DummyItem(49, profileHead.build(), true));
+    }
+
+    public class ClickableGadgetItem extends ClickableItem {
+
+        protected final LobbyProfile profile;
+        protected final Gadget gadget;
+        protected final boolean unlocked, usable;
+
+        public ClickableGadgetItem(ItemStack itemStack, LobbyProfile profile, Gadget gadget, boolean unlocked, boolean usable) {
+            super(0, itemStack, true);
+            this.profile = profile;
+            this.gadget = gadget;
+            this.unlocked = unlocked;
+            this.usable = usable;
+        }
+
+        @Override
+        public void click(Player player, ClickType clickType) {
+            if(!unlocked) {
+                I18n.message(profile, I18nMessage.GADGETS_NOT_UNLOCKED, gadget.getName());
+                return;
+            }
+
+            if(!usable) {
+                Rank rank = ((CosmeticRequireRank)gadget).getRequiredRank();
+                I18n.message(profile, I18nMessage.GADGETS_RANK_REQUIRED, rank.getColor() + rank.getTag());
+                return;
+            }
+
+            player.getInventory().setItem(5, getItemStack());
+            player.updateInventory();
+        }
+
+        public boolean isUsable() {
+            return usable;
+        }
+
+        public Gadget getGadget() {
+            return gadget;
+        }
     }
 }

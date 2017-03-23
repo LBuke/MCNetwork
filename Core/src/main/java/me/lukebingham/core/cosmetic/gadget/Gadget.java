@@ -11,6 +11,7 @@ public interface Gadget extends Cosmetic {
     GadgetTriggerType getTriggerType();
     long[] getCooldown();
     ItemFactory getItemFactory();
+    GadgetType getGadgetType();
 
     void action(Player player);
 }

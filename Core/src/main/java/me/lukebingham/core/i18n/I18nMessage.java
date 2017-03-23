@@ -17,6 +17,10 @@ public enum I18nMessage {
     TRAILS("trails"),
     PETS("pets"),
 
+    // GADGETS
+    GADGETS_NOT_UNLOCKED("gadget.not-unlocked"),
+    GADGETS_RANK_REQUIRED("gadget.rank-required"),
+
     // GENERAL WORDS
     RARITY("rarity"),
     COST("cost"),
