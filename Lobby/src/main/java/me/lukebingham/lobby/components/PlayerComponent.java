@@ -25,6 +25,10 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
+import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.player.*;
 
 /**
@@ -145,6 +149,30 @@ public final class PlayerComponent implements Component {
         if (event.getEntity() == null) return;
         if (event.getEntity() instanceof Player)
             event.setCancelled(!allowDamage);
+    }
+
+    @EventHandler
+    protected void onItemMove(InventoryClickEvent event) {
+        if(event.getWhoClicked() == null) return;
+        if(event.getWhoClicked().getGameMode() == GameMode.CREATIVE) return;
+        event.setCancelled(!event.getWhoClicked().isOp());
+    }
+
+    @EventHandler
+    protected void onItemMove(InventoryMoveItemEvent event) {
+        event.setCancelled(true);
+    }
+
+    @EventHandler
+    protected void onItemMove(InventoryDragEvent event) {
+        if(event.getWhoClicked() == null) return;
+        if(event.getWhoClicked().getGameMode() == GameMode.CREATIVE) return;
+        event.setCancelled(!event.getWhoClicked().isOp());
+    }
+
+    @EventHandler
+    protected void onItemMove(PlayerSwapHandItemsEvent event) {
+        event.setCancelled(true);
     }
 
     public void setAllowItemDrop(boolean allowItemDrop) {

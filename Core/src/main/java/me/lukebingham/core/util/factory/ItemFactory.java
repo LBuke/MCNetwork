@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by LukeBingham on 24/02/2017.
  */
-public class ItemFactory extends Factory<ItemStack> {
+public class ItemFactory extends Factory<ItemStack> implements CloneableFactory<ItemFactory> {
 
     private ItemMeta itemMeta;
 
@@ -61,5 +61,12 @@ public class ItemFactory extends Factory<ItemStack> {
     public ItemFactory setData(byte data) {
         object.setDurability(data);
         return this;
+    }
+
+    @Override
+    public ItemFactory clone() {
+        ItemFactory clone = new ItemFactory(object.getType(), object.getData().getData());
+        clone.itemMeta = this.itemMeta;
+        return clone;
     }
 }

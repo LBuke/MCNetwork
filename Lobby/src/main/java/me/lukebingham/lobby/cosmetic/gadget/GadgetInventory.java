@@ -50,7 +50,7 @@ public class GadgetInventory extends MenuModule {
         for (Gadget gadget : GadgetManager.getGadgetsMap().values()) {
             boolean unlocked = profile.hasGadget(gadget), usable = true;
             String name = I18n.get(profile, "gadget." + gadget.getUniqueId() + ".name");
-            ItemFactory item = unlocked ? gadget.getItemFactory().setName(C.GREEN + name) : new ItemFactory(Material.CLAY_BALL).setName(C.RED + name);
+            ItemFactory item = unlocked ? gadget.getItemFactory().clone().setName(C.GREEN + name) : new ItemFactory(Material.CLAY_BALL).setName(C.RED + name);
 
             List<String> lore = new ArrayList<>();
 //            for(String str : gadget.getDescription()) {
@@ -159,7 +159,13 @@ public class GadgetInventory extends MenuModule {
                 return;
             }
 
-            player.getInventory().setItem(5, getItemStack());
+
+            ItemFactory item = gadget.getItemFactory().clone().setName(C.GREEN + I18n.get(profile, "gadget." + gadget.getUniqueId() + ".name"));
+            List<String> lore = new ArrayList<>();
+            for(String str : StringUtil.breakUp(I18n.get(profile, "gadget." + gadget.getUniqueId() + ".desc"), 20))
+                lore.add(C.GRAY + str);
+
+            player.getInventory().setItem(5, item.setLore(lore).build());
             player.updateInventory();
         }
 

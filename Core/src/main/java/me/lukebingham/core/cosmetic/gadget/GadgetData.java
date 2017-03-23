@@ -8,6 +8,8 @@ public class GadgetData {
     private Gadget gadget;
     private GadgetType type;
 
+    private long cooldown;
+
     public GadgetData(Gadget gadget) {
         this.gadget = gadget;
 
@@ -25,5 +27,19 @@ public class GadgetData {
 
     public GadgetType getType() {
         return type;
+    }
+
+    public long getCooldown() {
+        return this.cooldown;
+    }
+
+    public boolean hasElapsed() {
+        boolean b = this.cooldown - System.currentTimeMillis() <= 0;
+        if(b) this.cooldown = 0;
+        return b;
+    }
+
+    public void initCooldown() {
+        this.cooldown = System.currentTimeMillis() + gadget.getCooldown()[0];
     }
 }
