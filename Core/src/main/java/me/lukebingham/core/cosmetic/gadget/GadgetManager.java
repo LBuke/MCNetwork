@@ -18,6 +18,8 @@ import java.util.*;
  */
 public class GadgetManager implements Component {
 
+    public static final int SLOT_INDEX = 5;
+
     private static TreeMap<GadgetType, Gadget> gadgets;
     private final HashMap<UUID, GadgetData> activeGadgets;
 
@@ -77,7 +79,7 @@ public class GadgetManager implements Component {
         if(event.getHand() != EquipmentSlot.HAND) return;
         if(event.getPlayer() == null) return;
         if(event.getItem() == null || event.getItem().getType() == Material.AIR) return;
-        if(event.getPlayer().getInventory().getHeldItemSlot() != 5) return;
+        if(event.getPlayer().getInventory().getHeldItemSlot() != SLOT_INDEX) return;
         if(!hasActiveGadget(event.getPlayer().getUniqueId())) return;
 
         GadgetData gadget = getActiveGadget(event.getPlayer().getUniqueId());

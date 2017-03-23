@@ -159,13 +159,7 @@ public class GadgetInventory extends MenuModule {
                 return;
             }
 
-
-            ItemFactory item = gadget.getItemFactory().clone().setName(C.GREEN + I18n.get(profile, "gadget." + gadget.getUniqueId() + ".name"));
-            List<String> lore = new ArrayList<>();
-            for(String str : StringUtil.breakUp(I18n.get(profile, "gadget." + gadget.getUniqueId() + ".desc"), 20))
-                lore.add(C.GRAY + str);
-
-            player.getInventory().setItem(5, item.setLore(lore).build());
+            player.getInventory().setItem(GadgetManager.SLOT_INDEX, getItemStack());
             player.updateInventory();
         }
 
