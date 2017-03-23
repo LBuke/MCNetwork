@@ -91,12 +91,14 @@ public class GadgetManager implements Component {
                 if(event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.RIGHT_CLICK_AIR) return;
                 gadget.initCooldown();
                 gadget.getGadget().action(event.getPlayer());
+                fireEvent(false, event.getPlayer(), gadget.getGadget());
                 break;
 
             case LEFT_CLICK:
                 if(event.getAction() != Action.LEFT_CLICK_BLOCK && event.getAction() != Action.LEFT_CLICK_AIR) return;
                 gadget.initCooldown();
                 gadget.getGadget().action(event.getPlayer());
+                fireEvent(false, event.getPlayer(), gadget.getGadget());
                 break;
         }
     }
