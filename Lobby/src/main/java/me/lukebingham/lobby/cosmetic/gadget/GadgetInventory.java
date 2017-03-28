@@ -6,6 +6,7 @@ import me.lukebingham.core.cosmetic.gadget.Gadget;
 import me.lukebingham.core.cosmetic.gadget.GadgetManager;
 import me.lukebingham.core.cosmetic.attributes.CosmeticBuyable;
 import me.lukebingham.core.cosmetic.attributes.CosmeticUnlockable;
+import me.lukebingham.core.graphics.GraphicsManager;
 import me.lukebingham.core.i18n.I18n;
 import me.lukebingham.core.i18n.I18nMessage;
 import me.lukebingham.core.inventory.MenuModule;
@@ -26,7 +27,6 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -34,11 +34,11 @@ import java.util.List;
  */
 public class GadgetInventory extends MenuModule {
 
-    public GadgetInventory(CosmeticManager cosmeticManager, LobbyProfile profile) {
-        this(cosmeticManager, profile, 1);
+    public GadgetInventory(CosmeticManager cosmeticManager, GraphicsManager graphicsManager, LobbyProfile profile) {
+        this(cosmeticManager, graphicsManager, profile, 1);
     }
 
-    private GadgetInventory(CosmeticManager cosmeticManager, LobbyProfile profile, int page) {
+    private GadgetInventory(CosmeticManager cosmeticManager, GraphicsManager graphicsManager, LobbyProfile profile, int page) {
         super(6, I18n.get(profile, I18nMessage.GADGETS));
 
         ItemFactory back = new ItemFactory(Material.ARROW).setName(I18n.get(profile, I18nMessage.BACK));
@@ -74,7 +74,7 @@ public class GadgetInventory extends MenuModule {
             }
             if(!unlocked && gadget instanceof CosmeticBuyable) {
                 lore.add(" ");
-                lore.add(C.GOLD + I18n.get(profile, I18nMessage.COST) + C.WHITE + ": " + C.GOLD + I18n.get(profile, I18nMessage.MONEY_SYMBOL) + C.YELLOW + String.format("%,.0f", ((CosmeticBuyable) gadget).getCost()));
+                lore.add(C.GOLD + I18n.get(profile, I18nMessage.COST) + C.WHITE + ": " + C.YELLOW + String.format("%,.0f", ((CosmeticBuyable) gadget).getCost()));
             }
             item.setLore(lore);
             lore.clear();
@@ -105,9 +105,9 @@ public class GadgetInventory extends MenuModule {
             int slot = ((getRows() - 1) * 9) + 9 - 1;
             addItem(new NextPage(slot) {
                 @Override
-                public void click(Player player, ClickType clickType) {
-                    super.click(player, clickType);
-                    new GadgetInventory(cosmeticManager, profile, page + 1).openInventory(player);
+                public void onClick(Player player, ClickType clickType) {
+                    super.onClick(player, clickType);
+                    new GadgetInventory(cosmeticManager, graphicsManager, profile, page + 1).openInventory(player);
                 }
             });
         }
@@ -116,15 +116,15 @@ public class GadgetInventory extends MenuModule {
             int slot = ((getRows() - 1) * 9);
             addItem(new BackPage(slot) {
                 @Override
-                public void click(Player player, ClickType clickType) {
-                    super.click(player, clickType);
-                    new GadgetInventory(cosmeticManager, profile, page - 1).openInventory(player);
+                public void onClick(Player player, ClickType clickType) {
+                    super.onClick(player, clickType);
+                    new GadgetInventory(cosmeticManager, graphicsManager, profile, page - 1).openInventory(player);
                 }
             });
         } else {
             addItem(new ClickableItem(45, back.build(), true) {
-                @Override public void click(Player player, ClickType clickType) {
-                    new CosmeticInventory(cosmeticManager, profile).openInventory(player);
+                @Override public void onClick(Player player, ClickType clickType) {
+                    new CosmeticInventory(cosmeticManager, graphicsManager, profile).openInventory(player);
                 }
             });
         }
@@ -147,7 +147,7 @@ public class GadgetInventory extends MenuModule {
         }
 
         @Override
-        public void click(Player player, ClickType clickType) {
+        public void onClick(Player player, ClickType clickType) {
             if(!unlocked) {
                 I18n.message(profile, I18nMessage.GADGETS_NOT_UNLOCKED, gadget.getName());
                 return;

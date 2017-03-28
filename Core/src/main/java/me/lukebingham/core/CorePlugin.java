@@ -5,11 +5,13 @@ import me.lukebingham.core.command.ServerCommand;
 import me.lukebingham.core.command.TestCommand;
 import me.lukebingham.core.database.Database;
 import me.lukebingham.core.database.DatabaseModule;
+import me.lukebingham.core.graphics.GraphicsManager;
 import me.lukebingham.core.i18n.I18n;
 import me.lukebingham.core.i18n.I18nComponent;
 import me.lukebingham.core.inventory.MenuComponent;
 import me.lukebingham.core.module.Module;
 import me.lukebingham.core.packet.PacketComponent;
+import me.lukebingham.core.packet.PacketHandler;
 import me.lukebingham.core.profile.CoreProfile;
 import me.lukebingham.core.profile.ProfileManager;
 import me.lukebingham.core.redis.JedisModule;
@@ -29,6 +31,7 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
     protected Database database;
     protected JedisModule jedisModule;
     protected ProfileManager<Profile> profileManager;
+    protected GraphicsManager graphicsManager;
 
     @Override
     public final void onEnable() {
@@ -39,7 +42,8 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
         this.database = new DatabaseModule("localhost", 27017, true);
         this.jedisModule = new JedisModule(getPluginName());
         this.profileManager = new ProfileManager<>();
-        new I18n();
+        this.graphicsManager = new GraphicsManager();
+        I18n i18n = new I18n();
 
         //Commands
         new ServerCommand(this.jedisModule);
@@ -70,6 +74,7 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
         unload();
         database.close();
         jedisModule.disable();
+        PacketHandler.clear();
     }
 
     protected abstract void load();

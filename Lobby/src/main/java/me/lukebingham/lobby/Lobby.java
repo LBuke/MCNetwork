@@ -11,7 +11,9 @@ import me.lukebingham.lobby.components.ChatComponent;
 import me.lukebingham.lobby.components.CreatureComponent;
 import me.lukebingham.lobby.components.PlayerComponent;
 import me.lukebingham.lobby.components.ServerComponent;
+import me.lukebingham.lobby.settings.graphics.GraphicsComponent;
 import me.lukebingham.lobby.profile.LobbyProfile;
+import me.lukebingham.lobby.region.SpawnRegion;
 
 /**
  * Created by LukeBingham on 22/02/2017.
@@ -22,18 +24,18 @@ public class Lobby extends CorePlugin<LobbyProfile> {
     @Override
     public void load() {
         CosmeticManager cosmeticManager = new CosmeticManager(true);
+        SpawnRegion spawnRegion = new SpawnRegion();
 
         //Components
-        PlayerComponent playerComponent = new PlayerComponent(this, super.database, cosmeticManager, profileManager);
+        PlayerComponent playerComponent = new PlayerComponent(this, super.database, cosmeticManager, super.graphicsManager, profileManager);
         CreatureComponent creatureComponent = new CreatureComponent();
         ChatComponent chatComponent = new ChatComponent(profileManager);
         ServerComponent serverComponent = new ServerComponent(super.database, super.jedisModule);
+        GraphicsComponent graphicsComponent = new GraphicsComponent(this, spawnRegion);
 
         super.jedisModule.registerListener(ServerCreatedMessage.class, serverComponent);
 
-        ServerUtil.registerComponent(playerComponent, creatureComponent, chatComponent, serverComponent);
-
-        ServerUtil.logDebug("TEST");
+        ServerUtil.registerComponent(playerComponent, creatureComponent, chatComponent, serverComponent, graphicsComponent);
     }
 
     @Override

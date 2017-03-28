@@ -52,8 +52,8 @@ public class ShopInventory extends MenuModule {
             int slot = ((getRows() - 1) * 9) + 9 - 1;
             addItem(new NextPage(slot) {
                 @Override
-                public void click(Player player, ClickType clickType) {
-                    super.click(player, clickType);
+                public void onClick(Player player, ClickType clickType) {
+                    super.onClick(player, clickType);
                     new ShopInventory(page + 1).openInventory(player);
                 }
             });
@@ -63,8 +63,8 @@ public class ShopInventory extends MenuModule {
             int slot = ((getRows() - 1) * 9);
             addItem(new BackPage(slot) {
                 @Override
-                public void click(Player player, ClickType clickType) {
-                    super.click(player, clickType);
+                public void onClick(Player player, ClickType clickType) {
+                    super.onClick(player, clickType);
                     new ShopInventory(page - 1).openInventory(player);
                 }
             });

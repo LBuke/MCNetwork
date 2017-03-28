@@ -2,9 +2,9 @@ package me.lukebingham.lobby.components;
 
 import me.lukebingham.core.Core;
 import me.lukebingham.core.cosmetic.CosmeticManager;
-import me.lukebingham.core.cosmetic.gadget.GadgetData;
 import me.lukebingham.core.cosmetic.gadget.gadgets.CookieGadget;
 import me.lukebingham.core.database.Database;
+import me.lukebingham.core.graphics.GraphicsManager;
 import me.lukebingham.core.module.Module;
 import me.lukebingham.core.module.PluginState;
 import me.lukebingham.core.profile.ProfileManager;
@@ -17,7 +17,9 @@ import me.lukebingham.lobby.Lobby;
 import me.lukebingham.lobby.dao.GadgetDAO;
 import me.lukebingham.lobby.profile.LobbyProfile;
 import me.lukebingham.lobby.profile.ProfileInventory;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,7 +30,6 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.player.*;
 
 /**
@@ -39,15 +40,17 @@ public final class PlayerComponent implements Component {
     private final Core core;
     private final Database database;
     private final CosmeticManager cosmeticManager;
+    private final GraphicsManager graphicsManager;
     private final ProfileManager<LobbyProfile> profileManager;
 
     private boolean allowItemDrop, allowConsume, allowBlockBreak, allowBlockPlace,
             allowHungerDrain, allowDamage;
 
-    public PlayerComponent(Core core, Database database, CosmeticManager cosmeticManager, ProfileManager<LobbyProfile> profileManager) {
+    public PlayerComponent(Core core, Database database, CosmeticManager cosmeticManager, GraphicsManager graphicsManager, ProfileManager<LobbyProfile> profileManager) {
         this.core = core;
         this.database = database;
         this.cosmeticManager = cosmeticManager;
+        this.graphicsManager = graphicsManager;
         this.profileManager = profileManager;
     }
 
@@ -92,6 +95,10 @@ public final class PlayerComponent implements Component {
     @EventHandler
     protected void onPlayerJoin(PlayerJoinEvent event) {
         if(event.getPlayer() == null) return;
+
+        if(!event.getPlayer().isOp())
+            event.getPlayer().teleport(new Location(Bukkit.getWorld("world"), 0.5, 34, 0.5, 45.0f, 5.0f));
+
         event.getPlayer().getInventory().clear();
         event.getPlayer().getInventory().setItem(4, new ItemFactory(Material.SKULL_ITEM, (byte) 3).setName("Profile").setOwner(event.getPlayer().getName()).build());
     }
@@ -103,7 +110,8 @@ public final class PlayerComponent implements Component {
 
         //Profile
         if(event.getItem().getType() == Material.SKULL_ITEM) {
-            new ProfileInventory(cosmeticManager, profileManager.getCache(event.getPlayer().getUniqueId())).openInventory(event.getPlayer());
+            new ProfileInventory(cosmeticManager, graphicsManager, profileManager.getCache(event.getPlayer().getUniqueId()))
+                    .openInventory(event.getPlayer());
             return;
         }
 

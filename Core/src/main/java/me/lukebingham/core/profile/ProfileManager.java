@@ -1,8 +1,10 @@
 package me.lukebingham.core.profile;
 
 import com.google.common.collect.Sets;
+import me.lukebingham.core.profile.event.ProfileLoadEvent;
 import me.lukebingham.core.util.Callback;
 import me.lukebingham.core.util.Component;
+import org.bukkit.Bukkit;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -48,6 +50,9 @@ public class ProfileManager<Profile extends CoreProfile> implements Component {
     public void cacheProfile(Profile data, Callback<Profile> callback) {
         //TODO grab from database
         playerCache.add(data);
+
+        ProfileLoadEvent<Profile> event = new ProfileLoadEvent<>(data);
+        Bukkit.getPluginManager().callEvent(event);
         callback.call(data);
     }
 

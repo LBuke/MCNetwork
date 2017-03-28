@@ -1,6 +1,7 @@
 package me.lukebingham.core.i18n;
 
 import me.lukebingham.core.packet.PacketEvent;
+import me.lukebingham.core.packet.PacketHandler;
 import me.lukebingham.core.profile.CoreProfile;
 import me.lukebingham.core.profile.ProfileManager;
 import me.lukebingham.core.util.Component;
@@ -17,6 +18,8 @@ public class I18nComponent implements Component {
 
     public I18nComponent(ProfileManager<? extends CoreProfile> profileManager) {
         this.profileManager = profileManager;
+
+        PacketHandler.addPacketListener(PacketPlayInSettings.class);
     }
 
     @EventHandler

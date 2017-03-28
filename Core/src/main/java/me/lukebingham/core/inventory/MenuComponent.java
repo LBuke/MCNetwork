@@ -1,13 +1,11 @@
 package me.lukebingham.core.inventory;
 
-import me.lukebingham.core.inventory.example.ShopInventory;
 import me.lukebingham.core.inventory.item.ClickableItem;
 import me.lukebingham.core.inventory.item.MenuItem;
 import me.lukebingham.core.util.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -48,7 +46,7 @@ public class MenuComponent implements Component {
         }
 
         if (goItem instanceof ClickableItem) {
-            ((ClickableItem) goItem).click(player, event.getClick());
+            ((ClickableItem) goItem).onClick(player, event.getClick());
         }
     }
 }

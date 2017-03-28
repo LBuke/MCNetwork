@@ -7,7 +7,6 @@ public enum I18nMessage {
     ID("id"),
 
     // CURRENCY & ECONOMY
-    MONEY_SYMBOL("money-symbol"),
     COINS_SYMBOL("coins-symbol"),
 
     // COSMETICS
@@ -26,6 +25,7 @@ public enum I18nMessage {
     COST("cost"),
     PROFILE("profile"),
     BACK("back"),
+    SELECTED("selected"),
 
     TEST("test"),
     ;

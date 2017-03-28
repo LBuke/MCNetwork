@@ -1,6 +1,7 @@
 package me.lukebingham.core.profile;
 
 import me.lukebingham.core.currency.Currency;
+import me.lukebingham.core.graphics.GraphicsType;
 import me.lukebingham.core.i18n.Locale;
 import me.lukebingham.core.util.rank.Rank;
 import me.lukebingham.core.util.rank.Role;
@@ -21,6 +22,7 @@ public class CoreProfile {
     private Role role = Role.ADMINISTRATOR;
     private Rank rank = Rank.MEMBER;
     private Locale locale = Locale.en_US;
+    private int graphics = 3;
 
     private Currency[] currencies;
 
@@ -84,5 +86,13 @@ public class CoreProfile {
 
     public void setCurrencies(Currency... currencies) {
         this.currencies = currencies;
+    }
+
+    public void setGraphics(int graphics) {
+        this.graphics = graphics;
+    }
+
+    public GraphicsType getGraphics() {
+        return GraphicsType.getById(this.graphics);
     }
 }

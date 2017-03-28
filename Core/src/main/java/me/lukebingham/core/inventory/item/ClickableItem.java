@@ -13,7 +13,7 @@ public class ClickableItem extends MenuItem {
         super(index, itemStack, cancelOnClick);
     }
 
-    public void click(Player player, ClickType clickType) {
+    public void onClick(Player player, ClickType clickType) {
         System.out.println("[Inventory] Debug > Clicked " + getItemStack().getType().toString());
     }
 }

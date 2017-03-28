@@ -1,7 +1,10 @@
 package me.lukebingham.core.util;
 
 import me.lukebingham.core.CorePlugin;
+import net.minecraft.server.v1_11_R1.Packet;
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -54,6 +57,12 @@ public class ServerUtil {
     private static boolean isValidPlugin(String description) {
         Pattern pattern = Pattern.compile("^.*" + SERVER_NAME + "-(?:Lobby|Something)-(\\d*\\.){2}\\d*.*$");
         return pattern.matcher(description).find();
+    }
+
+    public static void sendPacket(Player player, Packet<?>... packets) {
+        for(Packet<?> packet : packets) {
+            ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+        }
     }
 
     /**

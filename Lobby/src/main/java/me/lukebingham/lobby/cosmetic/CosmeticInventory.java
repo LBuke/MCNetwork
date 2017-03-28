@@ -1,6 +1,7 @@
 package me.lukebingham.lobby.cosmetic;
 
 import me.lukebingham.core.cosmetic.CosmeticManager;
+import me.lukebingham.core.graphics.GraphicsManager;
 import me.lukebingham.core.i18n.I18n;
 import me.lukebingham.core.i18n.I18nMessage;
 import me.lukebingham.core.inventory.MenuModule;
@@ -19,7 +20,7 @@ import org.bukkit.event.inventory.ClickType;
  */
 public class CosmeticInventory extends MenuModule {
 
-    public CosmeticInventory(CosmeticManager cosmeticManager, LobbyProfile profile) {
+    public CosmeticInventory(CosmeticManager cosmeticManager, GraphicsManager graphicsManager, LobbyProfile profile) {
         super(4, I18n.get(profile, I18nMessage.COSMETICS));
 
         int gadgetsOwned = profile.getGadgetDataList().size();
@@ -32,29 +33,29 @@ public class CosmeticInventory extends MenuModule {
         ItemFactory profileHead = new ItemFactory(Material.SKULL_ITEM, (byte) 3).setName(I18n.get(profile, I18nMessage.PROFILE)).setOwner(profile.getName());
 
         addItem(new ClickableItem(10, gadgets.build(), true) {
-            @Override public void click(Player player, ClickType clickType) {
-                new GadgetInventory(cosmeticManager, profile).openInventory(player);
+            @Override public void onClick(Player player, ClickType clickType) {
+                new GadgetInventory(cosmeticManager, graphicsManager, profile).openInventory(player);
             }
         });
 
         addItem(new ClickableItem(12, hats.build(), true) {
-            @Override public void click(Player player, ClickType clickType) {
+            @Override public void onClick(Player player, ClickType clickType) {
             }
         });
 
         addItem(new ClickableItem(14, trails.build(), true) {
-            @Override public void click(Player player, ClickType clickType) {
+            @Override public void onClick(Player player, ClickType clickType) {
             }
         });
 
         addItem(new ClickableItem(16, pets.build(), true) {
-            @Override public void click(Player player, ClickType clickType) {
+            @Override public void onClick(Player player, ClickType clickType) {
             }
         });
 
         addItem(new ClickableItem(27, close.build(), true) {
-            @Override public void click(Player player, ClickType clickType) {
-                new ProfileInventory(cosmeticManager, profile).openInventory(player);
+            @Override public void onClick(Player player, ClickType clickType) {
+                new ProfileInventory(cosmeticManager, graphicsManager, profile).openInventory(player);
             }
         });
 

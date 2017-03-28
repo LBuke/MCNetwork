@@ -26,4 +26,12 @@ public class StringUtil {
         temp.add(s);
         return temp;
     }
+
+    public static List<String> breakUp(String input) {
+        List<String> temp = new ArrayList<>();
+        for(String str : input.split("\n")) {
+            temp.add(str);
+        }
+        return temp;
+    }
 }
