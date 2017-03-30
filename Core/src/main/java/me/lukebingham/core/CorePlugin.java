@@ -43,7 +43,7 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
         this.jedisModule = new JedisModule(getPluginName());
         this.profileManager = new ProfileManager<>();
         this.graphicsManager = new GraphicsManager();
-        I18n i18n = new I18n();
+        new I18n();
 
         //Commands
         new ServerCommand(this.jedisModule);
@@ -77,10 +77,21 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
         PacketHandler.clear();
     }
 
+    /**
+     * This method is fired when the plugin starts.
+     */
     protected abstract void load();
+
+    /**
+     * This method is fired before the plugin disables
+     */
     protected abstract void unload();
 
-    private Module getModuleState() {
+    /**
+     * This will get the child of core's module annotation.
+     * @return The Module Annotation
+     */
+    protected Module getModule() {
         return getClass().isAnnotationPresent(Module.class) ? getClass().getAnnotation(Module.class) : null;
     }
 
@@ -88,20 +99,21 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
         String log = C.AQUA + "Module loaded:    " + getPluginName() + C.GRAY;
         int classLength = getPluginName().length(), max = 35, difference = max - classLength;
         for(int i = 0; i < difference; i++) log += ".";
-        log += getModuleState() != null ? getModuleState().state().getName(true, false) : C.RED + "NULL";
+        log += getModule() != null ? getModule().state().getName(true, false) : C.RED + "NULL";
         ServerUtil.log(log);
     }
 
+    /**
+     * @return Collection of {@link me.lukebingham.core.util.Component}'s
+     */
     @Override
     public final HashSet<Component> getComponents() {
         return components;
     }
 
-    @Override
-    public JedisModule getJedis() {
-        return jedisModule;
-    }
-
+    /**
+     * @return Plugin
+     */
     @Override
     public JavaPlugin getPlugin() {
         return this;

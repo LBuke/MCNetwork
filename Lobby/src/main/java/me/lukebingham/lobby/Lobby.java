@@ -21,6 +21,9 @@ import me.lukebingham.lobby.region.SpawnRegion;
 @Module(version = "1.0.0-SNAPSHOT", state = PluginState.PRE_ALPHA, type = ServerType.LOBBY)
 public class Lobby extends CorePlugin<LobbyProfile> {
 
+    /**
+     * This method is fired when the plugin starts.
+     */
     @Override
     public void load() {
         CosmeticManager cosmeticManager = new CosmeticManager(true);
@@ -38,11 +41,17 @@ public class Lobby extends CorePlugin<LobbyProfile> {
         ServerUtil.registerComponent(playerComponent, creatureComponent, chatComponent, serverComponent, graphicsComponent);
     }
 
+    /**
+     * This method is fired before the plugin disables
+     */
     @Override
     public void unload() {
 
     }
 
+    /**
+     * @return Name of the plugin
+     */
     @Override
     public String getPluginName() {
         return "Lobby";

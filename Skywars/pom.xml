@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.lukebingham</groupId>
-    <artifactId>core</artifactId>
+    <artifactId>skywars</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Core</name>
+    <name>Skywars</name>
 
     <developers>
         <developer>
@@ -22,48 +22,37 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>1.11.2-R0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>minecraft-server</artifactId>
-            <version>1.11.2-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>craftbukkit</artifactId>
-            <version>1.11.2-R0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.4.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.9.0</version>
-            <type>jar</type>
-            <scope>compile</scope>
+            <groupId>me.lukebingham</groupId>
+            <artifactId>game</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <main.basedir>${project.basedir}</main.basedir>
+    </properties>
+
     <build>
+        <defaultGoal>clean install</defaultGoal>
+        <sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
+        <finalName>${project.name}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 </project>

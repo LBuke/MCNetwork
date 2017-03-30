@@ -55,7 +55,7 @@ public class ServerUtil {
     }
 
     private static boolean isValidPlugin(String description) {
-        Pattern pattern = Pattern.compile("^.*" + SERVER_NAME + "-(?:Lobby|Something)-(\\d*\\.){2}\\d*.*$");
+        Pattern pattern = Pattern.compile("^.*" + SERVER_NAME + "-(?:Lobby|Game)-(\\d*\\.){2}\\d*.*$");
         return pattern.matcher(description).find();
     }
 

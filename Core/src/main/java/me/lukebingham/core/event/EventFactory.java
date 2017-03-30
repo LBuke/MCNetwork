@@ -1,10 +1,7 @@
 package me.lukebingham.core.event;
 
-import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-
-import java.util.UUID;
 
 /**
  * Created by LukeBingham on 23/03/2017.
@@ -12,6 +9,9 @@ import java.util.UUID;
 public abstract class EventFactory extends Event {
     private static final HandlerList handlers = new HandlerList();
 
+    /**
+     * Construct a new Event
+     */
     public EventFactory(boolean async) {
         super(async);
     }
