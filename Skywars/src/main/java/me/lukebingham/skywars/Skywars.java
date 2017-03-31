@@ -26,7 +26,7 @@ public abstract class Skywars<Mode extends PlayMode> extends GamePlatform<Mode> 
      * @return Name of the current {@link me.lukebingham.game.Game}
      */
     @Override
-    public String getGameName() {
+    public final String getGameName() {
         return "Skywars";
     }
 }

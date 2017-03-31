@@ -17,9 +17,9 @@ import java.util.ArrayList;
 /**
  * Created by LukeBingham on 26/02/2017.
  */
-public class GadgetDAO extends DAO<Boolean> {
+public final class GadgetDAO extends DAO<Boolean> {
 
-    private LobbyProfile profile;
+    private final LobbyProfile profile;
 
     /**
      * Construct a new DAO
@@ -36,7 +36,7 @@ public class GadgetDAO extends DAO<Boolean> {
      * @param callback
      */
     @Override
-    public void fetch(Database database, Callback<Boolean> callback) {
+    public final void fetch(Database database, Callback<Boolean> callback) {
         if (database == null || profile == null) {
             callback.call(false);
             return;
@@ -71,7 +71,7 @@ public class GadgetDAO extends DAO<Boolean> {
      * @param callback
      */
     @Override
-    public void save(Database database, Callback<Boolean> callback) {
+    public final void save(Database database, Callback<Boolean> callback) {
         if (database == null || profile == null) {
             callback.call(false);
             return;

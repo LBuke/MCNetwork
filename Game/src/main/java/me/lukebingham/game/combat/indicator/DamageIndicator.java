@@ -16,9 +16,9 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 /**
  * Created by LukeBingham on 30/03/2017.
  */
-public class DamageIndicator implements Component {
+public abstract class DamageIndicator implements Component {
 
-    protected void spawn(EntityDamageByEntityEvent event) {
+    protected final void spawn(EntityDamageByEntityEvent event) {
         if(!(event.getEntity() instanceof LivingEntity)) return;
         Player damager = (Player) event.getDamager();
         LivingEntity victim = (LivingEntity) event.getEntity();

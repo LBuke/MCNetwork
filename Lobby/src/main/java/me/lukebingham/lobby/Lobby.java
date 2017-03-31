@@ -19,13 +19,13 @@ import me.lukebingham.lobby.region.SpawnRegion;
  * Created by LukeBingham on 22/02/2017.
  */
 @Module(version = "1.0.0-SNAPSHOT", state = PluginState.PRE_ALPHA, type = ServerType.LOBBY)
-public class Lobby extends CorePlugin<LobbyProfile> {
+public final class Lobby extends CorePlugin<LobbyProfile> {
 
     /**
      * This method is fired when the plugin starts.
      */
     @Override
-    public void load() {
+    public final void load() {
         CosmeticManager cosmeticManager = new CosmeticManager(true);
         SpawnRegion spawnRegion = new SpawnRegion();
 
@@ -45,7 +45,7 @@ public class Lobby extends CorePlugin<LobbyProfile> {
      * This method is fired before the plugin disables
      */
     @Override
-    public void unload() {
+    public final void unload() {
 
     }
 
@@ -53,7 +53,7 @@ public class Lobby extends CorePlugin<LobbyProfile> {
      * @return Name of the plugin
      */
     @Override
-    public String getPluginName() {
+    public final String getPluginName() {
         return "Lobby";
     }
 }

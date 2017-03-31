@@ -12,9 +12,9 @@ import java.util.UUID;
 /**
  * Created by LukeBingham on 23/02/2017.
  */
-public class LobbyProfile extends CoreProfile {
+public final class LobbyProfile extends CoreProfile {
 
-    private HashSet<GadgetData> gadgetDataList;
+    private final HashSet<GadgetData> gadgetDataList;
 
     public LobbyProfile(UUID uniqueId, String name) {
         super(uniqueId, name);
@@ -26,35 +26,35 @@ public class LobbyProfile extends CoreProfile {
         return gadgetDataList;
     }
 
-    public void addGadgetData(GadgetData gadgetData) {
+    public final void addGadgetData(GadgetData gadgetData) {
         Optional<GadgetData> optional = gadgetDataList.stream().filter(data -> data.getType() == gadgetData.getType()).findAny();
         if(optional.isPresent()) return;
 
         gadgetDataList.add(gadgetData);
     }
 
-    public void addGadgetData(Gadget gadget) {
+    public final void addGadgetData(Gadget gadget) {
         Optional<GadgetData> optional = gadgetDataList.stream().filter(data -> data.getType() == gadget.getGadgetType()).findAny();
         if(optional.isPresent()) return;
 
         gadgetDataList.add(new GadgetData(gadget));
     }
 
-    public GadgetData getGadgetData(Gadget gadget) {
+    public final GadgetData getGadgetData(Gadget gadget) {
         Optional<GadgetData> optional = gadgetDataList.stream().filter(data -> data.getGadget().getName().equals(gadget.getName())).findFirst();
         return optional.isPresent() ? optional.get() : null;
     }
 
-    public void removeGadgetData(GadgetData gadgetData) {
+    public final void removeGadgetData(GadgetData gadgetData) {
         gadgetDataList.remove(gadgetData);
     }
 
-    public boolean hasGadget(Gadget gadget) {
+    public final boolean hasGadget(Gadget gadget) {
         Optional<GadgetData> optional = gadgetDataList.stream().filter(data -> data.getType() == gadget.getGadgetType()).findFirst();
         return optional.isPresent();
     }
 
-    public boolean hasGadget(GadgetType gadgetType) {
+    public final boolean hasGadget(GadgetType gadgetType) {
         Optional<GadgetData> optional = gadgetDataList.stream().filter(data -> data.getType() == gadgetType).findFirst();
         return optional.isPresent();
     }

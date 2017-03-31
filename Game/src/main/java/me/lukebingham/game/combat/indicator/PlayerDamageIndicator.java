@@ -1,7 +1,6 @@
 package me.lukebingham.game.combat.indicator;
 
 import me.lukebingham.game.Game;
-import me.lukebingham.game.util.GameState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -9,7 +8,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 /**
  * Created by LukeBingham on 30/03/2017.
  */
-public class PlayerDamageIndicator extends DamageIndicator {
+public final class PlayerDamageIndicator extends DamageIndicator {
 
     private Game<?> game;
 

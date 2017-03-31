@@ -7,7 +7,7 @@ import java.util.HashSet;
 /**
  * Created by LukeBingham on 30/03/2017.
  */
-public class GamePlayerManager {
+public final class GamePlayerManager {
 
     private final HashSet<IGamePlayer> gamePlayers;
 
@@ -18,7 +18,7 @@ public class GamePlayerManager {
     /**
      * @return {@link java.util.HashSet} of {@link IGamePlayer}'s
      */
-    public HashSet<IGamePlayer> getGamePlayers() {
+    public final HashSet<IGamePlayer> getGamePlayers() {
         return gamePlayers;
     }
 
@@ -26,7 +26,7 @@ public class GamePlayerManager {
      * @param gamePlayer The Game Player
      * @return The added Game Player
      */
-    public IGamePlayer addGamePlayer(GamePlayer gamePlayer) {
+    public final IGamePlayer addGamePlayer(GamePlayer gamePlayer) {
         this.gamePlayers.add(gamePlayer);
         return gamePlayer;
     }

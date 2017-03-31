@@ -23,7 +23,7 @@ import org.bukkit.event.inventory.ClickType;
  * Created by LukeBingham on 27/03/2017.
  */
 @I18nTODO
-public class GraphicsInventory extends MenuModule {
+public final class GraphicsInventory extends MenuModule {
 
     public GraphicsInventory(CosmeticManager cosmeticManager, GraphicsManager graphicsManager, LobbyProfile profile) {
         super(4, I18n.get(profile, "graphics"));

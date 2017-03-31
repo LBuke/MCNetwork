@@ -91,7 +91,7 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
      * This will get the child of core's module annotation.
      * @return The Module Annotation
      */
-    protected Module getModule() {
+    protected final Module getModule() {
         return getClass().isAnnotationPresent(Module.class) ? getClass().getAnnotation(Module.class) : null;
     }
 
@@ -115,7 +115,7 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
      * @return Plugin
      */
     @Override
-    public JavaPlugin getPlugin() {
+    public final JavaPlugin getPlugin() {
         return this;
     }
 }

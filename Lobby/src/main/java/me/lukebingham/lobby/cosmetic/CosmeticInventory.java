@@ -18,7 +18,7 @@ import org.bukkit.event.inventory.ClickType;
 /**
  * Created by LukeBingham on 25/02/2017.
  */
-public class CosmeticInventory extends MenuModule {
+public final class CosmeticInventory extends MenuModule {
 
     public CosmeticInventory(CosmeticManager cosmeticManager, GraphicsManager graphicsManager, LobbyProfile profile) {
         super(4, I18n.get(profile, I18nMessage.COSMETICS));

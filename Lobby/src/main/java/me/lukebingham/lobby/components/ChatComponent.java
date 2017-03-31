@@ -11,16 +11,16 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 /**
  * Created by LukeBingham on 23/02/2017.
  */
-public class ChatComponent implements Component {
+public final class ChatComponent implements Component {
 
-    private ProfileManager<LobbyProfile> profileManager;
+    private final ProfileManager<LobbyProfile> profileManager;
 
     public ChatComponent(ProfileManager<LobbyProfile> profileManager) {
         this.profileManager = profileManager;
     }
 
     @EventHandler
-    public void onChat(AsyncPlayerChatEvent event) {
+    protected final void onChat(AsyncPlayerChatEvent event) {
 
         String format = "";
 

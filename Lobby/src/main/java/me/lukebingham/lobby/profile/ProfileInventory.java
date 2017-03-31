@@ -15,7 +15,7 @@ import org.bukkit.event.inventory.ClickType;
 /**
  * Created by LukeBingham on 25/02/2017.
  */
-public class ProfileInventory extends MenuModule {
+public final class ProfileInventory extends MenuModule {
 
     public ProfileInventory(CosmeticManager cosmeticManager, GraphicsManager graphicsManager, LobbyProfile profile) {
         super(6, (profile.getDisplayName().equals("null") ? profile.getName() : profile.getDisplayName()) + " Profile");

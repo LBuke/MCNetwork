@@ -18,7 +18,7 @@ import org.bukkit.event.server.ServerListPingEvent;
 /**
  * Created by LukeBingham on 17/03/2017.
  */
-public class ServerComponent implements Component, MessageListener<ServerCreatedMessage> {
+public final class ServerComponent implements Component, MessageListener<ServerCreatedMessage> {
 
     private final String db = "Network", collection = "servers";
 
@@ -51,7 +51,7 @@ public class ServerComponent implements Component, MessageListener<ServerCreated
     }
 
     @Override
-    public void onDisable() {
+    public final void onDisable() {
         if(this.module.type() == ServerType.LOBBY && this.serverId == 1) return;
 
         this.database.getCollection(this.db, this.collection).remove(
@@ -60,7 +60,7 @@ public class ServerComponent implements Component, MessageListener<ServerCreated
     }
 
     @EventHandler
-    protected void onListPing(ServerListPingEvent event) {
+    protected final void onListPing(ServerListPingEvent event) {
         if (this.module == null && Lobby.class.isAnnotationPresent(Module.class))
             this.module = Lobby.class.getAnnotation(Module.class);
 
@@ -73,7 +73,7 @@ public class ServerComponent implements Component, MessageListener<ServerCreated
     }
 
     @Override
-    public void onReceive(String sender, ServerCreatedMessage message) {
+    public final void onReceive(String sender, ServerCreatedMessage message) {
         if(message.getServerType() == ServerType.LOBBY) {
             ServerUtil.logDebug("A new " + message.getServerType().name() + " was created with the ID of " + message.getServerId());
         }

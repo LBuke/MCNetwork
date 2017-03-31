@@ -8,7 +8,7 @@ import org.bukkit.entity.LivingEntity;
 /**
  * Created by LukeBingham on 30/03/2017.
  */
-public class DamageIndicatorEntity extends EntityArmorStand {
+public final class DamageIndicatorEntity extends EntityArmorStand {
 
     /**
      * Construct a new DamageIndicator {@link org.bukkit.entity.Entity}
@@ -32,7 +32,7 @@ public class DamageIndicatorEntity extends EntityArmorStand {
         locZ = loc.getZ();
     }
 
-    public void sendDirection() {
+    public final void sendDirection() {
 //        boolean b = Math.random() < 0.5;
         motY = locY * 1.05;
         velocityChanged = true;

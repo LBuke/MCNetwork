@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * Created by LukeBingham on 25/02/2017.
  */
-public class GadgetInventory extends MenuModule {
+public final class GadgetInventory extends MenuModule {
 
     public GadgetInventory(CosmeticManager cosmeticManager, GraphicsManager graphicsManager, LobbyProfile profile) {
         this(cosmeticManager, graphicsManager, profile, 1);
@@ -132,11 +132,11 @@ public class GadgetInventory extends MenuModule {
         addItem(new DummyItem(49, profileHead.build(), true));
     }
 
-    public class ClickableGadgetItem extends ClickableItem {
+    public final class ClickableGadgetItem extends ClickableItem {
 
         protected final LobbyProfile profile;
-        protected final Gadget gadget;
-        protected final boolean unlocked, usable;
+        final Gadget gadget;
+        final boolean unlocked, usable;
 
         public ClickableGadgetItem(ItemStack itemStack, LobbyProfile profile, Gadget gadget, boolean unlocked, boolean usable) {
             super(0, itemStack, true);
@@ -147,7 +147,7 @@ public class GadgetInventory extends MenuModule {
         }
 
         @Override
-        public void onClick(Player player, ClickType clickType) {
+        public final void onClick(Player player, ClickType clickType) {
             if(!unlocked) {
                 I18n.message(profile, I18nMessage.GADGETS_NOT_UNLOCKED, gadget.getName());
                 return;
@@ -163,11 +163,11 @@ public class GadgetInventory extends MenuModule {
             player.updateInventory();
         }
 
-        public boolean isUsable() {
+        public final boolean isUsable() {
             return usable;
         }
 
-        public Gadget getGadget() {
+        public final Gadget getGadget() {
             return gadget;
         }
     }

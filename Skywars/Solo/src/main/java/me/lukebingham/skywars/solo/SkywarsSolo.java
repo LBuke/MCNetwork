@@ -13,13 +13,13 @@ import me.lukebingham.skywars.Skywars;
  * Created by LukeBingham on 29/03/2017.
  */
 @Module(version = "1.0.0-SNAPSHOT", state = PluginState.PRE_ALPHA, type = ServerType.SKYWARS)
-public class SkywarsSolo extends Skywars<SoloMode> implements SoloMode {
+public final class SkywarsSolo extends Skywars<SoloMode> implements SoloMode {
 
     /**
      * This method is fired when the plugin starts.
      */
     @Override
-    protected void load() {
+    protected final void load() {
         super.load();
 
         //Components
@@ -31,7 +31,7 @@ public class SkywarsSolo extends Skywars<SoloMode> implements SoloMode {
      * @return Name of the plugin
      */
     @Override
-    public String getPluginName() {
+    public final String getPluginName() {
         return getGameName() + "-" + getModeName();
     }
 
@@ -39,7 +39,7 @@ public class SkywarsSolo extends Skywars<SoloMode> implements SoloMode {
      * @return Max player slots for the current {@link me.lukebingham.game.Game}
      */
     @Override
-    public int getMaxPlayers() {
+    public final int getMaxPlayers() {
         return 0;
     }
 
@@ -47,7 +47,7 @@ public class SkywarsSolo extends Skywars<SoloMode> implements SoloMode {
      * @return {@link me.lukebingham.game.type.PlayMode} of the current {@link me.lukebingham.game.Game}
      */
     @Override
-    public SoloMode getMode() {
+    public final SoloMode getMode() {
         return this;
     }
 }

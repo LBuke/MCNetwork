@@ -21,12 +21,12 @@ import java.util.UUID;
  * Created by LukeBingham on 26/03/2017.
  */
 @I18nTODO
-public class GraphicsComponent implements Component {
+public final class GraphicsComponent implements Component {
 
-    private Set<UUID> uuidSet;
+    private final Set<UUID> uuidSet;
 
-    private Lobby plugin;
-    private SpawnRegion spawnRegion;
+    private final Lobby plugin;
+    private final SpawnRegion spawnRegion;
 
     public GraphicsComponent(Lobby plugin, SpawnRegion spawnRegion) {
         this.plugin = plugin;
@@ -37,7 +37,7 @@ public class GraphicsComponent implements Component {
     }
 
     @EventHandler
-    public void onGraphicsChange(GraphicsChangeEvent event) {
+    protected final void onGraphicsChange(GraphicsChangeEvent event) {
         if (event.getPlayer() == null) return;
         if (event.getGraphics() == null) return;
 
@@ -47,31 +47,29 @@ public class GraphicsComponent implements Component {
         }
 
         uuidSet.add(event.getPlayer().getUniqueId());
-//        WorldUtil.refreshChunk(event.getPlayer(), event.getPlayer().getWorld(), spawnRegion.getPoints()[0], spawnRegion.getPoints()[1], object -> {
-            if (event.getGraphics().hasBlockChanges()) {
-                final int[] index = { 0 };
-                new BukkitRunnable() {
-                    @Override public void run() {
-                        spawnRegion.getList(index[0]++, false, (locations, done) -> {
-                            locations.forEach(loc -> {
-                                BlockData blockData = event.getGraphics().getBlockData(loc.getBlock().getType(), (byte)-1);
-                                WorldUtil.sendBlockChange(event.getPlayer(), loc, blockData != null ? event.getGraphics().getBlockData().get(blockData) : new BlockData(loc.getBlock().getType(), loc.getBlock().getData()));
-                            });
-
-                            if (done) {
-                                uuidSet.remove(event.getPlayer().getUniqueId());
-                                cancel();
-                            }
-                            locations.clear();
+        if (event.getGraphics().hasBlockChanges()) {
+            final int[] index = { 0 };
+            new BukkitRunnable() {
+                @Override public void run() {
+                    spawnRegion.getList(index[0]++, false, (locations, done) -> {
+                        locations.forEach(loc -> {
+                            BlockData blockData = event.getGraphics().getBlockData(loc.getBlock().getType(), (byte)-1);
+                            WorldUtil.sendBlockChange(event.getPlayer(), loc, blockData != null ? event.getGraphics().getBlockData().get(blockData) : new BlockData(loc.getBlock().getType(), loc.getBlock().getData()));
                         });
-                    }
-                }.runTaskTimer(plugin, 0, 3);
-            }
-//        });
+
+                        if (done) {
+                            uuidSet.remove(event.getPlayer().getUniqueId());
+                            cancel();
+                        }
+                        locations.clear();
+                    });
+                }
+            }.runTaskTimer(plugin, 0, 3);
+        }
     }
 
     @EventHandler
-    public void onBlockChange(PacketEvent event) {
+    protected final void onBlockChange(PacketEvent event) {
         if(event.getPlayer() == null) return;
         if(event.getPacketType() != PacketEvent.PacketType.OUTWARDS) return;
         if(!(event.getPacket() instanceof PacketPlayOutBlockChange)) return;

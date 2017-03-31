@@ -39,7 +39,7 @@ public abstract class GamePlatform<Mode extends PlayMode> extends CorePlugin<Cor
      * @return The server type
      */
     @Override
-    public ServerType getGameType() {
+    public final ServerType getGameType() {
         return getModule().type();
     }
 
@@ -47,7 +47,7 @@ public abstract class GamePlatform<Mode extends PlayMode> extends CorePlugin<Cor
      * @return The {@link me.lukebingham.game.util.GameState} of the {@link me.lukebingham.game.Game}
      */
     @Override
-    public GameState getGameState() {
+    public final GameState getGameState() {
         return gameState;
     }
 
@@ -56,7 +56,7 @@ public abstract class GamePlatform<Mode extends PlayMode> extends CorePlugin<Cor
      * @param gameState The GameState
      */
     @Override
-    public void setGameState(GameState gameState) {
+    public final void setGameState(GameState gameState) {
         if(this.gameState == gameState) return;
         GameStateChangeEvent event = new GameStateChangeEvent(gameState, this.gameState);
         this.gameState = gameState;

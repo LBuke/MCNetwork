@@ -9,9 +9,9 @@ import java.util.UUID;
 /**
  * Created by LukeBingham on 30/03/2017.
  */
-public class GamePlayer implements IGamePlayer {
+public final class GamePlayer implements IGamePlayer {
 
-    private UUID uniqueId;
+    private final UUID uniqueId;
     private GamePlayerState gamePlayerState;
 
     /**
@@ -38,7 +38,7 @@ public class GamePlayer implements IGamePlayer {
      * @return The {@link Bukkit} version of {@link Player}
      */
     @Override
-    public Player getPlayer() {
+    public final Player getPlayer() {
         return Bukkit.getPlayer(uniqueId);
     }
 
@@ -46,7 +46,7 @@ public class GamePlayer implements IGamePlayer {
      * @return True if the player is spectating
      */
     @Override
-    public boolean isSpectator() {
+    public final boolean isSpectator() {
         return this.gamePlayerState == GamePlayerState.SPECTATING;
     }
 
@@ -54,7 +54,7 @@ public class GamePlayer implements IGamePlayer {
      * Set the {@link IGamePlayer} as a spectator
      */
     @Override
-    public void setSpectator() {
+    public final void setSpectator() {
         setGamePlayerState(GamePlayerState.SPECTATING);
     }
 
@@ -62,7 +62,7 @@ public class GamePlayer implements IGamePlayer {
      * @return Get the current Player state
      */
     @Override
-    public GamePlayerState getGamePlayerState() {
+    public final GamePlayerState getGamePlayerState() {
         return gamePlayerState;
     }
 
@@ -72,7 +72,7 @@ public class GamePlayer implements IGamePlayer {
      * @param gamePlayerState The Player state
      */
     @Override
-    public void setGamePlayerState(GamePlayerState gamePlayerState) {
+    public final void setGamePlayerState(GamePlayerState gamePlayerState) {
         if (this.gamePlayerState == gamePlayerState) return;
         PlayerStateChangeEvent event = new PlayerStateChangeEvent(this.gamePlayerState, gamePlayerState);
         Bukkit.getPluginManager().callEvent(event);

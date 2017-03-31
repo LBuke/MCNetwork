@@ -6,9 +6,9 @@ import me.lukebingham.game.Game;
 /**
  * Created by LukeBingham on 29/03/2017.
  */
-public class GameStartEvent extends EventFactory {
+public final class GameStartEvent extends EventFactory {
 
-    private Game<?> game;
+    private final Game<?> game;
 
     /**
      * Construct a new Event
@@ -22,7 +22,7 @@ public class GameStartEvent extends EventFactory {
     /**
      * @return The current {@link me.lukebingham.game.Game}
      */
-    public Game<?> getGame() {
+    public final Game<?> getGame() {
         return game;
     }
 }

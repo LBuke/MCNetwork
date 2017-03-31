@@ -6,9 +6,9 @@ import me.lukebingham.game.util.GameState;
 /**
  * Created by LukeBingham on 30/03/2017.
  */
-public class GameStateChangeEvent extends EventFactory {
+public final class GameStateChangeEvent extends EventFactory {
 
-    private GameState from, to;
+    private final GameState from, to;
 
     /**
      * Construct a new Event
@@ -23,14 +23,14 @@ public class GameStateChangeEvent extends EventFactory {
     /**
      * @return The previous Game state
      */
-    public GameState getFrom() {
+    public final GameState getFrom() {
         return from;
     }
 
     /**
      * @return The newly updated Game state
      */
-    public GameState getTo() {
+    public final GameState getTo() {
         return to;
     }
 }

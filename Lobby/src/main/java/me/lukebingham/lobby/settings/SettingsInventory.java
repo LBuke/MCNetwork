@@ -19,7 +19,7 @@ import org.bukkit.event.inventory.ClickType;
  * Created by LukeBingham on 27/03/2017.
  */
 @I18nTODO
-public class SettingsInventory extends MenuModule {
+public final class SettingsInventory extends MenuModule {
 
     public SettingsInventory(CosmeticManager cosmeticManager, GraphicsManager graphicsManager, LobbyProfile profile) {
         super(6, "Settings");

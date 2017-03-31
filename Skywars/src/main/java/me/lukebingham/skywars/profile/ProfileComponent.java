@@ -1,7 +1,5 @@
 package me.lukebingham.skywars.profile;
 
-import me.lukebingham.core.Core;
-import me.lukebingham.core.cosmetic.gadget.gadgets.CookieGadget;
 import me.lukebingham.core.module.Module;
 import me.lukebingham.core.module.PluginState;
 import me.lukebingham.core.profile.CoreProfile;
@@ -23,10 +21,10 @@ import org.bukkit.event.player.PlayerQuitEvent;
 /**
  * Created by LukeBingham on 30/03/2017.
  */
-public class ProfileComponent implements Component {
+public final class ProfileComponent implements Component {
 
-    private Skywars<?> skywars;
-    private ProfileManager<CoreProfile> profileManager;
+    private final Skywars<?> skywars;
+    private final ProfileManager<CoreProfile> profileManager;
 
     public ProfileComponent(Skywars<?> skywars, ProfileManager<CoreProfile> profileManager) {
         this.skywars = skywars;
@@ -34,7 +32,7 @@ public class ProfileComponent implements Component {
     }
 
     @EventHandler
-    protected void onPlayerLogin(AsyncPlayerPreLoginEvent event) {
+    protected final void onPlayerLogin(AsyncPlayerPreLoginEvent event) {
         //TODO pull from database
         profileManager.cacheProfile(new CoreProfile(event.getUniqueId(), event.getName()), call -> {
             if (skywars.getClass().isAnnotationPresent(Module.class)) {
@@ -51,7 +49,7 @@ public class ProfileComponent implements Component {
     }
 
     @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event) {
+    protected final void onPlayerQuit(PlayerQuitEvent event) {
         if(event.getPlayer() == null) return;
         profileManager.saveCache(event.getPlayer().getUniqueId(), call -> {
             ServerUtil.logDebug("Profile saved for " + call.getName());
@@ -59,7 +57,7 @@ public class ProfileComponent implements Component {
     }
 
     @EventHandler
-    protected void onPlayerJoin(PlayerJoinEvent event) {
+    protected final void onPlayerJoin(PlayerJoinEvent event) {
         if(event.getPlayer() == null) return;
 
         if(!event.getPlayer().isOp())
