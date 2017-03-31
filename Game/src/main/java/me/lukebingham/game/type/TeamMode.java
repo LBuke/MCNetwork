@@ -8,7 +8,7 @@ public interface TeamMode extends PlayMode {
     /**
      * @return Name of the current {@link me.lukebingham.game.type.PlayMode}
      */
-    @Override default String getName() {
+    @Override default String getModeName() {
         return "Teams";
     }
 

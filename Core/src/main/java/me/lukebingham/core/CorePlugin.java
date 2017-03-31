@@ -43,7 +43,7 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
         this.jedisModule = new JedisModule(getPluginName());
         this.profileManager = new ProfileManager<>();
         this.graphicsManager = new GraphicsManager();
-        new I18n();
+        I18n i18n = new I18n();
 
         //Commands
         new ServerCommand(this.jedisModule);

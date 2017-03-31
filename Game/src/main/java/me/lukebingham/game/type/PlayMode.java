@@ -8,7 +8,7 @@ public interface PlayMode {
     /**
      * @return Name of the current {@link me.lukebingham.game.type.PlayMode}
      */
-    String getName();
+    String getModeName();
 
     /**
      * @return Max player slots for the current {@link me.lukebingham.game.Game}

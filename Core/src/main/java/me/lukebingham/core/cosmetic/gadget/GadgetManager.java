@@ -76,7 +76,7 @@ public class GadgetManager implements Component {
     protected void onPlayerInteract(PlayerInteractEvent event) {
         if(!this.enabled) return;
 
-        if(event.getHand() != EquipmentSlot.HAND) return;
+//        if(event.getHand() != EquipmentSlot.HAND) return;
         if(event.getPlayer() == null) return;
         if(event.getItem() == null || event.getItem().getType() == Material.AIR) return;
         if(event.getPlayer().getInventory().getHeldItemSlot() != SLOT_INDEX) return;

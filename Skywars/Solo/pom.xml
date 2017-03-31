@@ -7,7 +7,7 @@
     <groupId>me.lukebingham</groupId>
     <artifactId>skywars.solo</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Skywars_Solo</name>
+    <name>SkywarsSolo</name>
 
     <developers>
         <developer>

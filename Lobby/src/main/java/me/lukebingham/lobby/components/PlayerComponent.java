@@ -180,11 +180,6 @@ public final class PlayerComponent implements Component {
         event.setCancelled(!event.getWhoClicked().isOp());
     }
 
-    @EventHandler
-    protected void onItemMove(PlayerSwapHandItemsEvent event) {
-        event.setCancelled(true);
-    }
-
     public void setAllowItemDrop(boolean allowItemDrop) {
         this.allowItemDrop = allowItemDrop;
     }

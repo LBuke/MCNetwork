@@ -1,9 +1,9 @@
 package me.lukebingham.core.util;
 
 import me.lukebingham.core.CorePlugin;
-import net.minecraft.server.v1_11_R1.Packet;
+import net.minecraft.server.v1_8_R3.Packet;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
@@ -55,7 +55,7 @@ public class ServerUtil {
     }
 
     private static boolean isValidPlugin(String description) {
-        Pattern pattern = Pattern.compile("^.*" + SERVER_NAME + "-(?:Lobby|Game)-(\\d*\\.){2}\\d*.*$");
+        Pattern pattern = Pattern.compile("^.*" + SERVER_NAME + "-.*");
         return pattern.matcher(description).find();
     }
 
@@ -72,7 +72,7 @@ public class ServerUtil {
      */
     public static void registerComponent(Component... components) {
         Arrays.asList(components).forEach(component -> {
-                Bukkit.getPluginManager().registerEvents(component, PLUGIN);
+            Bukkit.getPluginManager().registerEvents(component, PLUGIN);
             component.onLoad();
             component.log(true);
             ((CorePlugin) PLUGIN).getComponents().add(component);
@@ -92,5 +92,13 @@ public class ServerUtil {
                 component.log(false);
             }
         });
+    }
+
+    public static void runTask(Runnable runnable) {
+        Bukkit.getScheduler().runTask(getJavaPlugin(), runnable);
+    }
+
+    public static void runTaskLater(long time, Runnable runnable) {
+        Bukkit.getScheduler().runTaskLater(PLUGIN, runnable, time);
     }
 }

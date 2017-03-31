@@ -7,16 +7,10 @@ import me.lukebingham.core.packet.PacketEvent;
 import me.lukebingham.core.packet.PacketHandler;
 import me.lukebingham.core.util.BlockData;
 import me.lukebingham.core.util.Component;
-import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.core.util.WorldUtil;
 import me.lukebingham.lobby.Lobby;
 import me.lukebingham.lobby.region.SpawnRegion;
-import net.minecraft.server.v1_11_R1.BlockPosition;
-import net.minecraft.server.v1_11_R1.PacketPlayOutBlockChange;
-import net.minecraft.server.v1_11_R1.PacketPlayOutMapChunk;
-import net.minecraft.server.v1_11_R1.PacketPlayOutWorldEvent;
-import org.bukkit.craftbukkit.v1_11_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_11_R1.util.CraftMagicNumbers;
+import net.minecraft.server.v1_8_R3.PacketPlayOutBlockChange;
 import org.bukkit.event.EventHandler;
 import org.bukkit.scheduler.BukkitRunnable;
 

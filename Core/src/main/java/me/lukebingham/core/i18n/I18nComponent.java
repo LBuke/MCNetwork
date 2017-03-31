@@ -6,7 +6,7 @@ import me.lukebingham.core.profile.CoreProfile;
 import me.lukebingham.core.profile.ProfileManager;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.ServerUtil;
-import net.minecraft.server.v1_11_R1.PacketPlayInSettings;
+import net.minecraft.server.v1_8_R3.PacketPlayInSettings;
 import org.bukkit.event.EventHandler;
 
 /**

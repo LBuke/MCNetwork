@@ -1,6 +1,6 @@
 package me.lukebingham.core.packet;
 
-import net.minecraft.server.v1_11_R1.Packet;
+import net.minecraft.server.v1_8_R3.Packet;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;

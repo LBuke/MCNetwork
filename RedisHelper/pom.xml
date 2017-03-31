@@ -100,6 +100,7 @@
                                 <excludes>
                                     <exclude>org.spigotmc:spigot</exclude>
                                     <exclude>org.spigotmc:minecraft-server</exclude>
+                                    <exclude>org.bukkit:craftbukkit</exclude>
                                 </excludes>
                             </artifactSet>
                         </configuration>

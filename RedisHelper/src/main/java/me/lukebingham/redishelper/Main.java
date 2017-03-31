@@ -110,8 +110,7 @@ public class Main {
         });
 
         instance.jedisModule.registerListener(RemoveServerMessage.class, (sender, message) -> {
-            if (message.getServerType() == ServerType.LOBBY && message.getServerId() == 1)
-                return;
+            if (message.getServerType() == ServerType.LOBBY && message.getServerId() == 1) return;
             new Thread(() -> {
                 try {
                     Thread.sleep(1000);
@@ -168,7 +167,7 @@ public class Main {
 //                    + "cd plugins\n"
 //                    + "wget -r -nH -nd -np -R index.html* https://lukebingham.me/abc/" + serverType.name() + "/\n"
 //                    + "cd ../\n"
-                    + "java -Xmx" + mb + "M -Xms" + mb + "M -XX:MaxPermSize=" + mb + "M  -jar spigot.jar\n"
+                    + "java -Xmx" + mb + "M -Xms" + mb + "M -XX:MaxPermSize=" + mb + "M -agentlib:TakipiAgent -jar spigot.jar\n"
                     + "for i in {5..1}\n"
                     + "do\n"
                         + "echo \"Server starting in: $i\"\n"
