@@ -10,18 +10,18 @@ import java.util.List;
 /**
  * Created by LukeBingham on 16/03/2017.
  */
-public class MessageReader extends JedisPubSub {
+public final class MessageReader extends JedisPubSub {
 
-    private String serverName;
-    private Gson gson = new Gson();
-    private JsonParser jsonParser = new JsonParser();
+    private final String serverName;
+    private final Gson gson = new Gson();
+    private final JsonParser jsonParser = new JsonParser();
 
     public MessageReader(String name) {
         this.serverName = name;
     }
 
     @Override
-    public void onMessage(String channel, String message) {
+    public final void onMessage(String channel, String message) {
         if (!isValid(message)) return;
 
         try {
@@ -45,27 +45,27 @@ public class MessageReader extends JedisPubSub {
     }
 
     @Override
-    public void onPMessage(String s, String s1, String s2) {
+    public final void onPMessage(String s, String s1, String s2) {
 
     }
 
     @Override
-    public void onSubscribe(String s, int i) {
+    public final void onSubscribe(String s, int i) {
 
     }
 
     @Override
-    public void onUnsubscribe(String s, int i) {
+    public final void onUnsubscribe(String s, int i) {
 
     }
 
     @Override
-    public void onPUnsubscribe(String s, int i) {
+    public final void onPUnsubscribe(String s, int i) {
 
     }
 
     @Override
-    public void onPSubscribe(String s, int i) {
+    public final void onPSubscribe(String s, int i) {
 
     }
 

@@ -10,25 +10,25 @@ import org.bukkit.event.player.PlayerQuitEvent;
 /**
  * Created by LukeBingham on 19/03/2017.
  */
-public class PacketComponent implements Component {
+public final class PacketComponent implements Component {
 
     @Override
-    public void onLoad() {
+    public final void onLoad() {
         Bukkit.getOnlinePlayers().forEach(PacketHandler::hook);
     }
 
     @Override
-    public void onDisable() {
+    public final void onDisable() {
         Bukkit.getOnlinePlayers().forEach(PacketHandler::unHook);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onJoin(PlayerJoinEvent event) {
+    protected final void onJoin(PlayerJoinEvent event) {
         PacketHandler.hook(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onQuit(PlayerQuitEvent event) {
+    protected final void onQuit(PlayerQuitEvent event) {
         PacketHandler.unHook(event.getPlayer());
     }
 

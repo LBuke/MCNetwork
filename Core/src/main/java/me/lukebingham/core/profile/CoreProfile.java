@@ -14,10 +14,10 @@ import java.util.UUID;
 /**
  * Created by LukeBingham on 23/02/2017.
  */
-public class CoreProfile {
+public final class CoreProfile {
 
-    private UUID uniqueId;
-    private String name;
+    private final UUID uniqueId;
+    private final String name;
     private String displayName = "null";
     private Role role = Role.ADMINISTRATOR;
     private Rank rank = Rank.MEMBER;

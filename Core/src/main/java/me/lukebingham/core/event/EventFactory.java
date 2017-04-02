@@ -17,7 +17,7 @@ public abstract class EventFactory extends Event {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public final HandlerList getHandlers() {
         return handlers;
     }
 

@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by LukeBingham on 24/02/2017.
  */
-public class ItemFactory extends Factory<ItemStack> implements CloneableFactory<ItemFactory> {
+public final class ItemFactory extends Factory<ItemStack> implements CloneableFactory<ItemFactory> {
 
     private ItemMeta itemMeta;
 
@@ -24,28 +24,28 @@ public class ItemFactory extends Factory<ItemStack> implements CloneableFactory<
         this(material, (byte) 0);
     }
 
-    public ItemFactory setAmount(int amount) {
+    public final ItemFactory setAmount(int amount) {
         if (amount > 64) amount = 64;
         object.setAmount(amount);
         return this;
     }
 
-    public ItemFactory setName(String name) {
+    public final ItemFactory setName(String name) {
         itemMeta.setDisplayName(name);
         return this;
     }
 
-    public ItemFactory setLore(List<String> lore) {
+    public final ItemFactory setLore(List<String> lore) {
         itemMeta.setLore(lore);
         return this;
     }
 
-    public ItemFactory setLore(String... lore) {
+    public final ItemFactory setLore(String... lore) {
         itemMeta.setLore(Arrays.asList(lore));
         return this;
     }
 
-    public ItemFactory setOwner(String name) {
+    public final ItemFactory setOwner(String name) {
         if (object.getType().equals(Material.SKULL_ITEM)) {
             SkullMeta meta = (SkullMeta) itemMeta;
             meta.setOwner(name);
@@ -53,18 +53,18 @@ public class ItemFactory extends Factory<ItemStack> implements CloneableFactory<
         return this;
     }
 
-    public ItemStack build() {
+    public final ItemStack build() {
         object.setItemMeta(itemMeta);
         return object;
     }
 
-    public ItemFactory setData(byte data) {
+    public final ItemFactory setData(byte data) {
         object.setDurability(data);
         return this;
     }
 
     @Override
-    public ItemFactory clone() {
+    public final ItemFactory clone() {
         ItemFactory clone = new ItemFactory(object.getType(), object.getData().getData());
         clone.itemMeta = this.itemMeta;
         return clone;

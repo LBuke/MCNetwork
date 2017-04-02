@@ -6,7 +6,7 @@ import me.lukebingham.core.util.ServerUtil;
 /**
  * Created by LukeBingham on 24/02/2017.
  */
-public class CosmeticManager {
+public final class CosmeticManager {
 
     private final GadgetManager gadgetManager;
 
@@ -16,7 +16,7 @@ public class CosmeticManager {
         if(gadget) ServerUtil.registerComponent(gadgetManager);
     }
 
-    public GadgetManager getGadgetManager() {
+    public final GadgetManager getGadgetManager() {
         return gadgetManager;
     }
 }

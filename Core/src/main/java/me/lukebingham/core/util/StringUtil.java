@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by LukeBingham on 22/03/2017.
  */
-public class StringUtil {
+public final class StringUtil {
 
     public static List<String> breakUp(String input, int length) {
         List<String> temp = new ArrayList<>();

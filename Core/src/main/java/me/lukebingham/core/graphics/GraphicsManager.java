@@ -12,9 +12,9 @@ import java.util.HashMap;
 /**
  * Created by LukeBingham on 26/03/2017.
  */
-public class GraphicsManager {
+public final class GraphicsManager {
 
-    private HashMap<GraphicsType, Graphics> graphicsMap;
+    private final HashMap<GraphicsType, Graphics> graphicsMap;
     private boolean enabled = true;
 
     public GraphicsManager() {
@@ -36,11 +36,11 @@ public class GraphicsManager {
         }
     }
 
-    public HashMap<GraphicsType, Graphics> getGraphicsMap() {
+    public final HashMap<GraphicsType, Graphics> getGraphicsMap() {
         return graphicsMap;
     }
 
-    public void changeGraphics(CoreProfile profile, Player player, GraphicsType graphicsType) {
+    public final void changeGraphics(CoreProfile profile, Player player, GraphicsType graphicsType) {
         if(!enabled) return;
         if(profile == null) return;
         GraphicsChangeEvent event = new GraphicsChangeEvent(player, graphicsType, graphicsMap.get(graphicsType));

@@ -11,10 +11,10 @@ import org.bukkit.inventory.ItemStack;
 /**
  * Created by LukeBingham on 24/02/2017.
  */
-public class MenuComponent implements Component {
+public final class MenuComponent implements Component {
 
     @EventHandler (ignoreCancelled = true)
-    protected void onInventoryClick(InventoryClickEvent event) {
+    protected final void onInventoryClick(InventoryClickEvent event) {
         if (event.getInventory().getHolder() == null) return;
         if (!(event.getInventory().getHolder() instanceof MenuModule)) return;
 

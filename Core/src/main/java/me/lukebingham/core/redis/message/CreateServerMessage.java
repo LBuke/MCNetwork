@@ -6,15 +6,15 @@ import me.lukebingham.core.util.ServerType;
 /**
  * Created by LukeBingham on 17/03/2017.
  */
-public class CreateServerMessage implements JMessage {
+public final class CreateServerMessage implements JMessage {
 
-    private ServerType serverType;
+    private final ServerType serverType;
 
     public CreateServerMessage(ServerType serverType) {
         this.serverType = serverType;
     }
 
-    public ServerType getServerType() {
+    public final ServerType getServerType() {
         return serverType;
     }
 }

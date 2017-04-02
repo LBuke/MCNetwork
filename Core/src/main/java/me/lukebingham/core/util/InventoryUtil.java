@@ -3,7 +3,7 @@ package me.lukebingham.core.util;
 /**
  * Created by LukeBingham on 25/02/2017.
  */
-public class InventoryUtil {
+public final class InventoryUtil {
 
     public static int[] getSlots(int rows) {
         if(rows > 4 || rows < 1) rows = 1;

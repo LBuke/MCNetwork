@@ -25,13 +25,13 @@ public enum GadgetType {
 
     ;
 
-    protected Class<? extends Gadget> gadgetClass;
+    protected final Class<? extends Gadget> gadgetClass;
 
     GadgetType(Class<? extends Gadget> gadgetClass) {
         this.gadgetClass = gadgetClass;
     }
 
-    public Class<? extends Gadget> getGadgetClass() {
+    public final Class<? extends Gadget> getGadgetClass() {
         return gadgetClass;
     }
 }

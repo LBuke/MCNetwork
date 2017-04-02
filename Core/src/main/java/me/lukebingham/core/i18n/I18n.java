@@ -16,7 +16,7 @@ import java.util.Properties;
 /**
  * Created by LukeBingham on 19/03/2017.
  */
-public class I18n {
+public final class I18n {
 
     private static final HashMap<Locale, Properties> properties;
 

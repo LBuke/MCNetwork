@@ -18,7 +18,7 @@ import org.bukkit.Bukkit;
 /**
  * Created by LukeBingham on 22/02/2017.
  */
-public class SlackServer {
+public final class SlackServer {
 
     /**
      * POST tags
@@ -67,7 +67,7 @@ public class SlackServer {
      * @param message - the message to send
      * @return The response from the Slack server.
      */
-    public void send(SlackMessage message, boolean async, Callback<String> callback) {
+    public final void send(SlackMessage message, boolean async, Callback<String> callback) {
         if (async) {
             Bukkit.getScheduler().runTaskAsynchronously(ServerUtil.getJavaPlugin(), () -> {
                 HttpURLConnection connection = null;

@@ -11,9 +11,9 @@ import java.util.HashMap;
 /**
  * Created by LukeBingham on 26/03/2017.
  */
-public class ExtremeGraphics extends ClientGraphics {
+public final class ExtremeGraphics extends ClientGraphics {
 
-    private static HashMap<BlockData, BlockData> blocks;
+    private static final HashMap<BlockData, BlockData> blocks;
 
     static {
         blocks = Maps.newHashMap();
@@ -29,7 +29,7 @@ public class ExtremeGraphics extends ClientGraphics {
      * @return block change value
      */
     @Override
-    public boolean hasBlockChanges() {
+    public final boolean hasBlockChanges() {
         return true;
     }
 
@@ -38,12 +38,12 @@ public class ExtremeGraphics extends ClientGraphics {
      * @return block change data
      */
     @Override
-    public HashMap<BlockData, BlockData> getBlockData() {
+    public final HashMap<BlockData, BlockData> getBlockData() {
         return blocks;
     }
 
     @Override
-    public BlockData getBlockData(Material material, byte data) {
+    public final BlockData getBlockData(Material material, byte data) {
         for(BlockData blockData : blocks.keySet()) {
             if(data == -1 && blockData.getMaterial() == material) return blockData;
             if(blockData.getMaterial() == material && blockData.getData() == data) return blockData;
@@ -52,7 +52,7 @@ public class ExtremeGraphics extends ClientGraphics {
         return null;
     }
 
-    public void addBlock(BlockData origin, BlockData source) {
+    public final void addBlock(BlockData origin, BlockData source) {
         blocks.put(origin, source);
     }
 
@@ -60,7 +60,7 @@ public class ExtremeGraphics extends ClientGraphics {
      * This will be fired once at start-up.
      */
     @Override
-    protected void init() {
+    protected final void init() {
 
     }
 }

@@ -16,7 +16,7 @@ import java.util.HashSet;
 /**
  * Created by LukeBingham on 19/03/2017.
  */
-public class PacketHandler extends ChannelDuplexHandler {
+public final class PacketHandler extends ChannelDuplexHandler {
     private static final HashSet<Class<? extends Packet<?>>> packets;
     static {
         packets = Sets.newHashSet();
@@ -39,7 +39,7 @@ public class PacketHandler extends ChannelDuplexHandler {
     }
 
     @Override
-    public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
+    public final void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
         Packet<?> packet = (Packet<?>) msg;
         PacketEvent event = null;
         if(packets.contains(packet.getClass())) {
@@ -58,7 +58,7 @@ public class PacketHandler extends ChannelDuplexHandler {
     }
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+    public final void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         Packet<?> packet = (Packet<?>) msg;
         PacketEvent event = null;
         if(packets.contains(packet.getClass())) {

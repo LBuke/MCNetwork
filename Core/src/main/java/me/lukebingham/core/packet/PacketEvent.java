@@ -9,13 +9,13 @@ import org.bukkit.event.HandlerList;
 /**
  * Created by LukeBingham on 19/03/2017.
  */
-public class PacketEvent extends Event implements Cancellable {
+public final class PacketEvent extends Event implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
 
-    private PacketType packetType;
-    private Packet packet;
-    private Player player;
+    private final PacketType packetType;
+    private final Packet packet;
+    private final Player player;
     private boolean cancelled = false;
 
     public PacketEvent(Player player, PacketType packetType, Packet packet) {
@@ -35,29 +35,29 @@ public class PacketEvent extends Event implements Cancellable {
         return handlers;
     }
 
-    public PacketType getPacketType() {
+    public final PacketType getPacketType() {
         return packetType;
     }
 
-    public Packet getPacket() {
+    public final Packet getPacket() {
         return packet;
     }
 
-    public Player getPlayer() {
+    public final Player getPlayer() {
         return player;
     }
 
     @Override
-    public boolean isCancelled() {
+    public final boolean isCancelled() {
         return cancelled;
     }
 
     @Override
-    public void setCancelled(boolean cancelled) {
+    public final void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
     }
 
-    public static enum PacketType {
+    public enum PacketType {
         INWARDS, OUTWARDS
     }
 }

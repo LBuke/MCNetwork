@@ -9,9 +9,9 @@ import org.bukkit.command.CommandSender;
 /**
  * Created by LukeBingham on 17/03/2017.
  */
-public class StopCommand extends CommandFactory<CommandSender> implements StaffCommand{
+public final class StopCommand extends CommandFactory<CommandSender> implements StaffCommand {
 
-    private Core core;
+    private final Core core;
 
     /**
      * Construct a new command.
@@ -28,7 +28,7 @@ public class StopCommand extends CommandFactory<CommandSender> implements StaffC
      * @param args   Command arguments
      */
     @Override
-    public void execute(CommandSender sender, String[] args) {
+    public final void execute(CommandSender sender, String[] args) {
         Bukkit.broadcastMessage("IMPORTANT, This server needs a restart!");
 
         Bukkit.getOnlinePlayers().forEach(player -> {
@@ -47,7 +47,7 @@ public class StopCommand extends CommandFactory<CommandSender> implements StaffC
      * @return Role value
      */
     @Override
-    public Role getRequiredRole() {
+    public final Role getRequiredRole() {
         return Role.DEVELOPER;
     }
 }

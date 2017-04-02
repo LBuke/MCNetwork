@@ -16,17 +16,17 @@ import java.util.*;
 /**
  * Created by LukeBingham on 24/02/2017.
  */
-public class GadgetManager implements Component {
+public final class GadgetManager implements Component {
 
     public static final int SLOT_INDEX = 5;
 
     private static TreeMap<GadgetType, Gadget> gadgets;
     private final HashMap<UUID, GadgetData> activeGadgets;
 
-    private boolean enabled;
+    private final boolean enabled;
 
     public GadgetManager(boolean enabled) {
-        this.gadgets = Maps.newTreeMap();
+        gadgets = Maps.newTreeMap();
         this.activeGadgets = Maps.newHashMap();
         this.enabled = enabled;
 
@@ -40,7 +40,7 @@ public class GadgetManager implements Component {
         });
     }
 
-    public boolean isEnabled() {
+    public final boolean isEnabled() {
         return this.enabled;
     }
 
@@ -48,24 +48,24 @@ public class GadgetManager implements Component {
         return gadgets;
     }
 
-    public void setActiveGadget(UUID uniqueId, GadgetData gadget) {
+    public final void setActiveGadget(UUID uniqueId, GadgetData gadget) {
         this.activeGadgets.put(uniqueId, gadget);
     }
 
-    public GadgetData getActiveGadget(UUID uniqueId) {
+    public final GadgetData getActiveGadget(UUID uniqueId) {
         if(!hasActiveGadget(uniqueId)) return null;
         return this.activeGadgets.get(uniqueId);
     }
 
-    public void removeActiveGadget(UUID uniqueId) {
+    public final void removeActiveGadget(UUID uniqueId) {
         this.activeGadgets.remove(uniqueId);
     }
 
-    public boolean hasActiveGadget(UUID uniqueId) {
+    public final boolean hasActiveGadget(UUID uniqueId) {
         return this.activeGadgets.containsKey(uniqueId);
     }
 
-    public PlayerGadgetEvent fireEvent(boolean async, Player player, Gadget gadget) {
+    public final PlayerGadgetEvent fireEvent(boolean async, Player player, Gadget gadget) {
         PlayerGadgetEvent event = new PlayerGadgetEvent(async, player, gadget);
         if(!this.enabled) return event;
         Bukkit.getPluginManager().callEvent(event);
@@ -73,7 +73,7 @@ public class GadgetManager implements Component {
     }
 
     @EventHandler
-    protected void onPlayerInteract(PlayerInteractEvent event) {
+    protected final void onPlayerInteract(PlayerInteractEvent event) {
         if(!this.enabled) return;
 
 //        if(event.getHand() != EquipmentSlot.HAND) return;

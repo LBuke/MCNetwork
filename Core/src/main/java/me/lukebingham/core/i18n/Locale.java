@@ -10,13 +10,13 @@ public enum Locale {
     it_IT("it_it"),
     ;
 
-    private String tag;
+    private final String tag;
 
     Locale(String tag) {
         this.tag = tag;
     }
 
-    public String getTag() {
+    public final String getTag() {
         return tag;
     }
 

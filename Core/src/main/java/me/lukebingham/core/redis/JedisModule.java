@@ -52,7 +52,7 @@ public class JedisModule {
         }).start();
     }
 
-    public void connect(String serverName) {
+    public final void connect(String serverName) {
         this.jedisPool = new JedisPool(new JedisPoolConfig(), "localhost", 6379, 0, null);
 
         try (Jedis jedis = jedisPool.getResource()) {
@@ -75,21 +75,21 @@ public class JedisModule {
         }).start();
     }
 
-    public void sendMessage(Object message, String server) {
+    public final void sendMessage(Object message, String server) {
         writer.publishPacket(message, server);
     }
 
-    public void disable() {
+    public final void disable() {
         if (reader.isSubscribed())
             reader.unsubscribe();
         jedisPool.destroy();
     }
 
-    public JedisPool getJedisPool() {
+    public final JedisPool getJedisPool() {
         return jedisPool;
     }
 
-    public <T extends JMessage> void registerListener(Class<T> msg, MessageListener<T> listener) {
+    public final <T extends JMessage> void registerListener(Class<T> msg, MessageListener<T> listener) {
         if (listeners.containsKey(msg)) {
             listeners.get(msg).add(listener);
         }

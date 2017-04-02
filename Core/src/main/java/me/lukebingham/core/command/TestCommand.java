@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 /**
  * Created by LukeBingham on 19/03/2017.
  */
-public class TestCommand extends CommandFactory<Player> {
+public final class TestCommand extends CommandFactory<Player> {
 
     /**
      * Construct a new command.
@@ -23,7 +23,7 @@ public class TestCommand extends CommandFactory<Player> {
      * @param args   Command arguments
      */
     @Override
-    public void execute(Player sender, String[] args) {
+    public final void execute(Player sender, String[] args) {
         ColoredParticle.send(ParticleEffect.REDSTONE, sender.getLocation(), 16, 0, 255, 0);
     }
 }

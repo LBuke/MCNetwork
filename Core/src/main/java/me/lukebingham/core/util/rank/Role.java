@@ -14,22 +14,22 @@ public enum Role {
     NULL(null, null),
     ;
 
-    private String color, tag;
+    private final String color, tag;
 
     Role(String color, String tag) {
         this.color = color;
         this.tag = tag;
     }
 
-    public String getColor() {
+    public final String getColor() {
         return color;
     }
 
-    public String getTag() {
+    public final String getTag() {
         return tag;
     }
 
-    public String getShortTag() {
+    public final String getShortTag() {
         switch (this) {
             case ADMINISTRATOR: return tag.substring(0, 5);
             case DEVELOPER:     return tag.substring(0, 3);
@@ -39,7 +39,7 @@ public enum Role {
         return "";
     }
 
-    public boolean hasRole(Role role) {
+    public final boolean hasRole(Role role) {
         return this.ordinal() <= role.ordinal();
     }
 }

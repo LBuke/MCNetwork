@@ -16,20 +16,20 @@ import org.bukkit.entity.Player;
 /**
  * Created by LukeBingham on 22/03/2017.
  */
-public class CookieGadget implements Gadget, CosmeticBuyable, CosmeticUnlockable, CosmeticRequireRank {
+public final class CookieGadget implements Gadget, CosmeticBuyable, CosmeticUnlockable, CosmeticRequireRank {
 
     @Override
-    public int getUniqueId() {
+    public final int getUniqueId() {
         return 3;
     }
 
     @Override
-    public String getName() {
+    public final String getName() {
         return "Fortune Cookie";
     }
 
     @Override
-    public String[] getDescription() {
+    public final String[] getDescription() {
         return new String[] {
                 "What's better than a",
                 "cookie? A cookie that gives",
@@ -41,12 +41,12 @@ public class CookieGadget implements Gadget, CosmeticBuyable, CosmeticUnlockable
     }
 
     @Override
-    public GadgetTriggerType getTriggerType() {
+    public final GadgetTriggerType getTriggerType() {
         return GadgetTriggerType.RIGHT_CLICK;
     }
 
     @Override
-    public long[] getCooldown() {
+    public final long[] getCooldown() {
         return new long[] {
                 5 * 1000, //Non-Supporter cooldown time.
                 3 * 1000, //Supporter cooldown time.
@@ -54,37 +54,37 @@ public class CookieGadget implements Gadget, CosmeticBuyable, CosmeticUnlockable
     }
 
     @Override
-    public ItemFactory getItemFactory() {
+    public final ItemFactory getItemFactory() {
         return new ItemFactory(Material.COOKIE);
     }
 
     @Override
-    public GadgetType getGadgetType() {
+    public final GadgetType getGadgetType() {
         return GadgetType.COOKIE;
     }
 
     @Override
-    public void action(Player player) {
+    public final void action(Player player) {
         player.sendMessage(C.YELLOW + "Really? this is all this does? WOW..");
     }
 
     @Override
-    public double getCost() {
+    public final double getCost() {
         return 1000;
     }
 
     @Override
-    public CurrencyType getCurrencyType() {
+    public final CurrencyType getCurrencyType() {
         return CurrencyType.CREDITS;
     }
 
     @Override
-    public double getRarity() {
+    public final double getRarity() {
         return 3;
     }
 
     @Override
-    public Rank getRequiredRank() {
+    public final Rank getRequiredRank() {
         return Rank.VIP_PLUS;
     }
 }

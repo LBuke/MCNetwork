@@ -8,7 +8,7 @@ import org.bukkit.entity.ArmorStand;
 /**
  * Created by LukeBingham on 30/03/2017.
  */
-public class EntityUtil {
+public final class EntityUtil {
 
     /**
      * Set the ArmorStand's marker.

@@ -12,9 +12,9 @@ import org.bukkit.event.EventHandler;
 /**
  * Created by LukeBingham on 19/03/2017.
  */
-public class I18nComponent implements Component {
+public final class I18nComponent implements Component {
 
-    private ProfileManager<? extends CoreProfile> profileManager;
+    private final ProfileManager<? extends CoreProfile> profileManager;
 
     public I18nComponent(ProfileManager<? extends CoreProfile> profileManager) {
         this.profileManager = profileManager;
@@ -23,7 +23,7 @@ public class I18nComponent implements Component {
     }
 
     @EventHandler
-    public void onLanguageChange(PacketEvent event) {
+    public final void onLanguageChange(PacketEvent event) {
         if(event.getPacketType() != PacketEvent.PacketType.INWARDS) return;
         if(!(event.getPacket() instanceof PacketPlayInSettings)) return;
         PacketPlayInSettings packet = (PacketPlayInSettings) event.getPacket();

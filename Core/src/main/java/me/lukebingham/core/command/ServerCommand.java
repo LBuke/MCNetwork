@@ -8,9 +8,9 @@ import org.bukkit.command.ConsoleCommandSender;
 /**
  * Created by LukeBingham on 17/03/2017.
  */
-public class ServerCommand extends CommandFactory<ConsoleCommandSender> {
+public final class ServerCommand extends CommandFactory<ConsoleCommandSender> {
 
-    private JedisModule jedisModule;
+    private final JedisModule jedisModule;
 
     /**
      * Construct a new command.
@@ -27,7 +27,7 @@ public class ServerCommand extends CommandFactory<ConsoleCommandSender> {
      * @param args   Command arguments
      */
     @Override
-    public void execute(ConsoleCommandSender sender, String[] args) {
+    public final void execute(ConsoleCommandSender sender, String[] args) {
         jedisModule.sendMessage(new CreateServerMessage(ServerType.valueOf(args[0])), "OPERATOR");
     }
 }

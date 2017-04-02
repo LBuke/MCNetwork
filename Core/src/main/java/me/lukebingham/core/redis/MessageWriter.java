@@ -8,18 +8,18 @@ import redis.clients.jedis.JedisPool;
 /**
  * Created by LukeBingham on 16/03/2017.
  */
-public class MessageWriter {
+public final class MessageWriter {
 
-    private String serverName;
-    private Gson gson = new Gson();
-    private JedisPool pool;
+    private final String serverName;
+    private final Gson gson = new Gson();
+    private final JedisPool pool;
 
     public MessageWriter(String serverName, JedisPool pool) {
         this.serverName = serverName;
         this.pool = pool;
     }
 
-    public void publishPacket(Object message, String recipient) {
+    public final void publishPacket(Object message, String recipient) {
         JsonObject label = new JsonObject();
         label.addProperty("name", message.getClass().getName());
         label.addProperty("sender", serverName);

@@ -14,27 +14,27 @@ public enum RarityType {
     SUPREME(C.YELLOW, "Supreme"),
     ;
 
-    private String color;
-    private String name;
+    private final String color;
+    private final String name;
 
     RarityType(String color, String name) {
         this.color = color;
         this.name = name;
     }
 
-    public String getColor() {
+    public final String getColor() {
         return color;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public String getName(boolean color) {
+    public final String getName(boolean color) {
         return color ? getColor() + name : name;
     }
 
-    public int getTier() {
+    public final int getTier() {
         return ordinal();
     }
 }

@@ -24,7 +24,7 @@ public abstract class CubeRegion extends Region {
         super(new Location[] { pointA, pointB });
     }
 
-    public void getList(int index, boolean barrier, DoubleCallback<ArrayList<Location>, Boolean> callback) {
+    public final void getList(int index, boolean barrier, DoubleCallback<ArrayList<Location>, Boolean> callback) {
         new BukkitRunnable() {
             @Override public void run() {
                 ArrayList<Location> temp = Lists.newArrayList();

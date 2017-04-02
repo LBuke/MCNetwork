@@ -30,13 +30,13 @@ public enum I18nMessage {
     TEST("test"),
     ;
 
-    private String key;
+    private final String key;
 
     I18nMessage(String key) {
         this.key = key;
     }
 
-    public String getKey() {
+    public final String getKey() {
         return key;
     }
 }

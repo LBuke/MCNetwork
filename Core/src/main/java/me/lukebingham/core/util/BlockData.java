@@ -5,10 +5,10 @@ import org.bukkit.Material;
 /**
  * Created by LukeBingham on 26/03/2017.
  */
-public class BlockData {
+public final class BlockData {
 
-    private Material material;
-    private byte data;
+    private final Material material;
+    private final byte data;
 
     public BlockData(Material material, byte data) {
         this.material = material;
@@ -24,11 +24,11 @@ public class BlockData {
         this(material, (short) 0);
     }
 
-    public Material getMaterial() {
+    public final Material getMaterial() {
         return material;
     }
 
-    public byte getData() {
+    public final byte getData() {
         return data;
     }
 }

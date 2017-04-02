@@ -12,17 +12,17 @@ public enum PluginState {
     RELEASE(C.GREEN + "Release"),
     ;
 
-    private String name;
+    private final String name;
 
     PluginState(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public String getName(boolean uppercase, boolean bold) {
+    public final String getName(boolean uppercase, boolean bold) {
         return bold ? (uppercase ? C.BOLD + name.toUpperCase() : C.BOLD + name) : (uppercase ? name.toUpperCase() : name);
     }
 }

@@ -16,9 +16,9 @@ public enum GraphicsType {
     EXTREME(4, 16, C.DARK_RED + "Extreme", ExtremeGraphics.class),
     ;
 
-    private int id, slot;
-    private String name;
-    protected Class<? extends ClientGraphics> clazz;
+    private final int id, slot;
+    private final String name;
+    protected final Class<? extends ClientGraphics> clazz;
 
     GraphicsType(int id, int slot, String name, Class<? extends ClientGraphics> clazz) {
         this.id = id;
@@ -27,15 +27,15 @@ public enum GraphicsType {
         this.clazz = clazz;
     }
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public int getSlot() {
+    public final int getSlot() {
         return slot;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 

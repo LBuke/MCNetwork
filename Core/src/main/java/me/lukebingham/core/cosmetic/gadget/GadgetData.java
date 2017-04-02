@@ -3,9 +3,9 @@ package me.lukebingham.core.cosmetic.gadget;
 /**
  * Created by LukeBingham on 26/02/2017.
  */
-public class GadgetData {
+public final class GadgetData {
 
-    private Gadget gadget;
+    private final Gadget gadget;
     private GadgetType type;
 
     private long cooldown;
@@ -21,25 +21,25 @@ public class GadgetData {
         }
     }
 
-    public Gadget getGadget() {
+    public final Gadget getGadget() {
         return gadget;
     }
 
-    public GadgetType getType() {
+    public final GadgetType getType() {
         return type;
     }
 
-    public long getCooldown() {
+    public final long getCooldown() {
         return this.cooldown;
     }
 
-    public boolean hasElapsed() {
+    public final boolean hasElapsed() {
         boolean b = this.cooldown - System.currentTimeMillis() <= 0;
         if(b) this.cooldown = 0;
         return b;
     }
 
-    public void initCooldown() {
+    public final void initCooldown() {
         this.cooldown = System.currentTimeMillis() + gadget.getCooldown()[0];
     }
 }

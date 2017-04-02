@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 /**
  * Created by LukeBingham on 22/02/2017.
  */
-public class ServerUtil {
+public final class ServerUtil {
 
     public static final String SERVER_NAME = "ServerName";
 

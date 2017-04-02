@@ -6,12 +6,12 @@ import me.lukebingham.core.util.ServerType;
 /**
  * Created by LukeBingham on 17/03/2017.
  */
-public class ServerCreatedMessage implements JMessage {
+public final class ServerCreatedMessage implements JMessage {
 
-    private ServerType serverType;
-    private int serverId;
+    private final ServerType serverType;
+    private final int serverId;
 
-    private int port;
+    private final int port;
 
     public ServerCreatedMessage(ServerType serverType, int serverId, int port) {
         this.serverType = serverType;
@@ -19,15 +19,15 @@ public class ServerCreatedMessage implements JMessage {
         this.port = port;
     }
 
-    public ServerType getServerType() {
+    public final ServerType getServerType() {
         return serverType;
     }
 
-    public int getServerId() {
+    public final int getServerId() {
         return serverId;
     }
 
-    public int getPort() {
+    public final int getPort() {
         return port;
     }
 }

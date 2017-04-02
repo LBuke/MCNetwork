@@ -12,22 +12,22 @@ public enum Rank {
     MEMBER(C.YELLOW, null),
     ;
 
-    private String color, tag;
+    private final String color, tag;
 
     Rank(String color, String tag) {
         this.color = color;
         this.tag = tag;
     }
 
-    public String getColor() {
+    public final String getColor() {
         return color;
     }
 
-    public String getTag() {
+    public final String getTag() {
         return tag;
     }
 
-    public String getShortTag() {
+    public final String getShortTag() {
         switch (this) {
             case VIP_PLUS: return tag;
             case VIP:     return tag;
@@ -35,7 +35,7 @@ public enum Rank {
         return "";
     }
 
-    public boolean hasRank(Rank rank) {
+    public final boolean hasRank(Rank rank) {
         return this.ordinal() <= rank.ordinal();
     }
 }

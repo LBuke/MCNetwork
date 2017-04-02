@@ -8,12 +8,12 @@ import org.bukkit.event.Cancellable;
 /**
  * Created by LukeBingham on 23/03/2017.
  */
-public class PlayerGadgetEvent extends EventFactory implements Cancellable {
+public final class PlayerGadgetEvent extends EventFactory implements Cancellable {
 
     private boolean cancelled;
 
-    private Player player;
-    private Gadget gadget;
+    private final Player player;
+    private final Gadget gadget;
 
     public PlayerGadgetEvent(boolean async, Player player, Gadget gadget) {
         super(async);
@@ -21,11 +21,11 @@ public class PlayerGadgetEvent extends EventFactory implements Cancellable {
         this.gadget = gadget;
     }
 
-    public Player getPlayer() {
+    public final Player getPlayer() {
         return player;
     }
 
-    public Gadget getGadget() {
+    public final Gadget getGadget() {
         return gadget;
     }
 

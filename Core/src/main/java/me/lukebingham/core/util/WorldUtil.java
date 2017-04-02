@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 /**
  * Created by LukeBingham on 28/03/2017.
  */
-public class WorldUtil {
+public final class WorldUtil {
 
     public static void refreshChunk(Player player, World world, int x, int z, Callback<Boolean> callback) {
         Bukkit.getScheduler().runTaskAsynchronously(ServerUtil.getJavaPlugin(), () -> {

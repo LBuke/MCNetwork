@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 /**
  * Created by LukeBingham on 22/02/2017.
  */
-public class SlackMessage {
+public final class SlackMessage {
 
     /**
      * The channel in the Slack Server to post to
@@ -44,7 +44,7 @@ public class SlackMessage {
      *
      * @return The JSON representation of this message.
      */
-    public JsonObject toJSON() {
+    public final JsonObject toJSON() {
 
         JsonObject slackMessage = new JsonObject();
 
@@ -76,7 +76,7 @@ public class SlackMessage {
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         return "SlackMessage [channel=" + channel + ", username=" + username + ", icon=" + icon + ", text=" + text + "]";
     }
 }

@@ -7,13 +7,13 @@ import org.bukkit.Location;
  */
 public abstract class Region {
 
-    protected Location[] points;
+    protected final Location[] points;
 
     public Region(Location[] points) {
         this.points = points;
     }
 
-    public Location[] getPoints() {
+    public final Location[] getPoints() {
         return points;
     }
 }

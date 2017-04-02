@@ -20,13 +20,13 @@ public final class DatabaseModule implements Database {
     }
 
     @Override
-    public DBCollection getCollection(String database, String collection) {
+    public final DBCollection getCollection(String database, String collection) {
         DB mongoDatabase = mongoClient.getDB(database);
         return mongoDatabase.getCollection(collection);
     }
 
     @Override
-    public void close() {
+    public final void close() {
         mongoClient.close();
     }
 }

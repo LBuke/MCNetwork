@@ -11,11 +11,11 @@ import org.bukkit.event.HandlerList;
 /**
  * Created by LukeBingham on 26/03/2017.
  */
-public class GraphicsChangeEvent extends EventFactory implements Cancellable {
+public final class GraphicsChangeEvent extends EventFactory implements Cancellable {
 
-    private Player player;
-    private GraphicsType graphicsType;
-    private Graphics graphics;
+    private final Player player;
+    private final GraphicsType graphicsType;
+    private final Graphics graphics;
 
     private boolean b;
 
@@ -26,15 +26,15 @@ public class GraphicsChangeEvent extends EventFactory implements Cancellable {
         this.graphics = graphics;
     }
 
-    public Player getPlayer() {
+    public final Player getPlayer() {
         return player;
     }
 
-    public GraphicsType getGraphicsType() {
+    public final GraphicsType getGraphicsType() {
         return graphicsType;
     }
 
-    public Graphics getGraphics() {
+    public final Graphics getGraphics() {
         return graphics;
     }
 
@@ -45,7 +45,7 @@ public class GraphicsChangeEvent extends EventFactory implements Cancellable {
      * @return true if this event is cancelled
      */
     @Override
-    public boolean isCancelled() {
+    public final boolean isCancelled() {
         return b;
     }
 
@@ -56,7 +56,7 @@ public class GraphicsChangeEvent extends EventFactory implements Cancellable {
      * @param cancel true if you wish to cancel this event
      */
     @Override
-    public void setCancelled(boolean cancel) {
+    public final void setCancelled(boolean cancel) {
         b = cancel;
     }
 }

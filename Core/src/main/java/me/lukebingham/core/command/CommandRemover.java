@@ -1,8 +1,5 @@
 package me.lukebingham.core.command;
 
-import me.lukebingham.core.util.ServerUtil;
-import org.apache.commons.codec.language.bm.Lang;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.SimpleCommandMap;
@@ -10,8 +7,6 @@ import org.bukkit.plugin.SimplePluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
 
 /**

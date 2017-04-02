@@ -21,19 +21,19 @@ public class MenuItem {
         this(index, itemStack, true);
     }
 
-    public ItemStack getItemStack() {
+    public final ItemStack getItemStack() {
         return itemStack;
     }
 
-    public int getIndex() {
+    public final int getIndex() {
         return index;
     }
 
-    public boolean isCancelOnClick() {
+    public final boolean isCancelOnClick() {
         return cancelOnClick;
     }
 
-    public void setIndex(int index) {
+    public final void setIndex(int index) {
         this.index = index;
     }
 }

@@ -15,12 +15,12 @@ import java.util.List;
  */
 public abstract class MenuModule implements InventoryHolder {
 
-    private List<MenuItem> items;
+    private final List<MenuItem> items;
 
-    private Inventory inventory;
+    private final Inventory inventory;
 
     private int rows = 0;
-    private String title;
+    private final String title;
     private final boolean resetCursor, exitNullClick, openParentOnExit;
 
     public MenuModule(int rows, String title, boolean resetCursor, boolean exitNullClick, boolean openParentOnExit) {
@@ -44,16 +44,16 @@ public abstract class MenuModule implements InventoryHolder {
     }
 
     @Override
-    public Inventory getInventory() {
+    public final Inventory getInventory() {
         return inventory;
     }
 
-    public void addItem(MenuItem item) {
+    public final void addItem(MenuItem item) {
         inventory.setItem(item.getIndex(), item.getItemStack());
         items.add(item);
     }
 
-    public boolean containsItem(ItemStack itemStack) {
+    public final boolean containsItem(ItemStack itemStack) {
         boolean result = false;
         for (MenuItem item : items) {
             if (!item.getItemStack().equals(itemStack))
@@ -66,7 +66,7 @@ public abstract class MenuModule implements InventoryHolder {
         return result;
     }
 
-    public MenuItem getInventoryItem(ItemStack itemStack) {
+    public final MenuItem getInventoryItem(ItemStack itemStack) {
         for (MenuItem item : items) {
             if (!item.getItemStack().equals(itemStack))
                 continue;
@@ -77,7 +77,7 @@ public abstract class MenuModule implements InventoryHolder {
         return null;
     }
 
-    public MenuItem getInventoryItem(int index) {
+    public final MenuItem getInventoryItem(int index) {
         for (MenuItem item : items) {
             if (item.getIndex() != index)
                 continue;
@@ -88,7 +88,7 @@ public abstract class MenuModule implements InventoryHolder {
         return null;
     }
 
-    public void openInventory(Player player) {
+    public final void openInventory(Player player) {
         if (resetCursor) {
             player.closeInventory();
         }
@@ -96,15 +96,15 @@ public abstract class MenuModule implements InventoryHolder {
         player.openInventory(inventory);
     }
 
-    public boolean isExitNullClick() {
+    public final boolean isExitNullClick() {
         return exitNullClick;
     }
 
-    public int getRows() {
+    public final int getRows() {
         return rows;
     }
 
-    public String getTitle() {
+    public final String getTitle() {
         return title;
     }
 }

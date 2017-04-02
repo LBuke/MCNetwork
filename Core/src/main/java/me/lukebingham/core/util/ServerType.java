@@ -10,13 +10,13 @@ public enum ServerType {
     SKYWARS(512),
     ;
 
-    private int mb;
+    private final int mb;
 
     ServerType(int mb) {
         this.mb = mb;
     }
 
-    public int getMb() {
+    public final int getMb() {
         return mb;
     }
 }
