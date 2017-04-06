@@ -1,6 +1,6 @@
 package me.lukebingham.core.currency;
 
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 
 /**
  * Created by LukeBingham on 19/03/2017.

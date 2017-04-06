@@ -3,14 +3,14 @@ package me.lukebingham.redishelper;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import me.lukebingham.core.database.Database;
-import me.lukebingham.core.database.DatabaseModule;
-import me.lukebingham.core.redis.JedisModule;
-import me.lukebingham.core.redis.message.CreateServerMessage;
-import me.lukebingham.core.redis.message.RemoveServerMessage;
-import me.lukebingham.core.redis.message.ServerCreatedMessage;
-import me.lukebingham.core.redis.message.ServerRemovedMessage;
-import me.lukebingham.core.util.ServerType;
+import me.lukebingham.database.Database;
+import me.lukebingham.database.DatabaseModule;
+import me.lukebingham.redis.JedisModule;
+import me.lukebingham.redis.message.CreateServerMessage;
+import me.lukebingham.redis.message.RemoveServerMessage;
+import me.lukebingham.redis.message.ServerCreatedMessage;
+import me.lukebingham.redis.message.ServerRemovedMessage;
+import me.lukebingham.util.ServerType;
 import me.lukebingham.core.util.ServerUtil;
 import org.apache.commons.io.FileUtils;
 
@@ -30,7 +30,7 @@ public class Main {
         Main instance = new Main();
 
         instance.random = new Random();
-        instance.database = new DatabaseModule("localhost", 27017, false);
+        instance.database = new DatabaseModule("localhost", 27017);
         instance.jedisModule = new JedisModule("OPERATOR");
 
         final Runtime runtime = Runtime.getRuntime();
@@ -93,7 +93,7 @@ public class Main {
 
                 runtime.exec("screen -d -m -S " + type.name() + "_" + id + " " + target + "start.sh");
 
-                ServerCreatedMessage m = new ServerCreatedMessage(type, id, port);
+                ServerCreatedMessage m = new ServerCreatedMessage(type, id, "127.0.0.1", port);
                 String to = "all";
                 instance.jedisModule.sendMessage(m, to);
                 System.out.println("Sent message: " + m.getClass().getSimpleName() + " to '" + to + "'");
@@ -129,7 +129,7 @@ public class Main {
     }
 
     private int getRandomPort() {//23000 - 65500
-        int port = random.nextInt(42500) + 23000;
+        int port = random.nextInt(42500) + 23002;
 
         DBCursor dbCursor = database.getCollection("Network", "servers").find(new BasicDBObject("port", port));
         if (dbCursor.hasNext()) {

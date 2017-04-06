@@ -4,13 +4,13 @@ import me.lukebingham.core.CorePlugin;
 import me.lukebingham.core.cosmetic.CosmeticManager;
 import me.lukebingham.core.module.Module;
 import me.lukebingham.core.module.PluginState;
-import me.lukebingham.core.redis.message.ServerCreatedMessage;
-import me.lukebingham.core.util.ServerType;
+import me.lukebingham.redis.message.ServerCreatedMessage;
+import me.lukebingham.util.ServerType;
 import me.lukebingham.core.util.ServerUtil;
-import me.lukebingham.lobby.components.ChatComponent;
-import me.lukebingham.lobby.components.CreatureComponent;
-import me.lukebingham.lobby.components.PlayerComponent;
-import me.lukebingham.lobby.components.ServerComponent;
+import me.lukebingham.lobby.chat.ChatComponent;
+import me.lukebingham.lobby.component.CreatureComponent;
+import me.lukebingham.lobby.component.PlayerComponent;
+import me.lukebingham.lobby.server.ServerComponent;
 import me.lukebingham.lobby.settings.graphics.GraphicsComponent;
 import me.lukebingham.lobby.profile.LobbyProfile;
 import me.lukebingham.lobby.region.SpawnRegion;
@@ -33,7 +33,7 @@ public final class Lobby extends CorePlugin<LobbyProfile> {
         PlayerComponent playerComponent = new PlayerComponent(this, super.database, cosmeticManager, super.graphicsManager, profileManager);
         CreatureComponent creatureComponent = new CreatureComponent();
         ChatComponent chatComponent = new ChatComponent(profileManager);
-        ServerComponent serverComponent = new ServerComponent(super.database, super.jedisModule);
+        ServerComponent serverComponent = new ServerComponent(this, super.database, super.jedisModule);
         GraphicsComponent graphicsComponent = new GraphicsComponent(this, spawnRegion);
 
         super.jedisModule.registerListener(ServerCreatedMessage.class, serverComponent);

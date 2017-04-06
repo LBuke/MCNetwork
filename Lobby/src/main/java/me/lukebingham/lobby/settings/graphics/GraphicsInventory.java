@@ -1,7 +1,6 @@
 package me.lukebingham.lobby.settings.graphics;
 
 import me.lukebingham.core.cosmetic.CosmeticManager;
-import me.lukebingham.core.graphics.Graphics;
 import me.lukebingham.core.graphics.GraphicsManager;
 import me.lukebingham.core.graphics.GraphicsType;
 import me.lukebingham.core.i18n.I18n;
@@ -10,7 +9,7 @@ import me.lukebingham.core.i18n.I18nTODO;
 import me.lukebingham.core.inventory.MenuModule;
 import me.lukebingham.core.inventory.item.ClickableItem;
 import me.lukebingham.core.inventory.item.DummyItem;
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 import me.lukebingham.core.util.StringUtil;
 import me.lukebingham.core.util.factory.ItemFactory;
 import me.lukebingham.lobby.profile.LobbyProfile;

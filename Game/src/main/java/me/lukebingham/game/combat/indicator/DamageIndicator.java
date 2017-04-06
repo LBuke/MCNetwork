@@ -1,6 +1,6 @@
 package me.lukebingham.game.combat.indicator;
 
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.EntityUtil;
 import me.lukebingham.core.util.ServerUtil;
@@ -22,11 +22,17 @@ public abstract class DamageIndicator implements Component {
         if(!(event.getEntity() instanceof LivingEntity)) return;
         Player damager = (Player) event.getDamager();
         LivingEntity victim = (LivingEntity) event.getEntity();
-        DamageIndicatorEntity entity = new DamageIndicatorEntity(victim, C.RED + C.BOLD + "- " + C.RED + event.getDamage());
+        DamageIndicatorEntity entity = new DamageIndicatorEntity(victim);
         PacketPlayOutSpawnEntity spawnPacket = new PacketPlayOutSpawnEntity(entity, 30);
         PacketPlayOutEntityTeleport teleportPacket = new PacketPlayOutEntityTeleport(entity);
         ((CraftWorld) victim.getLocation().getWorld()).getHandle().addEntity(entity, CreatureSpawnEvent.SpawnReason.CUSTOM);
         EntityUtil.setArmorStandMarker(entity, true);
+        entity.setInvisible(true);
+        entity.setSmall(true);
+        entity.setGravity(true);
+        entity.setCustomName(C.RED + C.BOLD + "- " + C.RED + event.getDamage());
+        entity.setCustomNameVisible(true);
+
         entity.setLocation(victim.getLocation().getX(), victim.getLocation().getY() + 2, victim.getLocation().getZ(), 0f, 0f);
 
         ServerUtil.sendPacket(damager, spawnPacket, teleportPacket);

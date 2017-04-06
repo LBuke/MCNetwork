@@ -1,6 +1,6 @@
 package me.lukebingham.core.module;
 
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 
 /**
  * Created by LukeBingham on 22/02/2017.

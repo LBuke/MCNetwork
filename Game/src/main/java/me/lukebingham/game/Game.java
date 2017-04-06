@@ -1,7 +1,6 @@
 package me.lukebingham.game;
 
-import me.lukebingham.core.util.ServerType;
-import me.lukebingham.game.player.GamePlayerManager;
+import me.lukebingham.util.ServerType;
 import me.lukebingham.game.type.PlayMode;
 import me.lukebingham.game.util.GameState;
 
@@ -21,7 +20,7 @@ public interface Game<Mode extends PlayMode> {
     Mode getMode();
 
     /**
-     * This {@link me.lukebingham.core.util.ServerType} will be referenced as GameType.
+     * This {@link ServerType} will be referenced as GameType.
      * @return The server type
      */
     ServerType getGameType();

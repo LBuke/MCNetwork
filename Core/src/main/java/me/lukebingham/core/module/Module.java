@@ -1,6 +1,6 @@
 package me.lukebingham.core.module;
 
-import me.lukebingham.core.util.ServerType;
+import me.lukebingham.util.ServerType;
 
 import java.lang.annotation.*;
 

@@ -14,7 +14,7 @@ import me.lukebingham.core.inventory.item.ClickableItem;
 import me.lukebingham.core.inventory.item.DummyItem;
 import me.lukebingham.core.inventory.item.button.BackPage;
 import me.lukebingham.core.inventory.item.button.NextPage;
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 import me.lukebingham.core.util.InventoryUtil;
 import me.lukebingham.core.util.StringUtil;
 import me.lukebingham.core.util.factory.ItemFactory;

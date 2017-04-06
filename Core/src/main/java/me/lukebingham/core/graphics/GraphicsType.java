@@ -4,7 +4,7 @@ import me.lukebingham.core.graphics.type.ExtremeGraphics;
 import me.lukebingham.core.graphics.type.HighGraphics;
 import me.lukebingham.core.graphics.type.LowGraphics;
 import me.lukebingham.core.graphics.type.MediumGraphics;
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 
 /**
  * Created by LukeBingham on 26/03/2017.

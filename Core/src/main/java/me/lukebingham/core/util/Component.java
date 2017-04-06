@@ -1,5 +1,6 @@
 package me.lukebingham.core.util;
 
+import me.lukebingham.util.C;
 import org.bukkit.event.Listener;
 
 /**

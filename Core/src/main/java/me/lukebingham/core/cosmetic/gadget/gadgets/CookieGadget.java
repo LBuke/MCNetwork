@@ -7,7 +7,7 @@ import me.lukebingham.core.cosmetic.gadget.Gadget;
 import me.lukebingham.core.cosmetic.gadget.GadgetTriggerType;
 import me.lukebingham.core.cosmetic.gadget.GadgetType;
 import me.lukebingham.core.currency.CurrencyType;
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 import me.lukebingham.core.util.factory.ItemFactory;
 import me.lukebingham.core.util.rank.Rank;
 import org.bukkit.Material;

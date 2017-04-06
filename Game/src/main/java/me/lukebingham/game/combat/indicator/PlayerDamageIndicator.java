@@ -19,7 +19,7 @@ public final class PlayerDamageIndicator extends DamageIndicator {
     @EventHandler
     protected void onEntityDamage(EntityDamageByEntityEvent event) {
 //        if(this.game.getGameState() != GameState.LIVE) return;
-        if(!(event.getEntity() instanceof Player) && !(event.getDamager() instanceof Player)) return;
+        if(!(event.getDamager() instanceof Player)) return;
         spawn(event);
     }
 }

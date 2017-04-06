@@ -5,11 +5,11 @@ import me.lukebingham.core.cosmetic.gadget.Gadget;
 import me.lukebingham.core.cosmetic.gadget.GadgetData;
 import me.lukebingham.core.cosmetic.gadget.GadgetManager;
 import me.lukebingham.core.cosmetic.gadget.GadgetType;
-import me.lukebingham.core.database.Database;
-import me.lukebingham.core.database.dao.DAO;
-import me.lukebingham.core.util.Callback;
+import me.lukebingham.database.Database;
+import me.lukebingham.database.dao.DAO;
+import me.lukebingham.util.Callback;
 import me.lukebingham.core.util.rank.Role;
-import me.lukebingham.core.util.Dev;
+import me.lukebingham.util.Dev;
 import me.lukebingham.lobby.profile.LobbyProfile;
 
 import java.util.ArrayList;

@@ -5,7 +5,7 @@ import me.lukebingham.core.cosmetic.gadget.GadgetTriggerType;
 import me.lukebingham.core.cosmetic.attributes.CosmeticBuyable;
 import me.lukebingham.core.cosmetic.attributes.CosmeticUnlockable;
 import me.lukebingham.core.cosmetic.gadget.GadgetType;
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 import me.lukebingham.core.util.factory.ItemFactory;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

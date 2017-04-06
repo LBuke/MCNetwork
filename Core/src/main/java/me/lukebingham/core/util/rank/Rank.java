@@ -1,6 +1,6 @@
 package me.lukebingham.core.util.rank;
 
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 
 /**
  * Created by LukeBingham on 16/03/2017.

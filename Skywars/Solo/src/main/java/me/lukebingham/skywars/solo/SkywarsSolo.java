@@ -2,9 +2,8 @@ package me.lukebingham.skywars.solo;
 
 import me.lukebingham.core.module.Module;
 import me.lukebingham.core.module.PluginState;
-import me.lukebingham.core.util.ServerType;
+import me.lukebingham.util.ServerType;
 import me.lukebingham.core.util.ServerUtil;
-import me.lukebingham.game.combat.indicator.DamageIndicator;
 import me.lukebingham.game.combat.indicator.PlayerDamageIndicator;
 import me.lukebingham.game.type.SoloMode;
 import me.lukebingham.skywars.Skywars;

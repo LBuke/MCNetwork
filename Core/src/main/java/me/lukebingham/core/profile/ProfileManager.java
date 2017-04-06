@@ -2,7 +2,7 @@ package me.lukebingham.core.profile;
 
 import com.google.common.collect.Sets;
 import me.lukebingham.core.profile.event.ProfileLoadEvent;
-import me.lukebingham.core.util.Callback;
+import me.lukebingham.util.Callback;
 import me.lukebingham.core.util.Component;
 import org.bukkit.Bukkit;
 
@@ -13,7 +13,7 @@ import java.util.UUID;
 /**
  * Created by LukeBingham on 23/02/2017.
  */
-public class ProfileManager<Profile extends CoreProfile> implements Component {
+public final class ProfileManager<Profile extends CoreProfile> implements Component {
 
     private static ProfileManager instance;
 

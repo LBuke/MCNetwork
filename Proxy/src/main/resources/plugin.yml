@@ -1,0 +1,4 @@
+main: me.lukebingham.proxy.Proxy
+name: Proxy
+version: 1.0.0-SNAPSHOT
+author: xTeddeh

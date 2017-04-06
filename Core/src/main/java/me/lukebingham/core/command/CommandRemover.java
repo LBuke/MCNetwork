@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by LukeBingham on 16/03/2017.
  */
-public class CommandRemover {
+public final class CommandRemover {
 
     private CommandMap map = new SimpleCommandMap(null);
 

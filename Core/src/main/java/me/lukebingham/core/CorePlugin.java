@@ -1,10 +1,6 @@
 package me.lukebingham.core;
 
 import com.google.common.collect.Sets;
-import me.lukebingham.core.command.ServerCommand;
-import me.lukebingham.core.command.TestCommand;
-import me.lukebingham.core.database.Database;
-import me.lukebingham.core.database.DatabaseModule;
 import me.lukebingham.core.graphics.GraphicsManager;
 import me.lukebingham.core.i18n.I18n;
 import me.lukebingham.core.i18n.I18nComponent;
@@ -14,10 +10,13 @@ import me.lukebingham.core.packet.PacketComponent;
 import me.lukebingham.core.packet.PacketHandler;
 import me.lukebingham.core.profile.CoreProfile;
 import me.lukebingham.core.profile.ProfileManager;
-import me.lukebingham.core.redis.JedisModule;
-import me.lukebingham.core.util.C;
+import me.lukebingham.core.server.ServerCommand;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.ServerUtil;
+import me.lukebingham.database.Database;
+import me.lukebingham.database.DatabaseModule;
+import me.lukebingham.redis.JedisModule;
+import me.lukebingham.util.C;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashSet;
@@ -39,7 +38,7 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
         super.onEnable();
 
         this.components = Sets.newHashSet();
-        this.database = new DatabaseModule("localhost", 27017, true);
+        this.database = new DatabaseModule("localhost", 27017);
         this.jedisModule = new JedisModule(getPluginName());
         this.profileManager = new ProfileManager<>();
         this.graphicsManager = new GraphicsManager();
@@ -47,7 +46,6 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
 
         //Commands
         new ServerCommand(this.jedisModule);
-        new TestCommand();
 
         //Components & Listeners
         MenuComponent menuComponent = new MenuComponent();

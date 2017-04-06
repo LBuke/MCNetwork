@@ -1,6 +1,7 @@
 package me.lukebingham.core.util;
 
 import me.lukebingham.core.CorePlugin;
+import me.lukebingham.util.C;
 import net.minecraft.server.v1_8_R3.Packet;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -11,7 +12,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.logging.Level;
 import java.util.regex.Pattern;
 
 /**
@@ -68,7 +68,7 @@ public final class ServerUtil {
     /**
      * This method will register a component(s) (listener)
      *
-     * @param components Array of components
+     * @param components Array of component
      */
     public static void registerComponent(Component... components) {
         Arrays.asList(components).forEach(component -> {
@@ -82,7 +82,7 @@ public final class ServerUtil {
     /**
      * This method will un-register a component(s) (listener)
      *
-     * @param components Array of components
+     * @param components Array of component
      */
     public static void unregisterComponent(Component... components) {
         Arrays.asList(components).forEach(component -> {

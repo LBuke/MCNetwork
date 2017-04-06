@@ -1,5 +1,6 @@
 package me.lukebingham.core.util;
 
+import me.lukebingham.util.Callback;
 import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.PacketPlayOutBlockChange;
 import net.minecraft.server.v1_8_R3.PacketPlayOutMapChunk;

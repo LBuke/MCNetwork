@@ -64,11 +64,21 @@
                                     <exclude>org.spigotmc:spigot</exclude>
                                     <exclude>org.spigotmc:minecraft-server</exclude>
                                     <exclude>org.bukkit:craftbukkit</exclude>
+                                    <exclude>com.google.code.gson:gson</exclude>
+                                    <exclude>com.google.guava:guava</exclude>
                                 </excludes>
                             </artifactSet>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <outputDirectory>${basedir}/../../out/</outputDirectory>
+                </configuration>
             </plugin>
         </plugins>
         <resources>

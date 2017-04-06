@@ -2,7 +2,7 @@ package me.lukebingham.game.chat;
 
 import me.lukebingham.core.profile.CoreProfile;
 import me.lukebingham.core.profile.ProfileManager;
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.rank.Role;
 import me.lukebingham.game.Game;

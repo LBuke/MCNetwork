@@ -4,6 +4,7 @@ import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.game.GamePlatform;
 import me.lukebingham.game.type.PlayMode;
 import me.lukebingham.skywars.profile.ProfileComponent;
+import me.lukebingham.skywars.server.ServerComponent;
 
 /**
  * Created by LukeBingham on 29/03/2017.
@@ -19,7 +20,8 @@ public abstract class Skywars<Mode extends PlayMode> extends GamePlatform<Mode> 
 
         //Components
         ProfileComponent profileComponent = new ProfileComponent(this, super.profileManager);
-        ServerUtil.registerComponent(profileComponent);
+        ServerComponent<Mode> serverComponent = new ServerComponent<>(this, super.database, super.jedisModule);
+        ServerUtil.registerComponent(profileComponent, serverComponent);
     }
 
     /**

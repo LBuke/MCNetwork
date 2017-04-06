@@ -1,6 +1,7 @@
 package me.lukebingham.core.command;
 
 import me.lukebingham.core.Core;
+import me.lukebingham.core.command.attributes.StaffCommand;
 import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.core.util.rank.Role;
 import org.bukkit.Bukkit;

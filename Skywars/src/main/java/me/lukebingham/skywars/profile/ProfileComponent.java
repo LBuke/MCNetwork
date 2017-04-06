@@ -4,7 +4,7 @@ import me.lukebingham.core.module.Module;
 import me.lukebingham.core.module.PluginState;
 import me.lukebingham.core.profile.CoreProfile;
 import me.lukebingham.core.profile.ProfileManager;
-import me.lukebingham.core.util.C;
+import me.lukebingham.util.C;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.core.util.factory.ItemFactory;

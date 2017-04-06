@@ -1,0 +1,9 @@
+main: ${groupId}.${artifactId}.${name}
+name: ${name}
+version: ${version}
+author: xTeddeh
+description: ServerName-Build-${version}
+commands:
+  start:
+  spawn:
+  finish:

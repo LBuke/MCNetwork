@@ -15,21 +15,8 @@ public final class DamageIndicatorEntity extends EntityArmorStand {
      *
      * @param entity The entity
      */
-    public DamageIndicatorEntity(LivingEntity entity, String name) {
+    public DamageIndicatorEntity(LivingEntity entity) {
         super(((CraftWorld) entity.getLocation().getWorld()).getHandle());
-
-        setInvisible(true);
-        noclip = true;
-        setSmall(true);
-        setGravity(true);
-
-        setCustomName(name);
-        setCustomNameVisible(true);
-
-        Location loc = entity.getEyeLocation();
-        locX = loc.getX();
-        locY = loc.getY() - .6;
-        locZ = loc.getZ();
     }
 
     public final void sendDirection() {

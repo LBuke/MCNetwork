@@ -14,7 +14,7 @@ import java.util.UUID;
 /**
  * Created by LukeBingham on 23/02/2017.
  */
-public final class CoreProfile {
+public class CoreProfile {
 
     private final UUID uniqueId;
     private final String name;

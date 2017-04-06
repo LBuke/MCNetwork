@@ -10,8 +10,8 @@ import java.net.URLEncoder;
 
 import com.google.gson.JsonObject;
 
-import me.lukebingham.core.util.C;
-import me.lukebingham.core.util.Callback;
+import me.lukebingham.util.C;
+import me.lukebingham.util.Callback;
 import me.lukebingham.core.util.ServerUtil;
 import org.bukkit.Bukkit;
 

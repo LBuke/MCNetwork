@@ -1,5 +1,6 @@
 package me.lukebingham.core.command;
 
+import me.lukebingham.core.command.attributes.*;
 import me.lukebingham.core.profile.CoreProfile;
 import me.lukebingham.core.profile.ProfileManager;
 import org.bukkit.Bukkit;
@@ -16,10 +17,11 @@ import java.util.Arrays;
  */
 public abstract class CommandFactory<T extends CommandSender> extends BukkitCommand {
 
+    private final CommandFactory<T> cmdClass = this;
     private static CommandMap commandMap = null;
 
-    private final String command, description;
-    private final String[] aliases;
+    private String command, description;
+    private String[] aliases;
     private String suggest, tooltip;
 
     /**
@@ -46,6 +48,24 @@ public abstract class CommandFactory<T extends CommandSender> extends BukkitComm
      */
     public CommandFactory(String command, String description) {
         this(command, description, new String[]{});
+    }
+
+    /**
+     * Construct a new command.
+     *
+     * @param cmd The command
+     */
+    public CommandFactory(Class<? extends CommandFactory> cmd) {
+        this(cmd.getAnnotation(Name.class).value(), cmd.getAnnotation(Description.class).value());
+
+        if(cmd.isAnnotationPresent(Alias.class))
+            this.aliases = cmd.getAnnotation(Alias.class).value();
+
+        if(cmd.isAnnotationPresent(Tooltip.class))
+            this.tooltip = cmd.getAnnotation(Tooltip.class).value();
+
+        if(cmd.isAnnotationPresent(Suggest.class))
+            this.suggest = cmd.getAnnotation(Suggest.class).value();
     }
 
     @Override

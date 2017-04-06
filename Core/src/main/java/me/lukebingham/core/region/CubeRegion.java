@@ -1,7 +1,7 @@
 package me.lukebingham.core.region;
 
 import com.google.common.collect.Lists;
-import me.lukebingham.core.util.DoubleCallback;
+import me.lukebingham.util.DoubleCallback;
 import me.lukebingham.core.util.ServerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -9,7 +9,6 @@ import org.bukkit.Material;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by LukeBingham on 26/03/2017.
