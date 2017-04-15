@@ -5,7 +5,13 @@ import me.lukebingham.gta.attributes.Damage;
 import me.lukebingham.gta.attributes.FireRate;
 import me.lukebingham.gta.attributes.Range;
 import me.lukebingham.gta.guns.assult.AK47;
+import me.lukebingham.gta.guns.assult.HLBullpupRifle;
 import me.lukebingham.gta.guns.assult.M16A1;
+import me.lukebingham.gta.guns.assult.Shrewsbury;
+import me.lukebingham.gta.guns.assult.ShrewsburyCompactRifile;
+import me.lukebingham.gta.guns.assult.VomFeuerAdvancedRifle;
+import me.lukebingham.gta.guns.assult.VomFeuerRifle;
+import me.lukebingham.gta.guns.assult.VomFeuerSpecialRifile;
 import me.lukebingham.util.C;
 
 import java.util.Arrays;
@@ -22,7 +28,13 @@ public class GunManager {
         guns = new HashSet<>();
         guns.addAll(Arrays.asList(
                 new M16A1(),
-                new AK47()
+                new AK47(),
+                new Shrewsbury(),
+                new ShrewsburyCompactRifile(),
+                new VomFeuerRifle(),
+                new VomFeuerSpecialRifile(),
+                new VomFeuerAdvancedRifle(),
+                new HLBullpupRifle()
         ));
     }
 
