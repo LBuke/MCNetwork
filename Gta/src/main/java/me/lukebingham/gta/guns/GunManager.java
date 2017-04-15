@@ -12,6 +12,13 @@ import me.lukebingham.gta.guns.assult.ShrewsburyCompactRifile;
 import me.lukebingham.gta.guns.assult.VomFeuerAdvancedRifle;
 import me.lukebingham.gta.guns.assult.VomFeuerRifle;
 import me.lukebingham.gta.guns.assult.VomFeuerSpecialRifile;
+import me.lukebingham.gta.guns.shotguns.DoubleBarreledShotgun;
+import me.lukebingham.gta.guns.shotguns.HLBullpupShotgun;
+import me.lukebingham.gta.guns.shotguns.Musket;
+import me.lukebingham.gta.guns.shotguns.ShrewsburyHeavyShotgun;
+import me.lukebingham.gta.guns.shotguns.ShrewsburyPumpShotgun;
+import me.lukebingham.gta.guns.shotguns.ShrewsburySawedOffShotgun;
+import me.lukebingham.gta.guns.shotguns.VomFeuerAssaultShotgun;
 import me.lukebingham.util.C;
 
 import java.util.Arrays;
@@ -34,7 +41,14 @@ public class GunManager {
                 new VomFeuerRifle(),
                 new VomFeuerSpecialRifile(),
                 new VomFeuerAdvancedRifle(),
-                new HLBullpupRifle()
+                new HLBullpupRifle(),
+                new DoubleBarreledShotgun(),
+                new HLBullpupShotgun(),
+                new Musket(),
+                new ShrewsburyHeavyShotgun(),
+                new ShrewsburyPumpShotgun(),
+                new ShrewsburySawedOffShotgun(),
+                new VomFeuerAssaultShotgun()
         ));
     }
 

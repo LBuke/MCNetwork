@@ -27,7 +27,7 @@ public final class VomFeuerRifle implements AssultRifle, BuyableWeapon, Unlockab
      * @return Gun name
      */
     @Override
-    public String getName() {
+    public final String getName() {
         return "Vom Feuer Carbine Rifle";
     }
 
@@ -37,7 +37,7 @@ public final class VomFeuerRifle implements AssultRifle, BuyableWeapon, Unlockab
      * @return Id of the Gun
      */
     @Override
-    public short getGunId() {
+    public final short getGunId() {
         return 4;
     }
 
@@ -47,7 +47,7 @@ public final class VomFeuerRifle implements AssultRifle, BuyableWeapon, Unlockab
      * @return Supported {@link Attachment}s
      */
     @Override
-    public AttachmentType[] getSupportedAttachments() {
+    public final AttachmentType[] getSupportedAttachments() {
         return new AttachmentType[] {AttachmentType.EXTENDED_CLIP, AttachmentType.GRIP};
     }
 
@@ -57,7 +57,7 @@ public final class VomFeuerRifle implements AssultRifle, BuyableWeapon, Unlockab
      * @return Weapon cost
      */
     @Override
-    public double getCost() {
+    public final double getCost() {
         return 2100;
     }
 
@@ -67,7 +67,7 @@ public final class VomFeuerRifle implements AssultRifle, BuyableWeapon, Unlockab
      * @return Weapon rarity
      */
     @Override
-    public double getRarity() {
+    public final double getRarity() {
         return 40;
     }
 }

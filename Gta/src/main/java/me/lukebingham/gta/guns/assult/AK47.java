@@ -1,6 +1,7 @@
 package me.lukebingham.gta.guns.assult;
 
 import me.lukebingham.gta.attributes.*;
+import me.lukebingham.gta.guns.attachments.Attachment;
 import me.lukebingham.gta.guns.attachments.AttachmentType;
 import me.lukebingham.gta.guns.attributes.AssultRifle;
 import me.lukebingham.util.Dev;
@@ -21,7 +22,7 @@ public final class AK47 implements AssultRifle, BuyableWeapon, UnlockableWeapon 
      * @return Gun name
      */
     @Override
-    public String getName() {
+    public final String getName() {
         return "AK47";
     }
 
@@ -31,7 +32,7 @@ public final class AK47 implements AssultRifle, BuyableWeapon, UnlockableWeapon 
      * @return Id of the Gun
      */
     @Override
-    public short getGunId() {
+    public final short getGunId() {
         return 2;
     }
 
@@ -41,7 +42,7 @@ public final class AK47 implements AssultRifle, BuyableWeapon, UnlockableWeapon 
      * @return Supported {@link Attachment}s
      */
     @Override
-    public AttachmentType[] getSupportedAttachments() {
+    public final AttachmentType[] getSupportedAttachments() {
         return new AttachmentType[] {AttachmentType.EXTENDED_CLIP, AttachmentType.GRIP};
     }
 
@@ -51,7 +52,7 @@ public final class AK47 implements AssultRifle, BuyableWeapon, UnlockableWeapon 
      * @return Weapon cost
      */
     @Override
-    public double getCost() {
+    public final double getCost() {
         return 18500;
     }
 
@@ -61,7 +62,7 @@ public final class AK47 implements AssultRifle, BuyableWeapon, UnlockableWeapon 
      * @return Weapon rarity
      */
     @Override
-    public double getRarity() {
+    public final double getRarity() {
         return 40;
     }
 }

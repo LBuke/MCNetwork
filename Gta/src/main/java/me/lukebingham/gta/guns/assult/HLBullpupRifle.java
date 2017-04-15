@@ -27,7 +27,7 @@ public final class HLBullpupRifle implements AssultRifle, BuyableWeapon, Unlocka
      * @return Gun name
      */
     @Override
-    public String getName() {
+    public final String getName() {
         return "Hawk and Little Bullpup Rifile";
     }
 
@@ -37,7 +37,7 @@ public final class HLBullpupRifle implements AssultRifle, BuyableWeapon, Unlocka
      * @return Id of the Gun
      */
     @Override
-    public short getGunId() {
+    public final short getGunId() {
         return 7;
     }
 
@@ -47,7 +47,7 @@ public final class HLBullpupRifle implements AssultRifle, BuyableWeapon, Unlocka
      * @return Supported {@link Attachment}s
      */
     @Override
-    public AttachmentType[] getSupportedAttachments() {
+    public final AttachmentType[] getSupportedAttachments() {
         return new AttachmentType[] {AttachmentType.EXTENDED_CLIP, AttachmentType.GRIP};
     }
 
@@ -57,7 +57,7 @@ public final class HLBullpupRifle implements AssultRifle, BuyableWeapon, Unlocka
      * @return Weapon cost
      */
     @Override
-    public double getCost() {
+    public final double getCost() {
         return 14500;
     }
 
@@ -67,7 +67,7 @@ public final class HLBullpupRifle implements AssultRifle, BuyableWeapon, Unlocka
      * @return Weapon rarity
      */
     @Override
-    public double getRarity() {
+    public final double getRarity() {
         return 40;
     }
 }
