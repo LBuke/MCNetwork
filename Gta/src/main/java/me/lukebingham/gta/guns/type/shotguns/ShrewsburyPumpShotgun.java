@@ -1,4 +1,4 @@
-package me.lukebingham.gta.guns.assult;
+package me.lukebingham.gta.guns.type.shotguns;
 
 import me.lukebingham.gta.attributes.Accuracy;
 import me.lukebingham.gta.attributes.BuyableWeapon;
@@ -9,17 +9,18 @@ import me.lukebingham.gta.attributes.UnlockableWeapon;
 import me.lukebingham.gta.guns.attachments.Attachment;
 import me.lukebingham.gta.guns.attachments.AttachmentType;
 import me.lukebingham.gta.guns.attributes.AssultRifle;
+import me.lukebingham.gta.guns.attributes.Shotgun;
 import me.lukebingham.util.Dev;
 
 /**
  * Created by LukeBingham on 15/04/2017.
  */
-@Damage(3.0f)
-@Accuracy(4.5f)
-@FireRate(6.0f)
-@Range(4.5f)
+@Damage(6.7f)
+@Accuracy(3.0f)
+@FireRate(2.0f)
+@Range(2.0f)
 @Dev
-public final class Shrewsbury implements AssultRifle, BuyableWeapon, UnlockableWeapon {
+public final class ShrewsburyPumpShotgun implements Shotgun, BuyableWeapon, UnlockableWeapon {
 
     /**
      * This is the name of the gun.
@@ -28,7 +29,7 @@ public final class Shrewsbury implements AssultRifle, BuyableWeapon, UnlockableW
      */
     @Override
     public final String getName() {
-        return "Shrewsbury";
+        return "Shrewsbury Pump Shotgun";
     }
 
     /**
@@ -38,7 +39,7 @@ public final class Shrewsbury implements AssultRifle, BuyableWeapon, UnlockableW
      */
     @Override
     public final short getGunId() {
-        return 3;
+        return 2;
     }
 
     /**
@@ -48,7 +49,7 @@ public final class Shrewsbury implements AssultRifle, BuyableWeapon, UnlockableW
      */
     @Override
     public final AttachmentType[] getSupportedAttachments() {
-        return new AttachmentType[] {AttachmentType.EXTENDED_CLIP, AttachmentType.GRIP};
+        return new AttachmentType[] {};
     }
 
     /**
@@ -58,7 +59,7 @@ public final class Shrewsbury implements AssultRifle, BuyableWeapon, UnlockableW
      */
     @Override
     public final double getCost() {
-        return 8550;
+        return 3500;
     }
 
     /**

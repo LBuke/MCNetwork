@@ -1,4 +1,4 @@
-package me.lukebingham.gta.guns.shotguns;
+package me.lukebingham.gta.guns.type.shotguns;
 
 import me.lukebingham.gta.attributes.Accuracy;
 import me.lukebingham.gta.attributes.BuyableWeapon;
@@ -14,12 +14,12 @@ import me.lukebingham.util.Dev;
 /**
  * Created by LukeBingham on 15/04/2017.
  */
-@Damage(9.8f)
-@Accuracy(1.5f)
-@FireRate(2.5f)
-@Range(1.0f)
+@Damage(7.7f)
+@Accuracy(5.5f)
+@FireRate(5.0f)
+@Range(2.0f)
 @Dev
-public final class DoubleBarreledShotgun implements Shotgun, BuyableWeapon, UnlockableWeapon {
+public final class VomFeuerAssaultShotgun implements Shotgun, BuyableWeapon, UnlockableWeapon {
 
     /**
      * This is the name of the gun.
@@ -28,7 +28,7 @@ public final class DoubleBarreledShotgun implements Shotgun, BuyableWeapon, Unlo
      */
     @Override
     public final String getName() {
-        return "Double Barreled Shotgun";
+        return "Vom Feuer Assault Shotgun";
     }
 
     /**
@@ -58,7 +58,7 @@ public final class DoubleBarreledShotgun implements Shotgun, BuyableWeapon, Unlo
      */
     @Override
     public final double getCost() {
-        return 15450;
+        return 10000;
     }
 
     /**

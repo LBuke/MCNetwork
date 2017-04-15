@@ -1,4 +1,4 @@
-package me.lukebingham.gta.guns.assult;
+package me.lukebingham.gta.guns.type.assult;
 
 import me.lukebingham.core.util.rank.Rank;
 import me.lukebingham.gta.attributes.*;

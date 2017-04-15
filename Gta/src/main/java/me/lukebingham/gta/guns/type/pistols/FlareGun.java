@@ -1,4 +1,4 @@
-package me.lukebingham.gta.guns.shotguns;
+package me.lukebingham.gta.guns.type.pistols;
 
 import me.lukebingham.gta.attributes.Accuracy;
 import me.lukebingham.gta.attributes.BuyableWeapon;
@@ -8,18 +8,18 @@ import me.lukebingham.gta.attributes.Range;
 import me.lukebingham.gta.attributes.UnlockableWeapon;
 import me.lukebingham.gta.guns.attachments.Attachment;
 import me.lukebingham.gta.guns.attachments.AttachmentType;
-import me.lukebingham.gta.guns.attributes.Shotgun;
+import me.lukebingham.gta.guns.attributes.Pistol;
 import me.lukebingham.util.Dev;
 
 /**
  * Created by LukeBingham on 15/04/2017.
  */
-@Damage(7.7f)
-@Accuracy(5.5f)
-@FireRate(5.0f)
-@Range(2.0f)
+@Damage(2.0f)
+@Accuracy(3.0f)
+@FireRate(1.0f)
+@Range(1.0f)
 @Dev
-public final class VomFeuerAssaultShotgun implements Shotgun, BuyableWeapon, UnlockableWeapon {
+public final class FlareGun implements Pistol, BuyableWeapon, UnlockableWeapon {
 
     /**
      * This is the name of the gun.
@@ -28,7 +28,7 @@ public final class VomFeuerAssaultShotgun implements Shotgun, BuyableWeapon, Unl
      */
     @Override
     public final String getName() {
-        return "Vom Feuer Assault Shotgun";
+        return "Flare Gun";
     }
 
     /**
@@ -58,7 +58,7 @@ public final class VomFeuerAssaultShotgun implements Shotgun, BuyableWeapon, Unl
      */
     @Override
     public final double getCost() {
-        return 10000;
+        return 5750;
     }
 
     /**

@@ -1,4 +1,4 @@
-package me.lukebingham.gta.guns.shotguns;
+package me.lukebingham.gta.guns.type.assult;
 
 import me.lukebingham.gta.attributes.Accuracy;
 import me.lukebingham.gta.attributes.BuyableWeapon;
@@ -8,18 +8,18 @@ import me.lukebingham.gta.attributes.Range;
 import me.lukebingham.gta.attributes.UnlockableWeapon;
 import me.lukebingham.gta.guns.attachments.Attachment;
 import me.lukebingham.gta.guns.attachments.AttachmentType;
-import me.lukebingham.gta.guns.attributes.Shotgun;
+import me.lukebingham.gta.guns.attributes.AssultRifle;
 import me.lukebingham.util.Dev;
 
 /**
  * Created by LukeBingham on 15/04/2017.
  */
-@Damage(8.5f)
-@Accuracy(3.0f)
-@FireRate(4.5f)
-@Range(2.5f)
+@Damage(3.4f)
+@Accuracy(5.0f)
+@FireRate(7.0f)
+@Range(4.5f)
 @Dev
-public final class ShrewsburyHeavyShotgun implements Shotgun, BuyableWeapon, UnlockableWeapon {
+public final class VomFeuerAdvancedRifle implements AssultRifle, BuyableWeapon, UnlockableWeapon {
 
     /**
      * This is the name of the gun.
@@ -28,7 +28,7 @@ public final class ShrewsburyHeavyShotgun implements Shotgun, BuyableWeapon, Unl
      */
     @Override
     public final String getName() {
-        return "Shrewsbury Heavy Shotgun";
+        return "Vom Feuer Advanced Rifle";
     }
 
     /**
@@ -38,7 +38,7 @@ public final class ShrewsburyHeavyShotgun implements Shotgun, BuyableWeapon, Unl
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 5;
     }
 
     /**
@@ -48,7 +48,7 @@ public final class ShrewsburyHeavyShotgun implements Shotgun, BuyableWeapon, Unl
      */
     @Override
     public final AttachmentType[] getSupportedAttachments() {
-        return new AttachmentType[] {};
+        return new AttachmentType[] {AttachmentType.EXTENDED_CLIP, AttachmentType.GRIP};
     }
 
     /**
@@ -58,7 +58,7 @@ public final class ShrewsburyHeavyShotgun implements Shotgun, BuyableWeapon, Unl
      */
     @Override
     public final double getCost() {
-        return 13550;
+        return 14250;
     }
 
     /**
