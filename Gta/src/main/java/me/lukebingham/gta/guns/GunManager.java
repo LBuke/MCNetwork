@@ -47,8 +47,8 @@ public class GunManager {
     }
 
     public static String getProgress(float value) {
-        String bar = "";
-        for(int i = 0; i < 10; i++) bar += value <= i ? C.GREEN + C.BOLD + ":" : C.GRAY + C.BOLD + ":";
-        return bar;
+        StringBuilder bar = new StringBuilder();
+        for(int i = 0; i < 10; i++) bar.append(value <= i ? C.GRAY : C.GREEN).append(C.STRIKE + "-");
+        return bar.append(C.RESET).toString();
     }
 }
