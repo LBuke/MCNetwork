@@ -1,8 +1,6 @@
 package me.lukebingham.build;
 
-import me.lukebingham.build.command.FinishCommand;
-import me.lukebingham.build.command.SpawnCommand;
-import me.lukebingham.build.command.StartCommand;
+import me.lukebingham.build.command.*;
 import me.lukebingham.build.util.WorldUtil;
 import me.lukebingham.database.Database;
 import me.lukebingham.database.DatabaseModule;
@@ -28,10 +26,14 @@ public class Build extends JavaPlugin {
         StartCommand startCommand = new StartCommand(this);
         FinishCommand finishCommand = new FinishCommand(this, buildManager);
         SpawnCommand spawnCommand = new SpawnCommand();
+        CompressCommand compressCommand = new CompressCommand(this, database);
+        MapsCommand mapsCommand = new MapsCommand(this);
 
         getCommand("start").setExecutor(startCommand);
         getCommand("finish").setExecutor(finishCommand);
         getCommand("spawn").setExecutor(spawnCommand);
+        getCommand("compress").setExecutor(compressCommand);
+        getCommand("maps").setExecutor(mapsCommand);
     }
 
     @Override

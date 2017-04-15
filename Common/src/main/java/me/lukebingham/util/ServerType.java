@@ -5,9 +5,13 @@ package me.lukebingham.util;
  */
 public enum ServerType {
     LOBBY(512),
+    GTA(512),
 
     //Games
     SKYWARS(512),
+
+    //Unknown
+    OTHER(-1),
     ;
 
     private final int mb;

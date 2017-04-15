@@ -23,7 +23,7 @@ public class ShopInventory extends MenuModule {
         this(1);
     }
 
-    public ShopInventory(int page) {
+    private ShopInventory(int page) {
         super(6, "Dev Shop (Page " + page + ")", false, true, false);
 
         int[] slots = InventoryUtil.getSlots(3);

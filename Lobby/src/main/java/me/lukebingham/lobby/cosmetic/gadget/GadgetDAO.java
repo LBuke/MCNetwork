@@ -1,4 +1,4 @@
-package me.lukebingham.lobby.dao;
+package me.lukebingham.lobby.cosmetic.gadget;
 
 import com.mongodb.*;
 import me.lukebingham.core.cosmetic.gadget.Gadget;

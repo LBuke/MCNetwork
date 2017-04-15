@@ -123,7 +123,7 @@ public enum ParticleEffect {
      */
     CRIT("crit", 9, -1),
     /**
-     * A particle effect which is displayed when landing a hit with an enchanted weapon:
+     * A particle effect which is displayed when landing a hit with an enchanted weapons:
      * <ul>
      * <li>It looks like a cyan star
      * <li>The speed value influences the velocity at which the particle flies off

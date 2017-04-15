@@ -53,6 +53,11 @@ public final class ItemFactory extends Factory<ItemStack> implements CloneableFa
         return this;
     }
 
+    public final ItemFactory setDurability(short durability) {
+        object.setDurability(durability);
+        return this;
+    }
+
     public final ItemStack build() {
         object.setItemMeta(itemMeta);
         return object;

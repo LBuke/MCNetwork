@@ -1,0 +1,5 @@
+main: ${groupId}.${artifactId}.${name}
+name: ${name}
+version: ${version}
+author: xTeddeh
+description: ServerName-GTA-${version}

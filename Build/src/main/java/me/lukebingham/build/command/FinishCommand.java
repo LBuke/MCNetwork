@@ -4,10 +4,8 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import me.lukebingham.build.BuildManager;
 import me.lukebingham.build.util.BlockData;
-import me.lukebingham.util.C;
-import me.lukebingham.util.Callback;
-import me.lukebingham.util.DoubleCallback;
-import me.lukebingham.util.ServerType;
+import me.lukebingham.util.*;
+import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -21,11 +19,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.zip.ZipOutputStream;
 
 /**
  * Created by LukeBingham on 06/04/2017.
@@ -66,18 +66,21 @@ public final class FinishCommand implements CommandExecutor {
         if(!mapData.exists()) return true;
         YamlConfiguration config = YamlConfiguration.loadConfiguration(mapData);
 
+        sender.sendMessage(C.RED + "Parsing & compression queued, Do not leave this world.");
 
         int[] y = {-1};
         DoubleCallback<Boolean, Integer> callback = (done, count) -> {
             if(count % 16 == 0) {
-                sender.sendMessage(C.YELLOW + "Map parsing progress: " +
-                        C.GOLD + count + C.YELLOW + "/" + C.GOLD + 256 + C.YELLOW + " (" + radius[0]*radius[0] + ")");
+                String c = C.GOLD + count + C.YELLOW + "/" + C.GOLD + 256;
+                sender.sendMessage(C.YELLOW + "Map parsing progress: " + c + C.YELLOW + " (" + radius[0]*radius[0] + ")");
             }
+
             if(done) {
                 sender.sendMessage(C.YELLOW + "Map parsing complete!");
             }
         };
 
+        if(config.contains("data")) config.set("data", null);
         new BukkitRunnable() {
             @Override public void run() {
                 y[0] += 1;
@@ -117,7 +120,7 @@ public final class FinishCommand implements CommandExecutor {
                 }
                 else callback.call(false, y[0]);
             }
-        }.runTaskTimer(plugin, 0, 5);
+        }.runTaskTimer(plugin, 0, 3);
         return false;
     }
 }

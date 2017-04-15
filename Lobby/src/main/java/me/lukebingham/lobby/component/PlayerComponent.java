@@ -14,7 +14,7 @@ import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.core.util.factory.ItemFactory;
 import me.lukebingham.core.util.rank.Role;
 import me.lukebingham.lobby.Lobby;
-import me.lukebingham.lobby.dao.GadgetDAO;
+import me.lukebingham.lobby.cosmetic.gadget.GadgetDAO;
 import me.lukebingham.lobby.profile.LobbyProfile;
 import me.lukebingham.lobby.profile.ProfileInventory;
 import org.bukkit.Bukkit;

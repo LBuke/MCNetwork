@@ -7,3 +7,5 @@ commands:
   start:
   spawn:
   finish:
+  compress:
+  maps:

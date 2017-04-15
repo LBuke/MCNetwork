@@ -36,7 +36,12 @@ public final class C {
     //Key colors
     public static final String DATABASE = YELLOW;
 
-
+    /**
+     * Strip the chat color codes from the input string.
+     *
+     * @param input The input text
+     * @return The striped raw text
+     */
     public static String stripColor(String input) {
         return input == null ? null : STRIP_COLOR_PATTERN.matcher(input).replaceAll("");
     }
