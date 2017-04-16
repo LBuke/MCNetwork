@@ -14,7 +14,7 @@ public interface AssultRifle extends Gun {
      * @return Gun Item Material
      */
     @Override default Material getGunItem() {
-        return Material.DIAMOND_HOE;
+        return Material.WOOD_HOE;
     }
 
     /**

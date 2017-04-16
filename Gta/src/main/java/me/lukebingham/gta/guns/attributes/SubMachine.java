@@ -14,7 +14,7 @@ public interface SubMachine extends Gun {
      * @return Gun Item Material
      */
     @Override default Material getGunItem() {
-        return Material.GOLD_SPADE;
+        return Material.WOOD_HOE;
     }
 
     /**

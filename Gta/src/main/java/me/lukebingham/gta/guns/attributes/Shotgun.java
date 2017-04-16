@@ -14,7 +14,7 @@ public interface Shotgun extends Gun {
      * @return Gun Item Material
      */
     @Override default Material getGunItem() {
-        return Material.STONE_HOE;
+        return Material.WOOD_HOE;
     }
 
     /**
