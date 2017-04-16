@@ -31,9 +31,11 @@ import me.lukebingham.gta.guns.type.shotguns.ShrewsburyPumpShotgun;
 import me.lukebingham.gta.guns.type.shotguns.ShrewsburySawedOffShotgun;
 import me.lukebingham.gta.guns.type.shotguns.VomFeuerAssaultShotgun;
 import me.lukebingham.util.C;
+import org.bukkit.Material;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 
 /**
  * Created by LukeBingham on 13/04/2017.
@@ -80,6 +82,10 @@ public class GunManager {
 
     public HashSet<Gun> getGuns() {
         return guns;
+    }
+
+    public Optional<Gun> getGun(Material material, short durability) {
+        return guns.stream().filter(gun -> gun.getGunItem() == material && gun.getGunId() == durability).findAny();
     }
 
     public Damage getDamage(Gun gun) {
