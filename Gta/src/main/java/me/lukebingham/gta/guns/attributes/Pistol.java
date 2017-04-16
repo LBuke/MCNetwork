@@ -14,7 +14,7 @@ public interface Pistol extends Gun {
      * @return Gun Item Material
      */
     @Override default Material getGunItem() {
-        return Material.WOOD_HOE;
+        return Material.IRON_HOE;
     }
 
     /**

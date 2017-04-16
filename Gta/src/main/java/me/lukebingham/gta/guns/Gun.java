@@ -68,4 +68,13 @@ public interface Gun {
      * @return Supported {@link Attachment}s
      */
     AttachmentType[] getSupportedAttachments();
+
+    /**
+     * This is a unique id for {@link Gun}.
+     *
+     * @return Unique ID {@link Gun}
+     */
+    default double getUniqueId() {
+        return Double.valueOf(getGunItem().getId() + "." + getGunId());
+    }
 }

@@ -14,7 +14,7 @@ public interface HeavyMachine extends Gun {
      * @return Gun Item Material
      */
     @Override default Material getGunItem() {
-        return Material.WOOD_HOE;
+        return Material.GOLD_HOE;
     }
 
     /**
