@@ -38,7 +38,7 @@ public final class HeavyPistol implements Pistol, BuyableWeapon, UnlockableWeapo
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 12;
     }
 
     /**

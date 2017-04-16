@@ -36,7 +36,7 @@ public final class M16A1 implements AssultRifle, BurstGun, BuyableWeapon, Unlock
      */
     @Override
     public final short getGunId() {
-        return 1;
+        return 3;
     }
 
     /**

@@ -39,7 +39,7 @@ public final class ShrewsburySniperRifle implements SniperRifle, BuyableWeapon, 
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 27;
     }
 
     /**

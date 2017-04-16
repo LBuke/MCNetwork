@@ -38,7 +38,7 @@ public final class FlareGun implements Pistol, BuyableWeapon, UnlockableWeapon {
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 11;
     }
 
     /**

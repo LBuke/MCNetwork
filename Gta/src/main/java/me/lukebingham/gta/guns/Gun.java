@@ -63,6 +63,13 @@ public interface Gun {
     short getGunId();
 
     /**
+     * This is the Gun's aim id (meta data)
+     *
+     * @return Id of the Gun's aim.
+     */
+    default short getAimId() { return (short) (getGunId() + 1); }
+
+    /**
      * This is an array of {@link Attachment}s the gun will support.
      *
      * @return Supported {@link Attachment}s

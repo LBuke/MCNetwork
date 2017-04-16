@@ -38,7 +38,7 @@ public final class ShrewsburyHeavyShotgun implements Shotgun, BuyableWeapon, Unl
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 23;
     }
 
     /**

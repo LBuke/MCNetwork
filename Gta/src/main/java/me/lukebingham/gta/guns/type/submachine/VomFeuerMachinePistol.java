@@ -38,7 +38,7 @@ public final class VomFeuerMachinePistol implements SubMachine, BuyableWeapon, U
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 35;
     }
 
     /**

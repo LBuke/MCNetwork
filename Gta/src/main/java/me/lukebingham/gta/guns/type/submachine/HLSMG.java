@@ -39,7 +39,7 @@ public final class HLSMG implements SubMachine, BuyableWeapon, UnlockableWeapon 
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 31;
     }
 
     /**

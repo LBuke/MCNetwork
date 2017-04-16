@@ -38,7 +38,7 @@ public final class Musket implements Shotgun, BuyableWeapon, UnlockableWeapon {
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 22;
     }
 
     /**

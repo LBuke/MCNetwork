@@ -38,7 +38,7 @@ public final class HLBullpupRifle implements AssultRifle, BuyableWeapon, Unlocka
      */
     @Override
     public final short getGunId() {
-        return 7;
+        return 2;
     }
 
     /**

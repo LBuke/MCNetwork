@@ -38,7 +38,7 @@ public final class VomFeuerAssaultShotgun implements Shotgun, BuyableWeapon, Unl
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 26;
     }
 
     /**

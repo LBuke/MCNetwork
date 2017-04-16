@@ -38,7 +38,7 @@ public final class VomFeuerAdvancedRifle implements AssultRifle, BuyableWeapon, 
      */
     @Override
     public final short getGunId() {
-        return 5;
+        return 6;
     }
 
     /**

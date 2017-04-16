@@ -38,7 +38,7 @@ public final class VomFeuerHeavySniper implements SniperRifle, BuyableWeapon, Un
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 28;
     }
 
     /**

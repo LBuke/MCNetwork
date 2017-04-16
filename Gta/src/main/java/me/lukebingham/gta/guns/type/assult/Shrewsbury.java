@@ -38,7 +38,7 @@ public final class Shrewsbury implements AssultRifle, BuyableWeapon, UnlockableW
      */
     @Override
     public final short getGunId() {
-        return 3;
+        return 4;
     }
 
     /**

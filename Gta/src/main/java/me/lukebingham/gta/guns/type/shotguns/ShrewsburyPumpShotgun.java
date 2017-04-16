@@ -39,7 +39,7 @@ public final class ShrewsburyPumpShotgun implements Shotgun, BuyableWeapon, Unlo
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 24;
     }
 
     /**

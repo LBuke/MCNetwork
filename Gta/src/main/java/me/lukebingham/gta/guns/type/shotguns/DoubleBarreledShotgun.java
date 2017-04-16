@@ -38,7 +38,7 @@ public final class DoubleBarreledShotgun implements Shotgun, BuyableWeapon, Unlo
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 20;
     }
 
     /**

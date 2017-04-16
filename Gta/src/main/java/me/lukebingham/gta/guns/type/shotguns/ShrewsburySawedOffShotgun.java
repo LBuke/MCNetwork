@@ -38,7 +38,7 @@ public final class ShrewsburySawedOffShotgun implements Shotgun, BuyableWeapon, 
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 25;
     }
 
     /**

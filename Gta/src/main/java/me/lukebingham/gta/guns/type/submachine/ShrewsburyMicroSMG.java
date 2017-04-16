@@ -39,7 +39,7 @@ public final class ShrewsburyMicroSMG implements SubMachine, BuyableWeapon, Unlo
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 32;
     }
 
     /**

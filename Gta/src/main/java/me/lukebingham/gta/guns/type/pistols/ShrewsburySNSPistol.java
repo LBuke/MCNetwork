@@ -38,7 +38,7 @@ public final class ShrewsburySNSPistol implements Pistol, BuyableWeapon, Unlocka
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 18;
     }
 
     /**

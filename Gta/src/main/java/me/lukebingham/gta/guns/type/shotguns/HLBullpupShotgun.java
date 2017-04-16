@@ -38,7 +38,7 @@ public final class HLBullpupShotgun implements Shotgun, BuyableWeapon, Unlockabl
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 21;
     }
 
     /**

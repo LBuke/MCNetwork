@@ -33,7 +33,7 @@ public final class AK47 implements AssultRifle, BuyableWeapon, UnlockableWeapon 
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 1;
     }
 
     /**

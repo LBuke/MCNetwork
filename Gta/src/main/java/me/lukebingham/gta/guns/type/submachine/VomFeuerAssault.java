@@ -39,7 +39,7 @@ public final class VomFeuerAssault implements SubMachine, BuyableWeapon, Unlocka
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 33;
     }
 
     /**

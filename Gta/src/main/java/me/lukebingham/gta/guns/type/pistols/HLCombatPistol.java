@@ -38,7 +38,7 @@ public final class HLCombatPistol implements Pistol, BuyableWeapon, UnlockableWe
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 13;
     }
 
     /**

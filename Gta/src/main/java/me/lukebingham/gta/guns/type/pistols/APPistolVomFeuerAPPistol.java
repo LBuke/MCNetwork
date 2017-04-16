@@ -38,7 +38,7 @@ public final class APPistolVomFeuerAPPistol implements Pistol, BuyableWeapon, Un
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 9;
     }
 
     /**

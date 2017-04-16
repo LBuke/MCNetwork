@@ -38,7 +38,7 @@ public final class HLHeavyRevolver implements Pistol, BuyableWeapon, UnlockableW
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 14;
     }
 
     /**

@@ -38,7 +38,7 @@ public final class VintagePistol implements Pistol, BuyableWeapon, UnlockableWea
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 19;
     }
 
     /**

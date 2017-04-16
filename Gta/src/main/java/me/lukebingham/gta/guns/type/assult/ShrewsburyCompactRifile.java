@@ -38,7 +38,7 @@ public final class ShrewsburyCompactRifile implements AssultRifle, BuyableWeapon
      */
     @Override
     public final short getGunId() {
-        return 7;
+        return 5;
     }
 
     /**

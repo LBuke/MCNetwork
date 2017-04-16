@@ -39,7 +39,7 @@ public final class CoilCombatPDW implements SubMachine, BuyableWeapon, Unlockabl
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 30;
     }
 
     /**

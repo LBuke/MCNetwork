@@ -39,7 +39,7 @@ public final class HLPistol implements Pistol, BuyableWeapon, UnlockableWeapon {
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 15;
     }
 
     /**

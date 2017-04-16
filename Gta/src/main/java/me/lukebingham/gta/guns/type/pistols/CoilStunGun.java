@@ -38,7 +38,7 @@ public final class CoilStunGun implements Pistol, BuyableWeapon, UnlockableWeapo
      */
     @Override
     public final short getGunId() {
-        return 2;
+        return 10;
     }
 
     /**
