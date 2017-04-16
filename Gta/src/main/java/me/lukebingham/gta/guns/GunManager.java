@@ -4,32 +4,11 @@ import me.lukebingham.gta.attributes.Accuracy;
 import me.lukebingham.gta.attributes.Damage;
 import me.lukebingham.gta.attributes.FireRate;
 import me.lukebingham.gta.attributes.Range;
-import me.lukebingham.gta.guns.type.assult.AK47;
-import me.lukebingham.gta.guns.type.assult.HLBullpupRifle;
-import me.lukebingham.gta.guns.type.assult.M16A1;
-import me.lukebingham.gta.guns.type.assult.Shrewsbury;
-import me.lukebingham.gta.guns.type.assult.ShrewsburyCompactRifile;
-import me.lukebingham.gta.guns.type.assult.VomFeuerAdvancedRifle;
-import me.lukebingham.gta.guns.type.assult.VomFeuerRifle;
-import me.lukebingham.gta.guns.type.assult.VomFeuerSpecialRifile;
-import me.lukebingham.gta.guns.type.pistols.APPistolVomFeuerAPPistol;
-import me.lukebingham.gta.guns.type.pistols.CoilStunGun;
-import me.lukebingham.gta.guns.type.pistols.FlareGun;
-import me.lukebingham.gta.guns.type.pistols.HLCombatPistol;
-import me.lukebingham.gta.guns.type.pistols.HLHeavyRevolver;
-import me.lukebingham.gta.guns.type.pistols.HLPistol;
-import me.lukebingham.gta.guns.type.pistols.HLPistol50;
-import me.lukebingham.gta.guns.type.pistols.HeavyPistol;
-import me.lukebingham.gta.guns.type.pistols.MarksmanPistol;
-import me.lukebingham.gta.guns.type.pistols.ShrewsburySNSPistol;
-import me.lukebingham.gta.guns.type.pistols.VintagePistol;
-import me.lukebingham.gta.guns.type.shotguns.DoubleBarreledShotgun;
-import me.lukebingham.gta.guns.type.shotguns.HLBullpupShotgun;
-import me.lukebingham.gta.guns.type.shotguns.Musket;
-import me.lukebingham.gta.guns.type.shotguns.ShrewsburyHeavyShotgun;
-import me.lukebingham.gta.guns.type.shotguns.ShrewsburyPumpShotgun;
-import me.lukebingham.gta.guns.type.shotguns.ShrewsburySawedOffShotgun;
-import me.lukebingham.gta.guns.type.shotguns.VomFeuerAssaultShotgun;
+import me.lukebingham.gta.guns.type.assult.*;
+import me.lukebingham.gta.guns.type.sniper.*;
+import me.lukebingham.gta.guns.type.submachine.*;
+import me.lukebingham.gta.guns.type.shotguns.*;
+import me.lukebingham.gta.guns.type.pistols.*;
 import me.lukebingham.util.C;
 import org.bukkit.Material;
 
@@ -75,8 +54,16 @@ public class GunManager {
                 new VintagePistol(),
                 new MarksmanPistol(),
                 new FlareGun(),
-                new HLHeavyRevolver()
-
+                new HLHeavyRevolver(),
+                // Sniper Rifles
+                new ShrewsburySniperRifle(),
+                new VomFeuerHeavySniper(),
+                new VomFeuerMarksmanRifle(),
+                // Sub Machine
+                new ShrewsburyMicroSMG(),
+                new HLSMG(),
+                new VomFeuerAssault(),
+                new CoilCombatPDW()
         ));
     }
 

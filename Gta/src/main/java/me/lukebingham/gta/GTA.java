@@ -41,7 +41,7 @@ public final class GTA extends CorePlugin<GTAProfile> {
      */
     @Override
     protected void unload() {
-        getDiscordManager().onDisable();
+
     }
 
     /**
