@@ -1,6 +1,7 @@
 package me.lukebingham.core;
 
 import com.google.common.collect.Sets;
+import me.lukebingham.core.discord.DiscordManager;
 import me.lukebingham.core.graphics.GraphicsManager;
 import me.lukebingham.core.i18n.I18n;
 import me.lukebingham.core.i18n.I18nComponent;
@@ -18,6 +19,7 @@ import me.lukebingham.database.DatabaseModule;
 import me.lukebingham.redis.JedisModule;
 import me.lukebingham.util.C;
 import org.bukkit.plugin.java.JavaPlugin;
+import sx.blah.discord.Discord4J;
 
 import java.util.HashSet;
 
@@ -31,6 +33,7 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
     protected JedisModule jedisModule;
     protected ProfileManager<Profile> profileManager;
     protected GraphicsManager graphicsManager;
+    protected DiscordManager discordManager;
 
     @Override
     public final void onEnable() {
@@ -42,6 +45,7 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
         this.jedisModule = new JedisModule(getPluginName());
         this.profileManager = new ProfileManager<>();
         this.graphicsManager = new GraphicsManager();
+        this.discordManager = new DiscordManager();
         I18n i18n = new I18n();
 
         //Commands
@@ -115,5 +119,12 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
     @Override
     public final JavaPlugin getPlugin() {
         return this;
+    }
+
+    /**
+     * @return DiscordManager
+     */
+    public DiscordManager getDiscordManager() {
+        return discordManager;
     }
 }

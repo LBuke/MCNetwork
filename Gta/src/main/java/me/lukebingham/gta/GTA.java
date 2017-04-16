@@ -23,6 +23,7 @@ public class GTA extends CorePlugin<CoreProfile> {
     protected void load() {
         GunManager gunManager = new GunManager();
         new GunCommand(gunManager);
+        getDiscordManager().onEnable();
     }
 
     /**
@@ -30,7 +31,7 @@ public class GTA extends CorePlugin<CoreProfile> {
      */
     @Override
     protected void unload() {
-
+        getDiscordManager().onDisable();
     }
 
     /**
