@@ -1,13 +1,18 @@
 package me.lukebingham.gta;
 
 import me.lukebingham.core.CorePlugin;
+import me.lukebingham.core.enchantment.EnchantmentManager;
+import me.lukebingham.core.enchantment.GlowEnchantment;
 import me.lukebingham.core.module.Module;
 import me.lukebingham.core.module.PluginState;
 import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.gta.chat.ChatComponent;
-import me.lukebingham.gta.guns.GunComponent;
-import me.lukebingham.gta.guns.GunManager;
-import me.lukebingham.gta.guns.command.GunCommand;
+import me.lukebingham.gta.enchantments.VehicleArmor;
+import me.lukebingham.gta.enchantments.VehicleBreaks;
+import me.lukebingham.gta.enchantments.VehicleEngine;
+import me.lukebingham.gta.weapon.gun.GunComponent;
+import me.lukebingham.gta.weapon.gun.GunManager;
+import me.lukebingham.gta.weapon.gun.command.GunCommand;
 import me.lukebingham.gta.player.PlayerComponent;
 import me.lukebingham.gta.profile.GTAProfile;
 import me.lukebingham.util.ServerType;
@@ -23,13 +28,20 @@ public final class GTA extends CorePlugin<GTAProfile> {
      */
     @Override
     protected void load() {
+        EnchantmentManager enchantmentManager = new EnchantmentManager();
+        enchantmentManager.addEnchantment(new GlowEnchantment());
+        enchantmentManager.addEnchantment(new VehicleArmor());
+        enchantmentManager.addEnchantment(new VehicleBreaks());
+        enchantmentManager.addEnchantment(new VehicleEngine());
+        enchantmentManager.registerAll();
+
         GunManager gunManager = new GunManager();
 
         //Commands
         new GunCommand(gunManager);
 
         //Components
-        GunComponent gunComponent = new GunComponent(gunManager, super.profileManager);
+        GunComponent gunComponent = new GunComponent(this, gunManager, super.profileManager);
         ChatComponent chatComponent = new ChatComponent(super.profileManager);
         PlayerComponent playerComponent = new PlayerComponent(super.profileManager);
 

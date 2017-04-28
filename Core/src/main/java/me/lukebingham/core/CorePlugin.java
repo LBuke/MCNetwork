@@ -18,8 +18,11 @@ import me.lukebingham.database.Database;
 import me.lukebingham.database.DatabaseModule;
 import me.lukebingham.redis.JedisModule;
 import me.lukebingham.util.C;
+import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.QuickEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import sx.blah.discord.Discord4J;
 
 import java.util.HashSet;
 
@@ -56,6 +59,8 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
         I18nComponent i18nComponent = new I18nComponent(profileManager);
         PacketComponent packetComponent = new PacketComponent();
         ServerUtil.registerComponent(menuComponent, i18nComponent, packetComponent);
+
+//        Bukkit.getPluginManager().registerEvents((QuickEvent<PlayerJoinEvent>) event -> ServerUtil.logDebug(event.getPlayer().getName()), this);
 
         load();
         logLoadedModule();

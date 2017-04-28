@@ -19,7 +19,7 @@ public class DiscordManager {
 		setupClient();
 
 		try {
-			getClient().login(true);
+			getClient().login();
 
 			if (getClient().isReady()) {
 				IDiscordClient discordClient = getClient();
@@ -39,7 +39,7 @@ public class DiscordManager {
 		try {
 			getClient().logout();
 			ServerUtil.logError("Logged out of Discord! Bot now offline.");
-		} catch (DiscordException | RateLimitException e) {
+		} catch (DiscordException e) {
 			e.printStackTrace();
 		}
 	}

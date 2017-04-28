@@ -2,8 +2,8 @@ package me.lukebingham.gta.profile;
 
 import com.google.common.collect.Maps;
 import me.lukebingham.core.profile.CoreProfile;
-import me.lukebingham.gta.guns.Gun;
-import me.lukebingham.gta.guns.attributes.GunType;
+import me.lukebingham.gta.weapon.gun.Gun;
+import me.lukebingham.gta.weapon.gun.attributes.GunType;
 import me.lukebingham.gta.level.Level;
 
 import java.util.HashMap;
