@@ -1,6 +1,9 @@
 package me.lukebingham.gta.weapon.gun;
 
-import me.lukebingham.gta.attributes.*;
+import me.lukebingham.gta.weapon.attributes.Accuracy;
+import me.lukebingham.gta.weapon.attributes.Damage;
+import me.lukebingham.gta.weapon.attributes.FireRate;
+import me.lukebingham.gta.weapon.attributes.Range;
 import me.lukebingham.gta.weapon.gun.type.assult.*;
 import me.lukebingham.gta.weapon.gun.type.pistols.*;
 import me.lukebingham.gta.weapon.gun.type.shotguns.*;

@@ -1,17 +1,15 @@
 package me.lukebingham.gta.player;
 
-import me.lukebingham.core.Core;
-import me.lukebingham.core.cosmetic.CosmeticManager;
-import me.lukebingham.core.cosmetic.gadget.gadgets.CookieGadget;
-import me.lukebingham.core.graphics.GraphicsManager;
 import me.lukebingham.core.module.Module;
 import me.lukebingham.core.module.PluginState;
 import me.lukebingham.core.profile.ProfileManager;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.core.util.rank.Role;
-import me.lukebingham.database.Database;
+import me.lukebingham.gta.garage.GarageData;
 import me.lukebingham.gta.profile.GTAProfile;
+import me.lukebingham.gta.vehicles.Vehicle;
+import me.lukebingham.gta.vehicles.type.car.sport.AudiR8;
 import me.lukebingham.util.C;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
@@ -51,6 +49,8 @@ public final class PlayerComponent implements Component {
                     }
                 }
             }
+
+            call.setGarage(new GarageData(new Vehicle[] {new AudiR8()}));
         });
     }
 

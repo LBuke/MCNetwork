@@ -1,5 +1,8 @@
 package me.lukebingham.gta.weapon.gun.attachments;
 
+import me.lukebingham.gta.weapon.attributes.Accuracy;
+import me.lukebingham.gta.weapon.attributes.Damage;
+import me.lukebingham.gta.weapon.attributes.Range;
 import me.lukebingham.gta.weapon.gun.Gun;
 
 /**
@@ -29,7 +32,7 @@ public interface Attachment {
     int getCost();
 
     /**
-     * This is the {@link me.lukebingham.gta.attributes.Accuracy} modifier that is applied<br>
+     * This is the {@link Accuracy} modifier that is applied<br>
      * To the {@link Gun} when the Attachment is equipped.
      *
      * @return Accuracy modifier
@@ -37,7 +40,7 @@ public interface Attachment {
     float getAccuracyModifier();
 
     /**
-     * This is the {@link me.lukebingham.gta.attributes.Damage} modifier that is applied<br>
+     * This is the {@link Damage} modifier that is applied<br>
      * To the {@link Gun} when the Attachment is equipped.
      *
      * @return Damage modifier
@@ -45,7 +48,7 @@ public interface Attachment {
     float getDamageModifier();
 
     /**
-     * This is the {@link me.lukebingham.gta.attributes.Range} modifier that is applied<br>
+     * This is the {@link Range} modifier that is applied<br>
      * To the {@link Gun} when the Attachment is equipped.
      *
      * @return Range modifier

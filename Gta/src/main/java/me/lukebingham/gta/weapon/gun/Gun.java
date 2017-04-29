@@ -4,9 +4,7 @@ import me.lukebingham.gta.weapon.Weapon;
 import me.lukebingham.gta.weapon.WeaponType;
 import me.lukebingham.gta.weapon.gun.attachments.Attachment;
 import me.lukebingham.gta.weapon.gun.attachments.AttachmentType;
-import me.lukebingham.gta.weapon.gun.attributes.BulletType;
-import me.lukebingham.gta.weapon.gun.attributes.GunType;
-import org.bukkit.Material;
+import me.lukebingham.gta.weapon.gun.misc.BulletType;
 
 /**
  * Created by LukeBingham on 13/04/2017.

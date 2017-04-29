@@ -26,10 +26,10 @@ public final class EnchantmentUtil {
     }
 
     public static String toRoman(int number) {
-        int l =  map.floorKey(number);
-        if ( number == l ) {
+        int i =  map.floorKey(number);
+        if (number == i) {
             return map.get(number);
         }
-        return map.get(l) + toRoman(number-l);
+        return map.get(i) + toRoman(number - i);
     }
 }

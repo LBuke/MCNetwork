@@ -1,9 +1,9 @@
 package me.lukebingham.gta.weapon.gun.type.assult;
 
-import me.lukebingham.gta.attributes.*;
+import me.lukebingham.gta.weapon.attributes.*;
 import me.lukebingham.gta.weapon.gun.attachments.Attachment;
 import me.lukebingham.gta.weapon.gun.attachments.AttachmentType;
-import me.lukebingham.gta.weapon.gun.attributes.AssultRifle;
+import me.lukebingham.gta.weapon.gun.type.AssultRifle;
 import me.lukebingham.util.Dev;
 
 /**

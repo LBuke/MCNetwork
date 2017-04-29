@@ -7,9 +7,10 @@ import me.lukebingham.core.module.Module;
 import me.lukebingham.core.module.PluginState;
 import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.gta.chat.ChatComponent;
-import me.lukebingham.gta.enchantments.VehicleArmor;
-import me.lukebingham.gta.enchantments.VehicleBreaks;
-import me.lukebingham.gta.enchantments.VehicleEngine;
+import me.lukebingham.gta.vehicles.VehicleManager;
+import me.lukebingham.gta.vehicles.upgrade.VehicleArmor;
+import me.lukebingham.gta.vehicles.upgrade.VehicleBrakes;
+import me.lukebingham.gta.vehicles.upgrade.VehicleEngine;
 import me.lukebingham.gta.weapon.gun.GunComponent;
 import me.lukebingham.gta.weapon.gun.GunManager;
 import me.lukebingham.gta.weapon.gun.command.GunCommand;
@@ -31,11 +32,12 @@ public final class GTA extends CorePlugin<GTAProfile> {
         EnchantmentManager enchantmentManager = new EnchantmentManager();
         enchantmentManager.addEnchantment(new GlowEnchantment());
         enchantmentManager.addEnchantment(new VehicleArmor());
-        enchantmentManager.addEnchantment(new VehicleBreaks());
+        enchantmentManager.addEnchantment(new VehicleBrakes());
         enchantmentManager.addEnchantment(new VehicleEngine());
         enchantmentManager.registerAll();
 
         GunManager gunManager = new GunManager();
+        VehicleManager vehicleManager = new VehicleManager();
 
         //Commands
         new GunCommand(gunManager);
@@ -45,7 +47,7 @@ public final class GTA extends CorePlugin<GTAProfile> {
         ChatComponent chatComponent = new ChatComponent(super.profileManager);
         PlayerComponent playerComponent = new PlayerComponent(super.profileManager);
 
-        ServerUtil.registerComponent(gunComponent, chatComponent, playerComponent);
+        ServerUtil.registerComponent(gunComponent, chatComponent, playerComponent, vehicleManager);
     }
 
     /**

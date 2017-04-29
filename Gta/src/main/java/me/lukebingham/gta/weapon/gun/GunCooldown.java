@@ -1,7 +1,6 @@
 package me.lukebingham.gta.weapon.gun;
 
-import me.lukebingham.gta.attributes.FireRate;
-import me.lukebingham.gta.weapon.gun.attributes.GunType;
+import me.lukebingham.gta.weapon.attributes.FireRate;
 
 /**
  * Created by LukeBingham on 18/04/2017.

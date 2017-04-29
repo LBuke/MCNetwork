@@ -8,9 +8,10 @@ public enum VehicleType {
     MOTORCYCLE(2),
     PLANE(3),
     HELICOPTER(4),
+    BOAT(5),
     ;
 
-    private int id;
+    private final int id;
 
     VehicleType(int id) {
         this.id = id;

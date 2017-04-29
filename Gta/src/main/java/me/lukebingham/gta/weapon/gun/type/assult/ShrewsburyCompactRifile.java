@@ -1,14 +1,14 @@
 package me.lukebingham.gta.weapon.gun.type.assult;
 
-import me.lukebingham.gta.attributes.Accuracy;
-import me.lukebingham.gta.attributes.BuyableWeapon;
-import me.lukebingham.gta.attributes.Damage;
-import me.lukebingham.gta.attributes.FireRate;
-import me.lukebingham.gta.attributes.Range;
-import me.lukebingham.gta.attributes.UnlockableWeapon;
+import me.lukebingham.gta.weapon.attributes.Accuracy;
+import me.lukebingham.gta.weapon.attributes.BuyableWeapon;
+import me.lukebingham.gta.weapon.attributes.Damage;
+import me.lukebingham.gta.weapon.attributes.FireRate;
+import me.lukebingham.gta.weapon.attributes.Range;
+import me.lukebingham.gta.weapon.attributes.UnlockableWeapon;
 import me.lukebingham.gta.weapon.gun.attachments.Attachment;
 import me.lukebingham.gta.weapon.gun.attachments.AttachmentType;
-import me.lukebingham.gta.weapon.gun.attributes.AssultRifle;
+import me.lukebingham.gta.weapon.gun.type.AssultRifle;
 import me.lukebingham.util.Dev;
 
 /**
