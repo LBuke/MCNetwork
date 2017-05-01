@@ -8,7 +8,7 @@ import me.lukebingham.core.i18n.I18nComponent;
 import me.lukebingham.core.inventory.MenuComponent;
 import me.lukebingham.core.module.Module;
 import me.lukebingham.core.packet.PacketComponent;
-import me.lukebingham.core.packet.PacketHandler;
+import me.lukebingham.core.packet.PacketModule;
 import me.lukebingham.core.profile.CoreProfile;
 import me.lukebingham.core.profile.ProfileManager;
 import me.lukebingham.core.server.ServerCommand;
@@ -18,10 +18,6 @@ import me.lukebingham.database.Database;
 import me.lukebingham.database.DatabaseModule;
 import me.lukebingham.redis.JedisModule;
 import me.lukebingham.util.C;
-import org.bukkit.Bukkit;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.QuickEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashSet;
@@ -81,7 +77,7 @@ public abstract class CorePlugin<Profile extends CoreProfile> extends JavaPlugin
         unload();
         database.close();
         jedisModule.disable();
-        PacketHandler.clear();
+        PacketModule.clear();
     }
 
     /**

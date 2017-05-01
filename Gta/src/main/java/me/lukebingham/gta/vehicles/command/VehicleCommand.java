@@ -4,8 +4,10 @@ import me.lukebingham.core.command.CommandFactory;
 import me.lukebingham.core.command.attributes.Description;
 import me.lukebingham.core.command.attributes.Name;
 import me.lukebingham.gta.vehicles.VehicleManager;
+import org.bukkit.Material;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
-
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Created by LukeBingham on 28/04/2017.
@@ -32,6 +34,10 @@ public final class VehicleCommand extends CommandFactory<Player> {
      */
     @Override
     public final void execute(Player sender, String[] args) {
+        ArmorStand armorStand = sender.getWorld().spawn(sender.getLocation(), ArmorStand.class);
+        armorStand.setCustomName("AudiR8");
+        armorStand.getEquipment().setHelmet(new ItemStack(Material.WOOL));
 
+        armorStand.setPassenger(sender);
     }
 }

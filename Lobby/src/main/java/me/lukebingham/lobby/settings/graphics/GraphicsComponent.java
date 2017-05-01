@@ -3,8 +3,7 @@ package me.lukebingham.lobby.settings.graphics;
 import com.google.common.collect.Sets;
 import me.lukebingham.core.graphics.event.GraphicsChangeEvent;
 import me.lukebingham.core.i18n.I18nTODO;
-import me.lukebingham.core.packet.PacketEvent;
-import me.lukebingham.core.packet.PacketHandler;
+import me.lukebingham.core.packet.PacketModule;
 import me.lukebingham.core.util.BlockData;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.WorldUtil;
@@ -33,7 +32,7 @@ public final class GraphicsComponent implements Component {
         this.spawnRegion = spawnRegion;
         uuidSet = Sets.newHashSet();
 
-        PacketHandler.addPacketListener(PacketPlayOutBlockChange.class);
+        PacketModule.addPacketListener(PacketPlayOutBlockChange.class);
     }
 
     @EventHandler

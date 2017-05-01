@@ -14,22 +14,22 @@ public final class PacketComponent implements Component {
 
     @Override
     public final void onLoad() {
-        Bukkit.getOnlinePlayers().forEach(PacketHandler::hook);
+        Bukkit.getOnlinePlayers().forEach(PacketModule::hook);
     }
 
     @Override
     public final void onDisable() {
-        Bukkit.getOnlinePlayers().forEach(PacketHandler::unHook);
+        Bukkit.getOnlinePlayers().forEach(PacketModule::unHook);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     protected final void onJoin(PlayerJoinEvent event) {
-        PacketHandler.hook(event.getPlayer());
+        PacketModule.hook(event.getPlayer());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
     protected final void onQuit(PlayerQuitEvent event) {
-        PacketHandler.unHook(event.getPlayer());
+        PacketModule.unHook(event.getPlayer());
     }
 
 }
