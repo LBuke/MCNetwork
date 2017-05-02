@@ -36,7 +36,7 @@ public final class VehicleCommand extends CommandFactory<Player> {
     public final void execute(Player sender, String[] args) {
         ArmorStand armorStand = sender.getWorld().spawn(sender.getLocation(), ArmorStand.class);
         armorStand.setCustomName("AudiR8");
-        armorStand.getEquipment().setHelmet(new ItemStack(Material.WOOL));
+        armorStand.getEquipment().setHelmet(new ItemStack(Material.WOOD_AXE));
 
         armorStand.setPassenger(sender);
     }

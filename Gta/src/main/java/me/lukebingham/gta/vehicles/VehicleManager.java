@@ -7,7 +7,6 @@ import me.lukebingham.core.packet.PacketModule;
 import me.lukebingham.core.packet.PacketType;
 import me.lukebingham.core.util.Component;
 import me.lukebingham.core.util.PlayerUtil;
-import me.lukebingham.core.util.ServerUtil;
 import me.lukebingham.gta.vehicles.command.VehicleCommand;
 import me.lukebingham.gta.vehicles.type.car.sport.AudiR8;
 import me.lukebingham.util.C;
@@ -18,7 +17,6 @@ import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 import org.spigotmc.event.entity.EntityDismountEvent;
 
@@ -50,7 +48,6 @@ public final class VehicleManager implements Component {
                 if(player.getVehicle() == null) return;
                 if(player.getVehicle().getType() != EntityType.ARMOR_STAND) return;
                 ArmorStand vehicle = (ArmorStand) player.getVehicle();
-                Vector vector = null;
 
                 travelDataMap.computeIfAbsent(player.getUniqueId(), key -> new TravelData(System.currentTimeMillis(), vehicle.getLocation()));
                 TravelData data = travelDataMap.get(player.getUniqueId());
@@ -63,8 +60,8 @@ public final class VehicleManager implements Component {
 
                 long now = System.currentTimeMillis();
                 if(now >= data.getEndTime()) {
-                    double distance = data.getStartLocation().distance(vehicle.getLocation()), mph = distance / 500;
-                    PlayerUtil.sendActionBar(player, C.YELLOW + "MPH - " + mph);
+                    double distance = data.getStartLocation().distance(vehicle.getLocation()), mph = distance / 0.5;
+                    PlayerUtil.sendActionBar(player, C.YELLOW + "MPH - " + String.format("%.1f", mph));
                     data.setStartTime(now);
                     data.setEndTime(data.getStartTime() + 500);
                     data.setStartLocation(vehicle.getLocation());
@@ -72,67 +69,75 @@ public final class VehicleManager implements Component {
                     travelDataMap.computeIfPresent(player.getUniqueId(), (uuid1, travelData) -> data);
                 }
 
-                // Left and Right
-                int rotation = 5;
-                if (steerVehicle.a() > 0) {//Pressing 'A'
-                    if(steerVehicle.b() > 0) {
-                        vehicle.setHeadPose(vehicle.getHeadPose().subtract(0, Math.toRadians(rotation), 0));
-                        dummy.setYaw(dummy.getYaw() - rotation);
-                    }
-                    else if(steerVehicle.b() < 0) {
-                        vehicle.setHeadPose(vehicle.getHeadPose().add(0, Math.toRadians(rotation), 0));
-                        dummy.setYaw(dummy.getYaw() + rotation);
-                    }
+                int rotation = 1;
+                double maxSpeed = 8.6, maxRot = 5, accel = 0.02;
+
+                if (steerVehicle.a() > 0) {//Key down = 'A'
+                    if(steerVehicle.b() > 0) data.setDr(data.getDr() - rotation);
+                    else if (steerVehicle.b() < 0) data.setDr(data.getDr() + rotation);
+
+                } else if (steerVehicle.a() < 0) {//Key down = 'D'
+                    if(steerVehicle.b() > 0) data.setDr(data.getDr() + rotation);
+                    else if (steerVehicle.b() < 0) data.setDr(data.getDr() - rotation);
                 }
-                else if (steerVehicle.a() < 0) {//Pressing 'D'
-                    if(steerVehicle.b() > 0) {
-                        vehicle.setHeadPose(vehicle.getHeadPose().add(0, Math.toRadians(rotation), 0));
-                        dummy.setYaw(dummy.getYaw() + rotation);
-                    }
-                    else if(steerVehicle.b() < 0) {
-                        vehicle.setHeadPose(vehicle.getHeadPose().subtract(0, Math.toRadians(rotation), 0));
-                        dummy.setYaw(dummy.getYaw() - rotation);
+
+                if(steerVehicle.b() < 0) data.setDf(data.getDf() - (accel * 4));//Key down = 'S'
+                else if (steerVehicle.b() > 0) data.setDf(data.getDf() + (accel * 4));//Key down = 'W'
+
+                if(Math.abs(data.getDr()) > maxRot) {
+                    if(data.getDr() > 0) data.setDr(maxRot);
+                    else data.setDr(-maxRot);
+                }
+
+                if(Math.abs(data.getDf()) > maxSpeed) {
+                    if(data.getDf() > 0) data.setDf(maxSpeed);
+                    else data.setDf(-maxSpeed);
+                }
+
+                //Rotation
+                if(data.getDr() > 0) {
+                    data.setDr(data.getDr() - 0.25);
+                    if(data.getDr() < 0) data.setDr(0);
+                }
+                else if(data.getDr() < 0) {
+                    data.setDr(data.getDr() + 0.25);
+                    if(data.getDr() > 0) data.setDr(0);
+                }
+
+                //Forward
+                if(data.getDf() > 0) {
+                    data.setDf(data.getDf() - (accel * 2));
+                    if(data.getDf() < 0) data.setDf(0);
+                }
+                else if(data.getDf() < 0) {
+                    data.setDf(data.getDf() + (accel * 2));
+                    if(data.getDf() > 0) data.setDf(0);
+                }
+
+                vehicle.setHeadPose(vehicle.getHeadPose().add(0, Math.toRadians(data.getDr()), 0));
+                dummy.setYaw((float) (dummy.getYaw() + data.getDr()));
+
+                Vector vector = new Vector();
+                double rotX = (double) dummy.getYaw();
+                double rotY = (double) dummy.getPitch();
+                vector.setY(-Math.sin(Math.toRadians(rotY)));
+                double xz = Math.cos(Math.toRadians(rotY));
+                vector.setX((-xz * Math.sin(Math.toRadians(rotX))) * data.getDf());
+                vector.setZ((xz * Math.cos(Math.toRadians(rotX))) * data.getDf());
+
+                //Key down = 'SPACE'
+                if(steerVehicle.c()) {
+                    if(steerVehicle.b() > 0 && steerVehicle.a() != 0) {
+                        //TODO Drift
                     }
                 }
 
-                double speed = 0.86;//TODO: temp
-                // Forward and Backwards.
-                if(steerVehicle.b() > 0) {//Pressing 'W'
-                    vector = new Vector();
-                    double rotX = (double) dummy.getYaw();
-                    double rotY = (double) dummy.getPitch();
-                    vector.setY(-Math.sin(Math.toRadians(rotY)));
-                    double xz = Math.cos(Math.toRadians(rotY));
-                    vector.setX((-xz * Math.sin(Math.toRadians(rotX))) * (speed * 1.8));
-                    vector.setZ((xz * Math.cos(Math.toRadians(rotX))) * (speed * 1.8));
-                }
-                else if(steerVehicle.b() < 0) {//Pressing 'S'
-                    vector = new Vector();
-                    double rotX = (double) dummy.getYaw();
-                    double rotY = (double) dummy.getPitch();
-                    vector.setY(-Math.sin(Math.toRadians(rotY)));
-                    double xz = Math.cos(Math.toRadians(rotY));
-                    vector.setX((-xz * Math.sin(Math.toRadians(rotX))) * -(speed * 1.3));
-                    vector.setZ((xz * Math.cos(Math.toRadians(rotX))) * -(speed * 1.3));
-                }
-
-                // Up and Down
-                if(steerVehicle.c()) {//Pressing 'SPACE'
-                    ServerUtil.logDebug("SPACE");
-                }
-
+                //Key down = 'SHIFT'
                 if(steerVehicle.d()) {
                     player.teleport(vehicle);
                 }
 
-                ServerUtil.logDebug(vehicle.getVelocity().toString());
-                if(vector != null) vehicle.setVelocity(vector.normalize());
-            }
-        });
-
-        PacketModule.addPacketListener(new PacketHandler(PacketType.) {
-            @Override public void handle(Player player, Packet<?> packet) {
-
+                vehicle.setVelocity(vector);
             }
         });
     }
@@ -141,17 +146,14 @@ public final class VehicleManager implements Component {
     protected final void onPlayerDismount(EntityDismountEvent event) {
         if(!(event.getEntity() instanceof Player)) return;
         if(!(event.getDismounted() instanceof ArmorStand)) return;
-        Player player = (Player) event.getEntity();
-        if(travelDataMap.containsKey(player.getUniqueId())) {
-
-        }
+        travelDataMap.remove(event.getEntity().getUniqueId());
     }
 
     class TravelData {
         private long startTime, endTime;
         private Location startLocation;
         private Location dummyLocation;
-        private double mph = 0;
+        private double mph = 0, dr, df;
         private boolean exit = false;
 
         public TravelData(long startTime, Location startLocation) {
@@ -207,6 +209,22 @@ public final class VehicleManager implements Component {
 
         public boolean canExit() {
             return exit;
+        }
+
+        public double getDf() {
+            return df;
+        }
+
+        public void setDf(double df) {
+            this.df = df;
+        }
+
+        public double getDr() {
+            return dr;
+        }
+
+        public void setDr(double dr) {
+            this.dr = dr;
         }
     }
 }
